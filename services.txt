@@ -1,0 +1,46 @@
+ Paweł here, a poniżej moje potrzeby xdd
+ 
+public interface UsersService{ //Tylko administrator dodaje i usuwa użytkowników.
+- ListBasicUser findAll();
+- BasicUser findByUsername(String username);
+- boolean deleteByUsername(String username);
+- boolean addUser(BasicUser bUser);
+- boolean saveChangedUser(BasicUser bUser); Do zmiany detali usera
+}
+ Ewentualnie można zintegrować funkcję deleteByUsername
+ z saveChangedUser i zapisywać po prostu takiego, u którego
+ zmieniono status na inactive.
+
+
+Zapotrzebowanie na backend - Justyna
+
+public interface CityService {
+    City FindCityByName(String name); //modyfikacja - jeżeli jest to niepotrzebne
+}//Paweł
+
+
+public interface ProductOrderService {
+    ListProductOrder findAllByTransportProvider (String transportProviderName);
+    ListProductOrder findPendingByTransportProvider (String transportProviderName);
+    ProductOrder CreateOrder(ProductOrder order); wysłanie zamówienia do bazy
+    ServiceErrorCode ModifyOrder(ProductOrder order); zmiana informacji w zamówieniu
+    ListProductOrder FindCurrentOrders(); pobranie wszystkich zamówień o danym statusie
+    ListProductOrder FindHistoricOrders();
+    ListProductOrder FindAllOrdersForManagement(); //wszystkie ProductOrder o statusie do rozporządzenia nimi
+}//Justyna
+
+
+public interface OrderItemService {
+    OrderItem CreateOrderItem(OrderItem orderItem);
+    ListOrderItem FindOrderItemsByOrder(long orderID);
+    ServiceErrorCode setFactoryForOrderItem(OrderItem actualOrderItem, Factory chosenFactory)
+    ListFactory getPossibleFactories(OrderItem actualOrderItem)//lista fabryk w których można wyprodukować produkt z tego OrderItem
+}
+
+public interface ProductService {
+    ListProduct FindProductsByProductType(ProductType productType); //ProductType to jest enum na typy produktów !
+}
+
+public interface TransportProviderService{
+    ListTransportProvider getPossibleTransportProvidersForOrder(ProductOrder actualOrder)
+}//Piotr

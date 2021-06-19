@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo001.gui_controller.OrderManagerPanelController">
+   <center>
+      <AnchorPane prefHeight="432.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="vBox" layoutX="-2.0" layoutY="29.0" prefHeight="70.0" prefWidth="750.0" style="-fx-background-color: #40c4ff; -fx-border-color: #ffffff;">
+               <children>
+                  <Label fx:id="tabText" text="My account">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="40.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+               </children></VBox>
+            <StackPane layoutX="-8.0" layoutY="97.0" prefHeight="504.0" prefWidth="755.0">
+               <children>
+                  <GridPane fx:id="newOfferPage" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="43.7999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="57.59998779296875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="106.20000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="0.0" prefWidth="47.80000000000001" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="176.40001220703124" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80001220703127" minWidth="10.0" prefWidth="82.99999999999994" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="66.20000000000005" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="46.60007324218748" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="10.0" prefWidth="98.79999999999995" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="0.19990234374995453" prefWidth="41.200000000000045" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="26.599996948242186" minHeight="10.0" prefHeight="20.20000305175781" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.6" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="77.5999755859375" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="82.79998168945312" minHeight="3.9999877929687386" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="130.59998168945313" minHeight="0.0" prefHeight="10.400006103515636" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="211.7999755859375" minHeight="10.0" prefHeight="153.59999389648436" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="30.000024414062523" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="10.0" prefHeight="50.80000000000001" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="29.5999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="42.4000244140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Order number" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total amount" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Company" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                        <TextField fx:id="idOrderField" editable="false" prefHeight="35.0" prefWidth="439.0" promptText="    Order number" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="companyField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Company" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="amountField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Amount" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="summaryOfferButton" mnemonicParsing="false" onAction="#summaryOfferButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Summary" textFill="WHITE" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="productsTable" prefHeight="136.0" prefWidth="179.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                           <columns>
+                              <TableColumn fx:id="idProductColumn" prefWidth="40.79998779296875" text="ID" />
+                              <TableColumn fx:id="productColumn" prefWidth="182.39997100830078" text="Product" />
+                              <TableColumn fx:id="amountOfProductColumn" minWidth="0.0" prefWidth="246.3999481201172" text="Amount" />
+                              <TableColumn fx:id="factoryColumn" minWidth="0.0" prefWidth="180.800048828125" />
+                           </columns>
+                        </TableView>
+                        <Label text="Transport provider" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="goBackToCategoryButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goBackButtonOnAction" prefHeight="42.0" prefWidth="45.0" style="-fx-background-radius: 15; -fx-background-color: #40c4ff;" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <ComboBox fx:id="transportProviderCombobox" prefHeight="31.0" prefWidth="223.0" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+                  <BorderPane fx:id="manageUserPage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
+                     <left>
+                        <TableView fx:id="usersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="idColumn" prefWidth="40.79998779296875" text="ID" />
+                              <TableColumn fx:id="nameColumn" prefWidth="96.79995727539062" text="Name" />
+                              <TableColumn fx:id="surnameColumn" prefWidth="99.199951171875" text="Surname" />
+                           </columns>
+                           <BorderPane.margin>
+                              <Insets left="10.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </left>
+                     <top>
+                        <ToolBar maxHeight="65.0" minHeight="65.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                           <items>
+                              <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                              <Button minHeight="35.0" minWidth="210.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="249.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
+                                 <graphic>
+                                    <TextField fx:id="searchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Separator opacity="0.0" prefHeight="56.0" prefWidth="344.0" />
+                              <Button fx:id="orderDetailsButton" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#orderDetailsButtonOnAction" prefHeight="35.0" prefWidth="126.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="createOfferPage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
+                     <left>
+                        <TableView fx:id="createOfferUsersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="createOfferIdColumn" prefWidth="40.79998779296875" text="ID" />
+                              <TableColumn fx:id="createOfferNameColumn" prefWidth="96.79995727539062" text="Name" />
+                              <TableColumn fx:id="createOfferSurnameColumn" prefWidth="99.199951171875" text="Surname" />
+                           </columns>
+                           <BorderPane.margin>
+                              <Insets left="10.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </left>
+                     <top>
+                        <ToolBar maxHeight="65.0" minHeight="65.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                           <items>
+                              <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                              <Button minHeight="35.0" minWidth="210.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="249.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
+                                 <graphic>
+                                    <TextField fx:id="createOfferSearchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Separator opacity="0.0" prefHeight="56.0" prefWidth="344.0" />
+                              <Button fx:id="createOfferOrderDetailsButton" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#createOfferOrderDetailsButtonOnAction" prefHeight="35.0" prefWidth="126.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </top>
+                  </BorderPane>
+                  <GridPane fx:id="summaryNewOfferPage" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="43.7999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="57.59998779296875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="106.20000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="0.0" prefWidth="47.80000000000001" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="176.40001220703124" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80001220703127" minWidth="10.0" prefWidth="82.99999999999994" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="66.20000000000005" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="46.60007324218748" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="10.0" prefWidth="98.79999999999995" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="0.19990234374995453" prefWidth="41.200000000000045" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="26.599996948242186" minHeight="10.0" prefHeight="20.20000305175781" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.6" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="77.5999755859375" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="82.79998168945312" minHeight="3.9999877929687386" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="130.59998168945313" minHeight="0.0" prefHeight="10.400006103515636" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="211.7999755859375" minHeight="10.0" prefHeight="153.59999389648436" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="30.000024414062523" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="10.0" prefHeight="50.80000000000001" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="29.5999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="42.4000244140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Order number" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total amount" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Company" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                        <TextField fx:id="summaryIdOrderField" editable="false" prefHeight="35.0" prefWidth="439.0" promptText="    Order number" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="summaryCompanyField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Company" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="summaryAmountField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Amount" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="summarySendOfferButton" mnemonicParsing="false" onAction="#summarySendOfferButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Send the offer" textFill="WHITE" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="summaryProductsTable" prefHeight="136.0" prefWidth="179.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                           <columns>
+                              <TableColumn fx:id="summaryIdProductColumn" prefWidth="40.79998779296875" text="ID" />
+                              <TableColumn fx:id="summaryProductColumn" prefWidth="182.39997100830078" text="Product" />
+                              <TableColumn fx:id="summaryAmountOfProductColumn" minWidth="0.0" prefWidth="246.3999481201172" text="Amount" />
+                              <TableColumn fx:id="summaryFactoryColumn" minWidth="0.0" prefWidth="180.800048828125" />
+                           </columns>
+                        </TableView>
+                        <Label text="Transport provider" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="summaryGoBackToCategoryButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#summaryGoBackButtonOnAction" prefHeight="42.0" prefWidth="45.0" style="-fx-background-radius: 15; -fx-background-color: #40c4ff;" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <TextField fx:id="summaryTransportProviderField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Transport provider" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="myAccountPage" style="-fx-background-color: #ffffff;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="71.0000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="111.00002441406251" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="62.999975585937506" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="205.19997558593747" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80001220703127" minWidth="10.0" prefWidth="169.60002441406255" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="33.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="0.19990234374995453" prefWidth="105.39990234375" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="81.2" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="75.60001220703126" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="74.60001220703126" minHeight="3.9999877929687386" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="130.59998168945313" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="211.7999755859375" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="30.000024414062523" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="10.0" prefHeight="50.80000000000001" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="39.60000000000002" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="accountUserNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Username" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="szara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="accountSurnameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Surname" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="Witek" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="accountEmailField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    E-mail" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="szara@gmail.com" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="ssss" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </PasswordField>
+                        <Label text="Username" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Surname" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="deleteAccountButton" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" prefHeight="36.0" prefWidth="231.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Delete Account" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="Sara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                           <children>
+                              <Button fx:id="saveDetailsButton" mnemonicParsing="false" onAction="#saveDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Save" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="changeDetailsButton" mnemonicParsing="false" onAction="#changeDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Change the details" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <VBox prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="250.0">
+               <children>
+                  <GridPane layoutY="208.0" prefHeight="261.0" prefWidth="252.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="manageOffersButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#manageOffersButtonOnAction" prefHeight="100.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="Manage offers" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="WPFORMS" selectionFill="BLACK" />
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="50.0" top="50.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Button>
+                      <Button fx:id="createOfferButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#createOfferButtonOnAction" prefHeight="100.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="Create a offer" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PLUS" selectionFill="BLACK" />
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="50.0" top="50.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="historyButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="250.0" stylesheets="@styling/tabView.css" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TH_LIST" selectionFill="BLACK" />
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="50.0" top="50.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="myAccountButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="78.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="My account" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="DRIVERS_LICENSE_ALT" selectionFill="BLACK" selectionStart="0" text="" />
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

@@ -1,30 +1,20 @@
 package com.example.demo001.domain.Client;
 
-import com.example.demo001.domain.Actors.Users;
+import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Transport.City;
 import lombok.Data;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-
-
+/**
+ * Representation of client user of the system
+ * - is able to create, accept and browse orders.
+ */
 @Entity
 @Data
-public class Client extends Users {
+public class Client extends BasicUser {
 
+    /** City in which client is residing */
     @OneToOne
     private City clientCity;
-
-    void showProducts(){}
-
-    void makeOrder(){}
-
-    void editOrder(){}
-
-    void showOrderData(){}
-
-    void showOrderStatus(){}
-
-    void showOrderHistory(){}
 
 }

@@ -9,7 +9,6 @@
          <children>
             <Button fx:id="btnGetNumber" layoutX="22.0" layoutY="22.0" mnemonicParsing="false" onAction="#onBtnGetNumber" text="Button" />
             <TextField fx:id="txtNumber" layoutX="115.0" layoutY="22.0" />
-            <Button fx:id="btnGetElement" layoutX="22.0" layoutY="70.0" mnemonicParsing="false" onAction="#onBtnGetElement" text="Button" />
             <TextField fx:id="txtElementName" layoutX="115.0" layoutY="70.0" />
          </children>
       </Pane>
