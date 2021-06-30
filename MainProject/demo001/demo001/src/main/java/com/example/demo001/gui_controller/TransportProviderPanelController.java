@@ -2,6 +2,7 @@ package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
+import com.example.demo001.service.BasicUserService;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -89,14 +91,26 @@ public class TransportProviderPanelController implements Initializable {
     @FXML
     private TextField searchField2;
 
+    @Autowired
+    private BasicUserService basicUserService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { }
+
+
 
 
     //NOWOSC
     public void setTransportProviderDetails(BasicUser user) {
         // Backend to do
         // Getting details about transport provider
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
+    }
+
+    public void setUserDetails()
+    {
+        BasicUser user = basicUserService.findByUsername(NavigationController.username);
         accountNameField.setText(user.getUserName());
         accountPasswordField.setText(user.getUserPassword());
     }
@@ -109,6 +123,7 @@ public class TransportProviderPanelController implements Initializable {
         clearFilters();
         vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My account");
+        setUserDetails();
         myAccountPage.toFront();
     }
 

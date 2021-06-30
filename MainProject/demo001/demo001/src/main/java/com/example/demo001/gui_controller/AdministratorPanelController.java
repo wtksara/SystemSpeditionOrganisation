@@ -106,6 +106,7 @@ public class AdministratorPanelController implements Initializable {
         clearFilters();
         vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My account");
+        setUserDetails();
         myAccountPage.toFront();
     }
 

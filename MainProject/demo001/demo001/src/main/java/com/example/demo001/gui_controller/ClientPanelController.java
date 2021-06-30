@@ -137,6 +137,9 @@ public class ClientPanelController implements Initializable {
     @FXML
     private Button orderDetailsButton;
 
+    @Autowired
+    private BasicUserService basicUserService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { }
 
@@ -149,21 +152,34 @@ public class ClientPanelController implements Initializable {
         accountPasswordField.setText(user.getUserPassword());
     }
 
+    public void setUserDetails()
+    {
+        BasicUser user = basicUserService.findByUsername(NavigationController.username);
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
+    }
+
     //ilość produktu wybrana przez klienta
     private Integer productAmount = 0;
 
     // My account page
     public void myAccountButtonOnAction() throws IOException {
         // Checking if the order has finished
-        if (!cart.isEmpty()) {
+        /*if (!cart.isEmpty()) {
             if (!notFinishedOrder()) {}
             else {
                 vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
                 clearFilters();
                 tabText.setText("My account");
+                setUserDetails();
                 myAccountPage.toFront();
             }
-        }
+        }*/
+        vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
+        clearFilters();
+        tabText.setText("My account");
+        setUserDetails();
+        myAccountPage.toFront();
     }
     // This three methods can be taken out for all Panel if the details will be the same
     public void changeDetailsButtonOnAction() {

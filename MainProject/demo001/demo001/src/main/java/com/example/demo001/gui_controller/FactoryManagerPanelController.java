@@ -2,8 +2,11 @@ package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Factory.Factory;
+import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.Factory.ProductionAbility;
+import com.example.demo001.service.BasicUserService;
 import com.example.demo001.service.FactoryForOrderItemSetup;
+import com.example.demo001.service.FactoryManagerService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -27,6 +30,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -85,6 +90,12 @@ public class FactoryManagerPanelController implements Initializable {
     @Autowired
     private FactoryForOrderItemSetup factoryForOrderItemSetup;
 
+    @Autowired
+    private FactoryManagerService factoryManagerService;
+
+    @Autowired
+    private BasicUserService basicUserService;
+
     private Factory sessionFactory;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { }
@@ -97,6 +108,13 @@ public class FactoryManagerPanelController implements Initializable {
         accountPasswordField.setText(user.getUserPassword());
     }
 
+    public void setUserDetails()
+    {
+        BasicUser user = basicUserService.findByUsername(NavigationController.username);
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
+    }
+
     // My account page
     // That details are the same for all client Panel for now.
     // It can be taken out to the main class, but it depends if details are gonna be the same. It is up to you.
@@ -105,6 +123,7 @@ public class FactoryManagerPanelController implements Initializable {
         clearFilters();
         vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My account");
+        setUserDetails();
         myAccountPage.toFront();
     }
 
@@ -213,7 +232,17 @@ public class FactoryManagerPanelController implements Initializable {
 
 
         //TODO - POTEŻNY ONELINER
-        users = FXCollections.observableArrayList(factoryForOrderItemSetup.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts());
+        //users = FXCollections.observableArrayList(factoryForOrderItemSetup.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts());
+        users = FXCollections.observableArrayList();
+
+        /*FactoryManager fm = factoryManagerService.findByUsername(NavigationController.username);
+
+        Factory fc = fm.getManagedFactory();
+        //FXCollections.observableArrayList
+        List<ProductionAbility> ls = fc.getProducedProducts();
+        users = FXCollections.observableArrayList();
+        users.addAll(ls);*/
+
 
         deleteProductsButton.disableProperty().bind(Bindings.isNull (
                 usersTable.getSelectionModel().selectedItemProperty()));

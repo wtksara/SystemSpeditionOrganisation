@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Component
-@FxmlView("alertBox.fxml")
+@FxmlView("loginAlertBox.fxml")
 public class AlertBoxController {
 
     @FXML
@@ -34,7 +34,7 @@ public class AlertBoxController {
         return dialog.showAndWait();
     }
 
-    public static void goToLoginPanel() throws IOException{
+    public void goToLoginPanel() throws IOException{
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(LoginController.class);
         Scene scene = new Scene(root);

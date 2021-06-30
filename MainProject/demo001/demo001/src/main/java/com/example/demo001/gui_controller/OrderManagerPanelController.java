@@ -163,6 +163,13 @@ public class OrderManagerPanelController implements Initializable {
         accountPasswordField.setText(user.getUserPassword());
     }
 
+    public void setUserDetails()
+    {
+        BasicUser user = basicUserService.findByUsername(NavigationController.username);
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
+    }
+
     // My account page
     // That details are the same for all client Panel for now.
     // It can be taken out to the main class, but it depends if details are gonna be the same. It is up to you.
@@ -171,6 +178,7 @@ public class OrderManagerPanelController implements Initializable {
         clearFilters();
         vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My account");
+        setUserDetails();
         myAccountPage.toFront();
     }
 
