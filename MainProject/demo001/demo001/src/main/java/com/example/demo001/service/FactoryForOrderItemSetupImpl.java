@@ -35,4 +35,21 @@ public class FactoryForOrderItemSetupImpl implements FactoryForOrderItemSetup {
     public void setupProduction(Factory factoryToProduce, OrderItem itemToBeProvided) {
         itemToBeProvided.setFactory(factoryToProduce);
     }
+
+
+    @Override
+    public void printProductAbility() {
+        factoryRepository.deleteFactoryByFactoryName("test");
+        factoryRepository.save(new Factory("test"));
+        List<Factory> factories = factoryRepository.findAll();
+        Factory myFactory = factoryRepository.getFactoryByFactoryName("test");
+        /*for (ProductionAbility prodAb : myFactory.getProducedProducts()){
+            System.out.println(prodAb.getMyProduct().getProductName());
+        }*/
+    }
+
+    @Override
+    public Factory getFactoryByName(String name) {
+        return factoryRepository.getFactoryByFactoryName(name);
+    }
 }

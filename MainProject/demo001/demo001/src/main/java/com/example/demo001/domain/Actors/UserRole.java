@@ -10,6 +10,6 @@ public enum UserRole {
     ORDER_MANAGER,
     /** Factory Manager */
     FACTORY_MANAGER,
-    /** Transport Provider*/
+    /** Transport Provider */
     TRANSPORT_PROVIDER
 }

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo001.gui_controller.TransportProviderPanelController">
+    <center>
+        <AnchorPane prefHeight="432.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox fx:id="vBox" layoutX="-2.0" layoutY="29.0" prefHeight="70.0" prefWidth="750.0" style="-fx-background-color: #40c4ff; -fx-border-color: #ffffff;">
+                    <children>
+                        <Label fx:id="tabText" text="My account">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children></VBox>
+                <StackPane layoutX="-8.0" layoutY="97.0" prefHeight="504.0" prefWidth="755.0">
+                    <children>
+                        <BorderPane fx:id="pendingOrdersPage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
+                            <left>
+                                <TableView fx:id="pendingOrdersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="checkBoxTransportColumn" prefWidth="52.800002336502075" text="Select" />
+                                        <TableColumn fx:id="idPendingOrdersColumn" prefWidth="40.79998779296875" text="ID" />
+                                        <TableColumn fx:id="clientNamePendingOrdersColumn" prefWidth="96.79995727539062" text="Client name" />
+                                        <TableColumn fx:id="fromPendingOrdersColumn" prefWidth="96.79995727539062" text="From" />
+                                        <TableColumn fx:id="toPendingOrdersColumn" prefWidth="99.199951171875" text="To" />
+                                        <TableColumn fx:id="statePendingOrdersColumn" prefWidth="99.199951171875" text="State" />
+                                    </columns>
+                                    <BorderPane.margin>
+                                        <Insets left="10.0" />
+                                    </BorderPane.margin>
+                                </TableView>
+                            </left>
+                            <top>
+                                <ToolBar fx:id="toolBar" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" BorderPane.alignment="CENTER">
+                                    <items>
+                                        <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                                        <Button fx:id="acceptTransportButton" layoutX="169.0" layoutY="18.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#acceptTransportButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #4caf50;" text="Accept" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="declineTransportButton" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#declineTransportButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #f44336;" text="Decline" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="95.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="44.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="105.0" />
+                                        <Button maxWidth="250.0" minHeight="35.0" minWidth="250.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
+                                            <graphic>
+                                                <TextField fx:id="currentOrderSearchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
+                                            </graphic>
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </items>
+                                </ToolBar>
+                            </top>
+                        </BorderPane>
+                        <BorderPane fx:id="myRoutePage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
+                            <left>
+                                <TableView fx:id="usersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="idColumn" prefWidth="40.79998779296875" text="ID" />
+                                        <TableColumn fx:id="clientNameColumn" prefWidth="96.79995727539062" text="Client name" />
+                                        <TableColumn fx:id="fromColumn" prefWidth="96.79995727539062" text="From" />
+                                        <TableColumn fx:id="toColumn" prefWidth="99.199951171875" text="To" />
+                                        <TableColumn fx:id="stateColumn" prefWidth="99.199951171875" text="State" />
+                                    </columns>
+                                    <BorderPane.margin>
+                                        <Insets left="10.0" />
+                                    </BorderPane.margin>
+                                </TableView>
+                            </left>
+                            <top>
+                                <ToolBar maxHeight="65.0" minHeight="65.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                                    <items>
+                                        <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                                        <Button minHeight="35.0" minWidth="210.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="249.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
+                                            <graphic>
+                                                <TextField fx:id="searchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
+                                            </graphic>
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </items>
+                                </ToolBar>
+                            </top>
+                        </BorderPane>
+                        <GridPane fx:id="myAccountPage" style="-fx-background-color: #ffffff;">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="71.0000244140625" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="111.00002441406251" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="62.999975585937506" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="205.19997558593747" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.80001220703127" minWidth="10.0" prefWidth="169.60002441406255" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.40009765624995" minWidth="10.0" prefWidth="33.5999755859375" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.99992675781255" minWidth="0.19990234374995453" prefWidth="105.39990234375" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="81.2" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="75.60001220703126" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="74.60001220703126" minHeight="3.9999877929687386" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="130.59998168945313" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="211.7999755859375" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="30.000024414062523" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="326.40000000000003" minHeight="10.0" prefHeight="50.80000000000001" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="39.60000000000002" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="ssss" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </PasswordField>
+                                <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="Sara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </TextField>
+                                <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                    <children>
+                                        <Button fx:id="saveDetailsButton" mnemonicParsing="false" onAction="#saveDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Save" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="changeDetailsButton" mnemonicParsing="false" onAction="#changeDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Change the details" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </GridPane>
+                    </children>
+                </StackPane>
+            </children>
+        </AnchorPane>
+    </center>
+    <left>
+        <VBox prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #b3e5fc;" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="250.0">
+                    <children>
+                        <GridPane layoutY="208.0" prefHeight="261.0" prefWidth="252.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Button fx:id="myRouteButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#myRouteButtonOnAction" prefHeight="100.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="My route" textFill="WHITE" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="TH_LIST" selectionFill="BLACK" />
+                                    </graphic>
+                                    <opaqueInsets>
+                                        <Insets left="50.0" top="50.0" />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="30.0" />
+                                    </padding>
+                                </Button>
+                                <Button fx:id="pendingOrdersButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#pendingOrdersButtonOnAction" prefHeight="100.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="Pending orders" textFill="WHITE" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="SPINNER" selectionFill="BLACK" />
+                                    </graphic>
+                                    <opaqueInsets>
+                                        <Insets left="50.0" top="50.0" />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="30.0" />
+                                    </padding>
+                                </Button>
+                                <Button fx:id="myAccountButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#myAccountButtonOnAction" prefHeight="78.0" prefWidth="250.0" stylesheets="@styling/tabView.css" text="My account" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="DRIVERS_LICENSE_ALT" selectionFill="BLACK" selectionStart="0" text="" />
+                                    </graphic>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="30.0" />
+                                    </padding>
+                                </Button>
+                            </children>
+                        </GridPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </left>
+</BorderPane>

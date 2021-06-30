@@ -1,7 +1,7 @@
 package com.example.demo001;
 
 
-import com.example.demo001.gui_controller.MainController;
+import com.example.demo001.gui_controller.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,35 +16,31 @@ import java.io.IOException;
 
 public class JavaFxApplication extends Application {
 
-    private ConfigurableApplicationContext applicationContext;
+
 
     @Override
     public void init() {
         String[] args = getParameters().getRaw().toArray(new String[0]);
 
-        this.applicationContext = new SpringApplicationBuilder()
+        NavigationController.applicationContext = new SpringApplicationBuilder()
                 .sources(Demo001SprinBootApplication.class)
                 .run(args);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(MainController.class);
 
-        //Parent root = FXMLLoader.load(getClass().getResource("main-form.fxml"));
-        //primaryStage.setTitle("Hello World");
-        //primaryStage.setScene(new Scene(root, 300, 275));
-        //primaryStage.show();
-
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(LoginController.class);
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        NavigationController.stage=stage;
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.show();
     }
 
     @Override
     public void stop() {
-        this.applicationContext.close();
+        NavigationController.applicationContext.close();
         Platform.exit();
     }
 

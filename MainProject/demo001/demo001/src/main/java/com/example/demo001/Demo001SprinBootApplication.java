@@ -1,6 +1,8 @@
 package com.example.demo001;
 
 
+import com.example.demo001.service.FactoryForOrderItemSetup;
+import com.example.demo001.service.FactoryForOrderItemSetupImpl;
 import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +18,6 @@ public class Demo001SprinBootApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(Demo001SprinBootApplication.class, args);
-
 		Application.launch(JavaFxApplication.class, args);
 	}
 

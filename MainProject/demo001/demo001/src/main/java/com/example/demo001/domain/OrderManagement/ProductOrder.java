@@ -33,6 +33,12 @@ public class ProductOrder {
 
     /** List of ordered items */
     @OneToMany
-    final private List<OrderItem> orderedProducts = new ArrayList<>();
+    private List<OrderItem> orderedProducts = new ArrayList<>();
 
+    public ProductOrder() {}
+    public ProductOrder(Client orderClient) {
+        this.orderStatus = OrderStatus.ISSUED;
+        this.orderClient = orderClient;
+        this.orderTransportProvider = null;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.demo001.service;
 
 import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
+import com.example.demo001.domain.Transport.Connection;
 import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.repository.ConnectionRepository;
 import com.example.demo001.repository.TransportProviderRepository;
@@ -29,8 +30,7 @@ public class TransportProviderServiceImpl implements TransportProviderService{
     }
 
     @Override
-    public List<TransportProvider> getThem(){
-        List<TransportProvider> them = transportProviderRepository.findAll();
-        return them;
+    public List<TransportProvider> findAll(){
+       return transportProviderRepository.findAll();
     }
 }

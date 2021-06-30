@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TransportProviderService {
     List<TransportProvider> getPossibleTransportProvidersForOrderItem(ProductOrder productOrder, OrderItem orderItem);
-    List<TransportProvider> getThem();
+    public List<TransportProvider> findAll();
 }

@@ -1,0 +1,295 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9f8f08a9-5fc4-46f7-ba0f-81d691abff2f\" name=\"Default Changelist\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/fontawesomefx_commons_9_1_2.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/fontawesomefx_fontawesome_4_7_0_9_1_2.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_10.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ConnectionRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/OrderItemRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/TransportProviderRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderItemService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderItemServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderManagerPanel.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/buttomView.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/comboBoxView.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tabView.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tableClient.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tableView.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/demo001.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/demo001.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Actors/BasicUser.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Actors/BasicUser.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/demo001\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/demo001/build.gradle\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/demo001\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"demo001\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/../..\" value=\"server-side\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/../..\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1sakCQm49suouTU3t8XlAhn3Wz9\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"external.system.task.project.file.to.start\" value=\"$PROJECT_DIR$/demo001\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Libraries\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.46484375\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"com.example.demo001.service\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\SpeditionOrganisationSystem\\MainProject\\demo001\\demo001\\src\\main\\java\\com\\example\\demo001\\gui_controller\" />\r\n      <recent name=\"E:\\SpeditionOrganisationSystem\\MainProject\\demo001\\demo001\\src\\main\\resources\\com\\example\\demo001\\gui_controller\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\resources\\com\\example\\demo001\\gui_controller\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\resources\\com\\example\\demo001\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\java\\com\\example\\demo001\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\SpeditionOrganisationSystem\\MainProject\\demo001\\demo001\\src\\main\\java\\com\\example\\demo001\\gui_controller\" />\r\n      <recent name=\"E:\\SpeditionOrganisationSystem\\MainProject\\demo001\\demo001\\src\\main\\resources\\com\\example\\demo001\\gui_controller\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\resources\\static\\com\\example\\demo001\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\resources\\templates\" />\r\n      <recent name=\"C:\\home\\aei\\bd2\\2021_lato\\projekty\\jfx_001\\demo001\\demo001\\src\\main\\resources\\static\\gui\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Gradle.demo001 [bootRun]\">\r\n    <configuration default=\"true\" type=\"ArquillianJUnit\" factoryName=\"\" nameIsGenerated=\"true\">\r\n      <option name=\"arquillianRunConfiguration\">\r\n        <value>\r\n          <option name=\"containerStateName\" value=\"\" />\r\n        </value>\r\n      </option>\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"bootRun\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001/build.gradle\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" value=\"\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"build\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001/build.gradle\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" value=\"\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"demo001 [assemble]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"assemble\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"demo001 [bootBuildImage]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootBuildImage\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"demo001 [bootJar]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootJar\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"demo001 [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"demo001 [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/demo001\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Demo001SprinBootApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"com.example.demo001.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.demo001.Demo001SprinBootApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Gradle.build\" />\r\n      <item itemvalue=\"Gradle.bootRun\" />\r\n      <item itemvalue=\"Gradle.demo001 [assemble]\" />\r\n      <item itemvalue=\"Gradle.demo001 [bootRun]\" />\r\n      <item itemvalue=\"Gradle.demo001 [bootJar]\" />\r\n      <item itemvalue=\"Gradle.demo001 [bootBuildImage]\" />\r\n      <item itemvalue=\"Gradle.demo001 [build]\" />\r\n      <item itemvalue=\"Spring Boot.Demo001SprinBootApplication\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.demo001 [build]\" />\r\n        <item itemvalue=\"Gradle.demo001 [bootBuildImage]\" />\r\n        <item itemvalue=\"Gradle.demo001 [bootJar]\" />\r\n        <item itemvalue=\"Gradle.demo001 [bootRun]\" />\r\n        <item itemvalue=\"Gradle.demo001 [assemble]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"ServiceViewManager\">\r\n    <option name=\"viewStates\">\r\n      <list>\r\n        <serviceView>\r\n          <treeState>\r\n            <expand />\r\n            <select />\r\n          </treeState>\r\n        </serviceView>\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9f8f08a9-5fc4-46f7-ba0f-81d691abff2f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1621117959089</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1621117959089</updated>\r\n      <workItem from=\"1622056243437\" duration=\"1694000\" />\r\n      <workItem from=\"1622058074170\" duration=\"338000\" />\r\n      <workItem from=\"1622101779044\" duration=\"9552000\" />\r\n      <workItem from=\"1622401135440\" duration=\"2398000\" />\r\n      <workItem from=\"1622442632291\" duration=\"34000\" />\r\n      <workItem from=\"1622474226882\" duration=\"1459000\" />\r\n      <workItem from=\"1622560271648\" duration=\"526000\" />\r\n      <workItem from=\"1622664252472\" duration=\"580000\" />\r\n      <workItem from=\"1622665140548\" duration=\"1490000\" />\r\n      <workItem from=\"1622734037179\" duration=\"1653000\" />\r\n      <workItem from=\"1622806193581\" duration=\"2202000\" />\r\n      <workItem from=\"1622810509518\" duration=\"2676000\" />\r\n      <workItem from=\"1623483768791\" duration=\"3222000\" />\r\n      <workItem from=\"1623606303538\" duration=\"9423000\" />\r\n      <workItem from=\"1623682160886\" duration=\"3515000\" />\r\n      <workItem from=\"1623884311393\" duration=\"3859000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java</url>\r\n          <line>32</line>\r\n          <option name=\"timeStamp\" value=\"13\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/SomeServiceImpl.java</url>\r\n          <line>29</line>\r\n          <option name=\"timeStamp\" value=\"15\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/SomeServiceImpl.java</url>\r\n          <line>23</line>\r\n          <option name=\"timeStamp\" value=\"16\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,36 +4,14 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fontawesomefx_commons_9_1_2.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fontawesomefx_fontawesome_4_7_0_9_1_2.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_10.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ConnectionRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/OrderItemRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/TransportProviderRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderItemService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderItemServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderManagerPanel.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/buttomView.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/comboBoxView.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tabView.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tableClient.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/styling/tableView.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/demo001.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo001.iml" afterDir="false" />
++    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Added requested services.&#10;&#10;Added services assigned to me in services.txt with modification&#10;of getPossibleTransportProvidersForOrders. This functionality must&#10;be analyzed more profoundly.">
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/BasicUserRepository.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/CityRepository.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/CityService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/CityServiceImpl.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Actors/BasicUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Actors/BasicUser.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -123,25 +101,14 @@
+       <recent name="C:\home\aei\bd2\2021_lato\projekty\jfx_001\demo001\demo001\src\main\java\com\example\demo001" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="E:\SpeditionOrganisationSystem\MainProject\demo001\demo001\src\main\java\com\example\demo001\repository" />
++      <recent name="E:\SpeditionOrganisationSystem\MainProject\demo001\demo001\src\main\java\com\example\demo001\service" />
+       <recent name="E:\SpeditionOrganisationSystem\MainProject\demo001\demo001\src\main\java\com\example\demo001\gui_controller" />
+       <recent name="E:\SpeditionOrganisationSystem\MainProject\demo001\demo001\src\main\resources\com\example\demo001\gui_controller" />
+       <recent name="C:\home\aei\bd2\2021_lato\projekty\jfx_001\demo001\demo001\src\main\resources\static\com\example\demo001" />
+-      <recent name="C:\home\aei\bd2\2021_lato\projekty\jfx_001\demo001\demo001\src\main\resources\templates" />
+-      <recent name="C:\home\aei\bd2\2021_lato\projekty\jfx_001\demo001\demo001\src\main\resources\static\gui" />
+     </key>
+   </component>
+   <component name="RunManager" selected="Gradle.demo001 [bootRun]">
+-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+-      <option name="arquillianRunConfiguration">
+-        <value>
+-          <option name="containerStateName" value="" />
+-        </value>
+-      </option>
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="bootRun" type="GradleRunConfiguration" factoryName="Gradle">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+@@ -354,8 +321,18 @@
+       <workItem from="1623483768791" duration="3222000" />
+       <workItem from="1623606303538" duration="9423000" />
+       <workItem from="1623682160886" duration="3515000" />
+-      <workItem from="1623884311393" duration="3859000" />
++      <workItem from="1623884311393" duration="4605000" />
++      <workItem from="1623944470698" duration="40000" />
++      <workItem from="1623945478538" duration="1353000" />
++    </task>
++    <task id="LOCAL-00001" summary="Added requested services.&#10;&#10;Added services assigned to me in services.txt with modification&#10;of getPossibleTransportProvidersForOrders. This functionality must&#10;be analyzed more profoundly.">
++      <created>1623888328064</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1623888328064</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -372,6 +349,10 @@
+       </map>
+     </option>
+     <option name="oldMeFiltersMigrated" value="true" />
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Added requested services.&#10;&#10;Added services assigned to me in services.txt with modification&#10;of getPossibleTransportProvidersForOrders. This functionality must&#10;be analyzed more profoundly." />
++    <option name="LAST_COMMIT_MESSAGE" value="Added requested services.&#10;&#10;Added services assigned to me in services.txt with modification&#10;of getPossibleTransportProvidersForOrders. This functionality must&#10;be analyzed more profoundly." />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: demo001/src/main/java/com/example/demo001/repository/CityRepository.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/repository/CityRepository.java b/demo001/src/main/java/com/example/demo001/repository/CityRepository.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/repository/CityRepository.java	
+@@ -0,0 +1,11 @@
++package com.example.demo001.repository;
++
++
++import com.example.demo001.domain.Factory.ProductionAbility;
++import com.example.demo001.domain.Transport.City;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface CityRepository extends JpaRepository<City, Long> {
++}
+Index: demo001/src/main/java/com/example/demo001/repository/BasicUserRepository.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/repository/BasicUserRepository.java b/demo001/src/main/java/com/example/demo001/repository/BasicUserRepository.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/repository/BasicUserRepository.java	
+@@ -0,0 +1,12 @@
++package com.example.demo001.repository;
++
++
++import com.example.demo001.domain.Actors.BasicUser;
++import com.example.demo001.domain.Factory.ProductionAbility;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface BasicUserRepository extends JpaRepository<BasicUser, Long> {
++
++}
+Index: demo001/src/main/java/com/example/demo001/service/BasicUserService.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/service/BasicUserService.java b/demo001/src/main/java/com/example/demo001/service/BasicUserService.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/service/BasicUserService.java	
+@@ -0,0 +1,15 @@
++package com.example.demo001.service;
++
++
++import com.example.demo001.domain.Actors.BasicUser;
++import com.example.demo001.domain.Transport.City;
++
++import java.util.List;
++
++public interface BasicUserService {
++      List<BasicUser> findAll();
++      BasicUser findByUsername(String username);
++      BasicUser deleteByUsername(String username);
++      boolean addUser(BasicUser bUser);
++      boolean saveChangedUser(BasicUser bUser);
++}
+Index: demo001/src/main/java/com/example/demo001/service/CityServiceImpl.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/service/CityServiceImpl.java b/demo001/src/main/java/com/example/demo001/service/CityServiceImpl.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/service/CityServiceImpl.java	
+@@ -0,0 +1,27 @@
++package com.example.demo001.service;
++
++
++import com.example.demo001.domain.Transport.City;
++import com.example.demo001.repository.CityRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++
++@Service
++public class CityServiceImpl implements CityService{
++
++    @Autowired
++    private CityRepository cityRepository;
++
++    @Override
++    public City FindCityByName(String name){
++        List<City> allCities = cityRepository.findAll();
++        for(int i=0;i<allCities.size();i++){
++            if(allCities.get(i).getCityName() == name)
++                return allCities.get(i);
++        }
++        return null;
++    }
++
++}
+Index: demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java b/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java	
+@@ -0,0 +1,64 @@
++package com.example.demo001.service;
++
++
++import com.example.demo001.domain.Actors.BasicUser;
++import com.example.demo001.repository.BasicUserRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++
++@Service
++public class BasicUserServiceImpl implements BasicUserService{
++
++    @Autowired
++    private BasicUserRepository basicUserRepository;
++
++    @Override
++    public List<BasicUser> findAll(){
++        return  basicUserRepository.findAll();
++    }
++
++    @Override
++    public BasicUser findByUsername(String username){
++        List<BasicUser> allBasicUsers = basicUserRepository.findAll();
++        for(int i=0;i<allBasicUsers.size();i++){
++            if(allBasicUsers.get(i).getUserName() == username)
++                return allBasicUsers.get(i);
++        }
++        return null;
++    }
++
++    @Override
++    public BasicUser deleteByUsername(String username){
++        List<BasicUser> allBasicUsers = basicUserRepository.findAll();
++        BasicUser bUser;
++        for(int i=0;i<allBasicUsers.size();i++){
++            if(allBasicUsers.get(i).getUserName() == username) {
++                bUser = allBasicUsers.get(i);
++                basicUserRepository.delete(bUser);
++                return bUser;
++            }
++        }
++        return null;
++    }
++
++    @Override
++    public boolean addUser(BasicUser bUser){
++        BasicUser bb = basicUserRepository.save(bUser);
++        if(bb!=null)
++            return true;
++        else
++            return false;
++    }
++
++    @Override
++    public boolean saveChangedUser(BasicUser bUser){
++        BasicUser bb = basicUserRepository.save(bUser);
++        if(bb!=null)
++            return true;
++        else
++            return false;
++    }
++
++}
+Index: demo001/src/main/java/com/example/demo001/service/CityService.java
+===================================================================
+diff --git a/demo001/src/main/java/com/example/demo001/service/CityService.java b/demo001/src/main/java/com/example/demo001/service/CityService.java
+new file mode 100644
+--- /dev/null	
++++ b/demo001/src/main/java/com/example/demo001/service/CityService.java	
+@@ -0,0 +1,11 @@
++package com.example.demo001.service;
++
++
++import com.example.demo001.domain.Transport.City;
++
++import java.util.List;
++
++public interface CityService {
++      City FindCityByName(String name);
++
++}

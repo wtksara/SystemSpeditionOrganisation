@@ -1,18 +1,24 @@
 package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Actors.BasicUser;
-import com.example.demo001.domain.Client.Client;
+import com.example.demo001.domain.Factory.Factory;
 import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
 import com.example.demo001.domain.Transport.TransportProvider;
+import com.example.demo001.gui_controller.ConfirmationBoxController;
+import com.example.demo001.service.BasicUserService;
+import com.example.demo001.service.FactoryForOrderItemSetup;
+import com.example.demo001.service.ProductOrderService;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,11 +28,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -44,50 +52,62 @@ public class OrderManagerPanelController implements Initializable {
     @FXML
     private GridPane myAccountPage, newOfferPage, summaryNewOfferPage;
     @FXML
-    private BorderPane manageBasicUserPage, createOfferPage;
+    private BorderPane manageUserPage, createOfferPage;
     @FXML
     private Button myAccountButton, manageOffersButton, createOfferButton, historyButton;
 
     // My account tab
     @FXML
-    private TextField accountNameField, accountBasicUserNameField, accountSurnameField, accountEmailField;
-    @FXML
-    private PasswordField accountPasswordField;
-    @FXML
-    private Button deleteAccountButton, changeDetailsButton, saveDetailsButton;
+    private TextField accountNameField;
 
     @FXML
-    private TableView <BasicUser> BasicUsersTable;
+    private PasswordField accountPasswordField;
+
     @FXML
-    private TableColumn <BasicUser, Number> idColumn;
+    private Button changeDetailsButton, saveDetailsButton;
+
+    // Manage offers tab
+    private ObservableList <ProductOrder> users = null;
     @FXML
-    private TableColumn <BasicUser, String> nameColumn;
+    private TableView <ProductOrder> usersTable;
     @FXML
-    private TableColumn <BasicUser, String> surnameColumn;
+    private TableColumn <ProductOrder, Number> idColumn;
+    @FXML
+    private TableColumn <ProductOrder, String> nameColumn;
+    @FXML
+    private TableColumn <ProductOrder, String> surnameColumn;
     @FXML
     private Button orderDetailsButton;
     @FXML
     private TextField searchField;
 
+    // Create new offer tab
+    // Main view
     @FXML
-    private TableColumn <BasicUser, Number>  createOfferIdColumn;
+    private TableView<ProductOrder> createOfferUsersTable;
     @FXML
-    private TableColumn <BasicUser, String> createOfferNameColumn;
+    private TableColumn <ProductOrder, Number>  createOfferIdColumn;
     @FXML
-    private TableColumn <BasicUser, String> createOfferSurnameColumn;
+    private TableColumn <ProductOrder, String> createOfferNameColumn;
+    @FXML
+    private TableColumn <ProductOrder, String> createOfferSurnameColumn;
     @FXML
     private TextField createOfferSearchField;
     @FXML
     private Button createOfferOrderDetailsButton;
 
+    // Offer for order
+    private ProductOrder selectedOrder = null;
+    private ObservableList<OrderItem> productsArray = null;
+
     @FXML
-    private TableView<Product>productsTable;
+    private TableView<OrderItem>productsTable;
     @FXML
-    private TableColumn<Product, Number> idProductColumn;
+    private TableColumn<OrderItem, Number> idProductColumn;
     @FXML
-    private TableColumn<Product, String> productColumn;
+    private TableColumn<OrderItem, String> productColumn;
     @FXML
-    private TableColumn<Product, String> amountOfProductColumn;
+    private TableColumn<OrderItem, Number> amountOfProductColumn;
     @FXML
     private TableColumn factoryColumn;
     @FXML
@@ -103,37 +123,45 @@ public class OrderManagerPanelController implements Initializable {
     @FXML
     private Button summarySendOfferButton, summaryGoBackToCategoryButton;
     @FXML
-    private TableView<Product> summaryProductsTable;
+    private TableView<OrderItem> summaryProductsTable;
     @FXML
-    private TableColumn<Product, Number>  summaryIdProductColumn;
+    private TableColumn<OrderItem, Number>  summaryIdProductColumn;
     @FXML
-    private TableColumn<Product, String> summaryProductColumn;
+    private TableColumn<OrderItem, String> summaryProductColumn;
     @FXML
-    private TableColumn<Product, String> summaryAmountOfProductColumn;
+    private TableColumn<OrderItem, Integer> summaryAmountOfProductColumn;
     @FXML
-    private TableColumn<Product, String>summaryFactoryColumn;
+    private TableColumn<OrderItem, String>summaryFactoryColumn;
+
+    //transport providers for order
+    private List<TransportProvider> transportProviders;
+
+
+    //names of transport providers for order
+    private ObservableList<String> transportProvidersNames;
+
+    //chosen transport provider
+    private TransportProvider selectedTransportProvider;
+
+    @Autowired
+    private ProductOrderService productOrderService;
+
+    @Autowired
+    private BasicUserService basicUserService;
+
+    @Autowired
+    private FactoryForOrderItemSetup factoryForOrderItemSetup;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { }
 
-    // Create new offer tab
-    // Main view
-    @FXML
-    private TableView<BasicUser> createOfferBasicUsersTable;
-
-    //zmienna na klientów
-    private ObservableList <Client> users = null;
-
-    //Obiekty aktualnych zamówień
-    private List<ProductOrder> allCurrentOrders;
-
-    private ObservableList<Product> productsArray = null;
-
-    // Offer for order
-    private BasicUser currentUser = null;
-
-    //Obiekt zamówienia przetwarzanego podczas sesji
-    private ProductOrder sessionOrder;
+    //NOWOSC
+    public void setOrderManagerDetails(BasicUser user) {
+        // Backend to do
+        // Getting details about order manager
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
+    }
 
     // My account page
     // That details are the same for all client Panel for now.
@@ -148,105 +176,92 @@ public class OrderManagerPanelController implements Initializable {
 
     public void changeDetailsButtonOnAction() {
         accountNameField.setEditable(true);
-        accountBasicUserNameField.setEditable(true);
-        accountSurnameField.setEditable(true);
-        accountEmailField.setEditable(true);
         accountPasswordField.setEditable(true);
         saveDetailsButton.toFront();
     }
 
-    public void deleteAccountButtonOnAction() throws IOException {
+    // CHANGES HAS BEEN HERE
+    // Copy the code and just paste in
+    ////////////////////////////////////////////////////
+    public void saveDetailsButtonOnAction() throws IOException {
+        // Backend
+        // Saving changed details for a user
+
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete your account ?", "Deleting account", "Ok", "Cancel");
-        if(isConfirmed.get() == ButtonType.OK) {
-            // Backend
-            // Deleting account to do
-            // must have actually proceeded account
-            // void deleteAccount(long BasicUserId)
+        fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
+        String textInfo;
+        if (accountNameField.getText().isEmpty()) {
+            textInfo = "This username is already taken";
+            new AlertBoxController().createAlert(fxmlLoader, textInfo);
         }
+        else {
+            savingDetails();
+        }
+
     }
 
-    public void saveDetailsButtonOnAction() {
-        // Backend
-        // Saving changed details for a BasicUser
-        accountNameField.getText(); //account name ?
-        accountBasicUserNameField.getText();//concatenate BasicUser name
-        accountSurnameField.getText();//and surname ??
-        accountEmailField.getText();//ok
-        accountPasswordField.getText();//ok
+    public void savingDetails(){
+
+        accountNameField.getText();
+        accountPasswordField.getText();
         saveDetailsButton.toFront();
-        //create new BasicUser
-        //boolean checkIfBasicUserExists(String accountName, String BasicUserName);
-        //void addAccount(BasicBasicUser newBasicUser)
 
         //Set back field to uneditable
         accountNameField.setEditable(false);
-        accountBasicUserNameField.setEditable(false);
-        accountSurnameField.setEditable(false);
-        accountEmailField.setEditable(false);
         accountPasswordField.setEditable(false);
         changeDetailsButton.toFront();
     }
+    ////////////////////////////////////////////////////
 
     // Manager offers tab
     public void manageOffersButtonOnAction() throws IOException {
         // Set up the style
-        BasicUsersTable.getStylesheets().add("sample/styling/tableView.css");
-        BasicUsersTable.getStyleClass().add("tableview");
+        usersTable.getStylesheets().add("sample/styling/tableView.css");
+        usersTable.getStyleClass().add("tableview");
         tabText.setText("Manage offers");
-        manageBasicUserPage.toFront();
+        manageUserPage.toFront();
 
-        //idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-        idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getUserId()));
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUserName()));
-        //surnameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+        idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderClient().getUserId()));
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
 
-        //odwolanie do service zamiast do samego repozytorium
-        //this.allCurrentOrders = List<ProductOrder>getAllOrders();
-        //wymagane będzie wydobycie nazw użytkowników z zamówień
-        //FXCollections users = FXCollections.observableArrayList(BasicUsersRepository.getBasicUsers());
-        //propozycja wydobycia nazw użytkowników z aktualnie istniejących zamówień
-        populateUsers();
+        //get all orders that have been issued from base
+        users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
 
         orderDetailsButton.disableProperty().bind(Bindings.isNull (
-                BasicUsersTable.getSelectionModel().selectedItemProperty()));
-        //  Setting the table
-        BasicUsersTable.setItems(setupOffersList());
-    }
+                usersTable.getSelectionModel().selectedItemProperty()));
 
-    private void populateUsers(){
-        users =( ObservableList<Client>)(this.allCurrentOrders.stream()
-                .map(ProductOrder::getOrderClient).collect(Collectors.toList()));
-    }
-
-    private ObservableList<BasicUser> setupOffersList(){
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
-        //zmiana typu na client
-        FilteredList<Client> filteredData = new FilteredList<Client>(users, b -> true);
+        FilteredList<ProductOrder> filteredData = new FilteredList<>(users, b -> true);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(BasicUser -> {
+            filteredData.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) return true;
 
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (String.valueOf(BasicUser.getUserId()).indexOf(lowerCaseFilter) != -1)
+                if (String.valueOf(user.getOrderClient().getUserId()).indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (BasicUser.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (user.getOrderClient().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                /*else if (BasicUser.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;*/
                 else
                     return false;
             });
         });
-        SortedList<BasicUser> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(BasicUsersTable.comparatorProperty());
-        return sortedData;
+        SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(usersTable.comparatorProperty());
+
+        //  Setting the table
+        usersTable.setItems(sortedData);
     }
 
+    /*
+    private void getIssuedOrders()
+    {
+        if(users == null)
+            users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
+    }*/
+
     public void orderDetailsButtonOnAction() throws IOException {
-        BasicUser selectedOrder = BasicUsersTable.getSelectionModel().getSelectedItem();
+        ProductOrder selectedOrder = usersTable.getSelectionModel().getSelectedItem();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../orderDetails.fxml"));
         // Two types of showing orders details - true without editing, false - editing
@@ -254,18 +269,14 @@ public class OrderManagerPanelController implements Initializable {
     }
 
     public void createOfferOrderDetailsButtonOnAction() throws IOException {
-        BasicUser selectedUser = createOfferBasicUsersTable.getSelectionModel().getSelectedItem();
+        ProductOrder selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../orderDetails.fxml"));
-        Optional<ButtonType> isConfirmed = new OrderDetailsController().init(fxmlLoader, selectedUser, "Order Details",false);
+        Optional<ButtonType> isConfirmed = new OrderDetailsController().init(fxmlLoader, selectedOrder, "Order Details",false);
         if(isConfirmed.get() == ButtonType.OK) {
             // Backend to do
             // Setting a order, which will changed now - can be done in different way
-            // now an Order accessible during the whole offer creation seesion must be constructed
-            // czyli chodzi o obiekt actualOrder
-            this.currentUser = selectedUser;
-            //tak na razie jest dokonywane połaczenie pomiędzy uzytkownikiem wybranym na frontendzie a odpowiadającym mu zamówieniu
-            this.sessionOrder = this.allCurrentOrders.get(users.indexOf(currentUser));
+            this.selectedOrder = selectedOrder;
             newOfferPage.toFront();
             setUpNewOfferPage();
         }
@@ -274,67 +285,59 @@ public class OrderManagerPanelController implements Initializable {
     // Create offer tab
     public void createOfferButtonOnAction() throws IOException {
         // Set up the style
-        createOfferBasicUsersTable.getStylesheets().add("sample/styling/tableView.css");
-        createOfferBasicUsersTable.getStyleClass().add("tableview");
+        createOfferUsersTable.getStylesheets().add("sample/styling/tableView.css");
+        createOfferUsersTable.getStyleClass().add("tableview");
         tabText.setText("Create a offer");
         createOfferPage.toFront();
 
-        createOfferIdColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getUserId()));
-        createOfferNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUserName()));
-        //createOfferSurnameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+        createOfferIdColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderClient().getUserId()));
+        createOfferNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
 
-        //users = FXCollections.observableArrayList(BasicUsersRepository.getBasicUsers());
-        //odwolanie do service zamiast do samego repozytorium
-        //this.allCurrentOrders = List<ProductOrder>getAllOrders();
-        populateUsers();
+        //users = FXCollections.observableArrayList(UsersRepository.getUsers());
+        users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
+
 
         createOfferOrderDetailsButton.disableProperty().bind(Bindings.isNull (
-                createOfferBasicUsersTable.getSelectionModel().selectedItemProperty()));
+                createOfferUsersTable.getSelectionModel().selectedItemProperty()));
 
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
-        // w tym miejscu powinna zostac pobrana lista wszystkich uzytkownikow ktorzy zlozyli oferte
-       /* FilteredList<BasicUser> filteredData = new FilteredList<>(BasicUsers, b -> true);
+        FilteredList<ProductOrder> filteredData = new FilteredList<>(users, b -> true);
         createOfferSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(BasicUser -> {
+            filteredData.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) return true;
 
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (String.valueOf(BasicUser.getUserId()).indexOf(lowerCaseFilter) != -1)
+                if (String.valueOf(user.getOrderClient().getUserId()).indexOf(lowerCaseFilter) != -1)
                     return true;
-                else if (BasicUser.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                else if (user.getOrderClient().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
-                //else if (BasicUser.getUserSurname().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                 //   return true;
                 else
                     return false;
             });
         });
-        SortedList<BasicUser> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(createOfferBasicUsersTable.comparatorProperty());*/
+        SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(createOfferUsersTable.comparatorProperty());
 
         //  Setting the table
-        createOfferBasicUsersTable.setItems(setupOffersList());
+        createOfferUsersTable.setItems(sortedData);
     }
 
     public void setUpNewOfferPage (){
         tabText.setText("Set up the offer");
-        idOrderField.setText(Integer.toString((int) currentUser.getUserId()));
-        companyField.setText(currentUser.getUserName());
-        //amountField.setText(selectedOrder.getSurname());
+        idOrderField.setText(Long.toString(selectedOrder.getOrderId()));
+        companyField.setText(selectedOrder.getOrderClient().getUserName());
+        amountField.setText(selectedOrder.getOrderStatus().toString());
 
         // Backend to do
         // Normally taken the list of product for selected order - sth similiary for check already done
-        // pozyskanie produktow dla danego zamowienia
-        // List<Product> getProductsForActualOrder(Order actualOrder);
-        productsArray = FXCollections.observableArrayList(sessionOrder.getOrderedProducts().stream()
-                .map(OrderItem::getProduct).collect(Collectors.toList()));
+        productsArray = FXCollections.observableArrayList(selectedOrder.getOrderedProducts());
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
 
-        idProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProductId()));
-        productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
-        //amountOfProductColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+        idProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProduct().getProductId()));
+        productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
+        amountOfProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getProductAmount()));
 
         Callback<TableColumn <OrderItem, String>, TableCell <OrderItem, String>> cellFactory = (param) -> {
             final TableCell<OrderItem, String> cell = new TableCell<OrderItem, String>() {
@@ -344,32 +347,29 @@ public class OrderManagerPanelController implements Initializable {
                     if (empty) {
                         setGraphic(null);
                     } else {
-                        OrderItem orderItem = getTableView().getItems().get(getIndex());
+                        OrderItem product = getTableView().getItems().get(getIndex());
                         ComboBox comboBox = new ComboBox();
                         comboBox.setMinWidth(170);
                         comboBox.setMinHeight(25);
-
-                        //###### TA CZESC JEST WYWOLYWANA WIELOKROTNIE W CZASIE INICJALIZACJI OFERTY
                         // Backend to do
                         // It has to be for changes if someone is going back from summary !
-                        // here order Factory must be obtained
-                        comboBox.setValue( orderItem.getFactory().getFactoryName());
+                        //ustawienie nazwy fabryki dla danego pola
+                        comboBox.setValue(currentFactory(product));
 
                         // Backend to do
                         // Depending from the product different list in combobox is given
                         // Now all products has the same one almost
-                        // List<Factory> getPossibleFactories(Order actualOrder);
-                        //if (product.getProductId() == 1){ comboBox.setItems(FXCollections.observableArrayList("Maniek", "Zgrana Spółka"));}
-                        //else { comboBox.setItems(FXCollections.observableArrayList("Mrówka", "Zespół Pomocnik"));}
 
-                        //###### TA CZESC JEST WYWOLYWANA WIELOKROTNIE W CZASIE INICJALIZACJI OFERTY
+                        //pobranie fabryk dla danego produktu
+                        comboBox.setItems(FXCollections.observableArrayList(factoryForOrderItemSetup
+                                .searchAvailableFactories(product).stream().map(Factory::getFactoryName).collect(Collectors.toList())));
+                        /*if (product.getId() == 1){ comboBox.setItems(FXCollections.observableArrayList("Maniek", "Zgrana Spółka"));}
+                        else { comboBox.setItems(FXCollections.observableArrayList("Mrówka", "Zespół Pomocnik"));}*/
 
                         comboBox.setOnAction(event -> {
                             // Backend to do
-                            // Changing the factory for selected one
-                            // void setFactoryForOrder(OrderItem actualOrderItem, Factory chosenFactory);
-                            //czy te order items należą do sessionOrder ?
-                            //orderItem.setFactory((String) comboBox.getValue()));
+                            // Changing the company for selected one
+                            product.setFactory((Factory) comboBox.getValue());
                         });
                         setGraphic(comboBox);
                         setText(null);
@@ -380,57 +380,86 @@ public class OrderManagerPanelController implements Initializable {
         };
         factoryColumn.setCellFactory(cellFactory);
         productsTable.setItems(productsArray);
-        setupTransportProvider();
-    }
-
-    private void setupTransportProvider(){
-        //List<TransportProvider> getTransportProvidersForOrder(Order actualOrder);
 
         transportProviderCombobox.getStylesheets().add("sample/styling/comboBoxView.css");
         // Careful all the time first setValue, then setItems - otherwise it not gonna be correct
-        //transportProviderCombobox.setValue(currentUser.getTransport());
+        transportProviderCombobox.setValue(currentTransport(selectedOrder));
         // Backend to do
         // Getting available transport
-        // pozyskanie TransportProviderów ktorzy obsluguja polaczenie klient - fabryka
-        transportProviderCombobox.setItems(FXCollections.observableArrayList("DHL", "DPD"));
+
+        //get transport providers for selected order
+        transportProviders = possibleTransportProviders(selectedOrder);
+
+        //extract the names of transport providers for selected order
+        transportProvidersNames = FXCollections.observableArrayList(transportProviders.stream()
+                .map(TransportProvider::getUserName).collect(Collectors.toList()));
+
+        transportProviderCombobox.setItems(transportProvidersNames);
 
         transportProviderCombobox.setOnAction(event -> {
             // Backend to do
             // Setting chosen transport
-            //void setTransportProviderForOrder(TransportProvider chosenProvider, Order actualOrder);
-            //currentUser.setTransport(transportProviderCombobox.getValue());
+
+            //set chosen TransportProvider object from session TransportProvider's list
+            //for selected Order
+            selectedOrder.setOrderTransportProvider(transportProviders.stream()
+                    .filter(transportProvider -> transportProvider.getUserName().equals(transportProviderCombobox.getValue()))
+                    .findFirst().get());
         });
+    }
+
+    private String currentFactory(OrderItem orderItem)
+    {
+        if(orderItem.getFactory() == null)
+        {
+            return "No factory set";
+        }
+        return orderItem.getFactory().getFactoryName();
+    }
+
+    private String currentTransport(ProductOrder productOrder)
+    {
+        if(productOrder.getOrderTransportProvider() == null)
+        {
+            return "No transport provider set";
+        }
+        return productOrder.getOrderTransportProvider().getUserName();
+    }
+
+    private List<TransportProvider> possibleTransportProviders(ProductOrder productOrder){
+        return new ArrayList<>();
     }
 
     public void summaryOfferButtonOnAction(){
         // Backend to do
-        // Order getActualOrder();
         tabText.setText("Summary offer");
         summaryNewOfferPage.toFront();
-        summaryIdOrderField.setText(Long.toString(currentUser.getUserId()));
-        summaryCompanyField.setText(currentUser.getUserName());
+        summaryIdOrderField.setText(Long.toString(selectedOrder.getOrderId()));
+        summaryCompanyField.setText(selectedOrder.getOrderClient().getUserName());
         //summaryAmountField.setText(selectedOrder.getSurname());
-        //użycie gettera zamiast serwisu
-        summaryTransportProviderField.setText(sessionOrder.getOrderTransportProvider().getUserName());
+        summaryTransportProviderField.setText(selectedOrder.getOrderTransportProvider().getUserName());
 
         summaryProductsTable.getStylesheets().add("sample/styling/tableView.css");
         summaryProductsTable.getStyleClass().add("tableview");
 
-        summaryIdProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProductId()));
-        summaryProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
-        //summaryAmountOfProductColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
-        //summaryFactoryColumn.setCellValueFactory(cellData -> cellData.getValue().);
-        productsArray = FXCollections.observableArrayList(sessionOrder.getOrderedProducts().stream().map(obj -> obj.getProduct()).collect(Collectors.toList()));
+        summaryIdProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProduct().getProductId()));
+        summaryProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
+        //summaryAmountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().surnameProperty());
+        summaryFactoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+        productsArray = FXCollections.observableArrayList(selectedOrder.getOrderedProducts());
         summaryProductsTable.setItems(productsArray);
     }
 
+    /**
+     * Method for resetting choices for Factories for ordered items
+     * and for TransportProvider
+     */
     public void goBackButtonOnAction(){
         // Backend to do
         // Clearing out after changing the tab back
-        // void clearActualOrder(Order actualOrder)
-        //for (Product product : currentUser.getProducts())
-            //product.setCompany("");
-        //currentUser.setTransport("");
+        for (OrderItem orderItem : selectedOrder.getOrderedProducts())
+            orderItem.setFactory(null);
+        selectedOrder.setOrderTransportProvider(null);
         tabText.setText("Create a offer");
         createOfferPage.toFront();
     }
@@ -447,8 +476,7 @@ public class OrderManagerPanelController implements Initializable {
         if(isConfirmed.get() == ButtonType.OK) {
             // Backend
             // Deleting order from preparing list to do
-            // void sendOffer(Order proceededOrder)
-            users.remove(currentUser);
+            users.remove(selectedOrder);
             createOfferPage.toFront();
         }
     }
@@ -458,20 +486,8 @@ public class OrderManagerPanelController implements Initializable {
         searchField.setText("");
         createOfferSearchField.setText("");
     }
+
+    //TODO - this shouldn't exist - only for complying with FXML
+    public void deleteAccountButtonOnAction(ActionEvent actionEvent) {
+    }
 }
-/*Opcja 1: Konieczność utrzymywania obiektu actualOrder pomiędzy kliknieciem OrderDetails a kliknięciem Send the offer, lub powrotem do listy Orderow
-* przy goBackButtonOnAction()*/
-/*Opcja 2: Konieczność utrzymywania obiektu actualOrder pomiędzy kliknieciem Create offer a kliknięciem Send the offer, lub powrotem do listy Orderow
-* przy goBackButtonOnAction()*/
-
-/*Przy goBackButtonOnAction() koniecznosc usunięcia/wyzerowania obiektu actualOrder*/
-
-/*KONTRAKT Z INNYMI KLASAMI
-* 1. Konieczność pozyskiwania TransportProviderow w metodzie setUpNewOfferPage ()
-* 2. Po wyslaniu Send the offer musi być wywoływana metoda do oznaczenia wybranego providera, poinformowania go,
-*    doda się kolejny order ktory będzie pokazywany wybranemu tutaj TransportProvider, i on będzie miał możliwość wyboru:
-*    potwierdza lub odrzuca;
-*    po Send the offer zamówienie dostaje dopiero TransportProvider, a dopiero po jego akceptacji przekazane klientowi
-* 3. Konieczność pozyskania wszystkich Orderów o statusie ISSUED
-* 4. Konieczność ustawienia Factory dla każdego OrderItem aktualnego orderu, czyli każdego produktu
-* 5. Konieczność zmiany statusu Order dla którego kliknięto Send the offer na jakiś stan opisujacy przetwarzanie*/

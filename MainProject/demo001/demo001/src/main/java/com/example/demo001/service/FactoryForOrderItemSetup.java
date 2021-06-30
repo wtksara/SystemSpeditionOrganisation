@@ -12,4 +12,7 @@ public interface FactoryForOrderItemSetup {
 
     void setupProduction(Factory factoryToProduce, OrderItem itemToBeProvided);
 
+    void printProductAbility();
+
+    Factory getFactoryByName(String name);
 }

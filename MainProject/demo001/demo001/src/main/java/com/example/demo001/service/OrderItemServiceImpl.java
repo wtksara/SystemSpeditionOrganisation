@@ -6,9 +6,11 @@ import com.example.demo001.repository.FactoryRepository;
 import com.example.demo001.repository.OrderItemRepository;
 import com.example.demo001.repository.ProductionAbilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderItemServiceImpl implements OrderItemService{
 
     @Autowired

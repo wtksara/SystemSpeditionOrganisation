@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane fx:id="dialogPane" minHeight="500.0" minWidth="400.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo001.gui_controller.BasketController">
+    <content>
+        <AnchorPane maxHeight="-Infinity" maxWidth="500.0" minHeight="-Infinity" minWidth="500.0" prefHeight="243.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
+            <children>
+                <AnchorPane layoutY="-41.0" prefHeight="78.0" prefWidth="400.0" style="-fx-background-color: #40c4ff;" />
+                <AnchorPane layoutX="-6.0" layoutY="37.0" prefHeight="19.0" prefWidth="407.0" style="-fx-background-color: #000000;" />
+                <GridPane layoutX="28.0" layoutY="74.0" prefHeight="355.0" prefWidth="346.0">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.20001220703125" minWidth="0.8000263214111332" prefWidth="10.99998779296875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.20001220703125" minWidth="10.0" prefWidth="100.60001220703126" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.59998321533203" minWidth="10.0" prefWidth="235.99997558593748" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="64.19998779296876" minHeight="10.0" prefHeight="46.1999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="165.00001220703126" minHeight="10.0" prefHeight="44.9999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="150.4" minHeight="0.0" prefHeight="8.200024414062497" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="257.8" minHeight="10.0" prefHeight="255.3999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="36.600012207031256" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <TextField fx:id="idOrderField" editable="false" prefHeight="30.0" prefWidth="243.0" promptText="    Order number" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="5">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Label prefHeight="26.0" prefWidth="118.0" text="Order number" GridPane.columnIndex="4">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label prefHeight="26.0" prefWidth="108.0" text="Total amount" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="amountField" editable="false" prefHeight="30.0" prefWidth="243.0" promptText="    Amount" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <TableView fx:id="productsTable" prefHeight="234.0" prefWidth="348.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+                            <columns>
+                                <TableColumn fx:id="idProductColumn" prefWidth="36.0" text="ID" />
+                                <TableColumn fx:id="productColumn" prefWidth="129.5999755859375" text="Product" />
+                                <TableColumn fx:id="amountOfProductColumn" minWidth="0.0" prefWidth="85.60002136230469" text="Amount" />
+                                <TableColumn fx:id="deleteColumn" minWidth="0.0" prefWidth="85.60002136230469" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+</DialogPane>

@@ -34,4 +34,11 @@ public class OrderItem {
     @OneToOne
     private Factory factory;
 
+    public OrderItem() {}
+    public OrderItem(ProductOrder order, Product product, int productAmount) {
+        this.order = order;
+        this.product = product;
+        this.productAmount = productAmount;
+        this.factory = null;
+    }
 }
