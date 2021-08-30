@@ -136,7 +136,7 @@ public class TransportProviderPanelController implements Initializable {
     public void saveDetailsButtonOnAction() throws IOException { //saving the data changed by user
         // Backend
         // Saving changed details for a user
-
+/*
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
         String textInfo;
@@ -147,7 +147,7 @@ public class TransportProviderPanelController implements Initializable {
         else {
             savingDetails();
         }
-
+*/
     }
 
     public void savingDetails(){

@@ -90,7 +90,7 @@ public class BasketController {
                             FXMLLoader fxmlLoader = new FXMLLoader();
                             fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
                             Optional<ButtonType> isConfirmed = null;
-                            try {
+                           /* try {
                                 isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete that product ?", "Deleting product", "Ok", "Cancel");
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -100,7 +100,7 @@ public class BasketController {
                                 // Deleting the product from order
                                 orders.remove(getIndex());
                                 order.remove(getIndex());
-                            }
+                            }*/
                         });
                         setGraphic(addButton);
                     }

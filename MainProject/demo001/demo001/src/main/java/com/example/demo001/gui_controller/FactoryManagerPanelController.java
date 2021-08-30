@@ -136,7 +136,7 @@ public class FactoryManagerPanelController implements Initializable {
     public void saveDetailsButtonOnAction() throws IOException { //saving the data changed by user
         // Backend
         // Saving changed details for a user
-
+/*
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
         String textInfo;
@@ -147,7 +147,7 @@ public class FactoryManagerPanelController implements Initializable {
         else {
             savingDetails();
         }
-
+*/
     }
 
     public void savingDetails(){
@@ -180,7 +180,7 @@ public class FactoryManagerPanelController implements Initializable {
     public void saveFactoryDetailsButtonOnAction() throws IOException { //saving information about factory changed by user
         // Backend
         // Saving changed details for a factory
-
+/*
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
         String textInfo;
@@ -195,7 +195,7 @@ public class FactoryManagerPanelController implements Initializable {
         else {
             savingFactoryDetails();
         }
-
+*/
     }
 
     public void savingFactoryDetails(){
@@ -277,13 +277,13 @@ public class FactoryManagerPanelController implements Initializable {
     public void deleteProductsButtonOnAction() throws IOException { //to delete products from factory
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete these products?", "Deleting products", "Ok", "Cancel");
+        /*Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete these products?", "Deleting products", "Ok", "Cancel");
         if(isConfirmed.get() == ButtonType.OK) {
             // Backend to do
             // Deleting chosen products from table
             int selectedId = usersTable.getSelectionModel().getSelectedIndex();
             users.remove(selectedId);
-        }
+        }*/
     }
 
     public void updateProductsButtonOnAction() throws IOException { //to update only amount of products in factory

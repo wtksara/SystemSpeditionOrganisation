@@ -17,11 +17,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Component;
 
 
@@ -81,14 +86,14 @@ public class AdministratorPanelController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
-
-    //NOWOSC
-    public void setAdministratorDetails(BasicUser user) {
-        // Backend to do
-        // Getting details about administrator
-        accountNameField.setText(user.getUserName());
-        accountPasswordField.setText(user.getUserPassword());
+        if(NavigationController.manageUsersToFront)
+        {
+            try{manageUsersButtonOnAction();}
+            catch(IOException e){}
+            NavigationController.manageUsersToFront=false;
+        }
+        else
+            setUserDetails();
     }
 
     public void setUserDetails()
@@ -120,33 +125,65 @@ public class AdministratorPanelController implements Initializable {
     // Copy the code and just paste in
     ////////////////////////////////////////////////////
     public void saveDetailsButtonOnAction() throws IOException {
-        // Backend
-        // Saving changed details for a user
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
-        String textInfo;
-        if (accountNameField.getText().isEmpty()) {
-            textInfo = "This username is already taken";
-            new AlertBoxController().createAlert(fxmlLoader, textInfo);
-        }
-        else {
-            savingDetails();
+        String newUsername = accountNameField.getText();
+        String newPassword = accountPasswordField.getText();
+        String oldUsername = NavigationController.username;
+        BasicUser user = basicUserService.findByUsername(oldUsername);
+        String oldPassword=user.getUserPassword();
+
+        boolean changeDetails = true;
+
+        if(!newUsername.equals(oldUsername))
+        {
+            BasicUser user2 = basicUserService.findByUsername(newUsername);
+            if (user2!=null)
+            {
+                NavigationController.alertText="Username taken, choose another username";
+                changeDetails=false;
+            }
+            else if(newUsername.isEmpty())
+            {
+                NavigationController.alertText="Username can not be empty";
+                changeDetails=false;
+            }
         }
 
+        if(!newPassword.equals(oldPassword))
+        {
+            if(newPassword.isEmpty())
+            {
+                NavigationController.alertText="Password can not be empty";
+                changeDetails=false;
+            }
+        }
+
+        if(changeDetails)
+        {
+            NavigationController.username=newUsername;
+            user.setUserName(newUsername);
+            user.setUserPassword(newPassword);
+            basicUserService.saveChangedUser(user);
+            accountNameField.setEditable(false);
+            accountPasswordField.setEditable(false);
+            changeDetailsButton.toFront();
+            NavigationController.alertText="Details changed successfully";
+        }
+        callAlertBox();
     }
 
-    public void savingDetails(){
 
-        accountNameField.getText();
-        accountPasswordField.getText();
-        saveDetailsButton.toFront();
-
-        //Set back field to uneditable
-        accountNameField.setEditable(false);
-        accountPasswordField.setEditable(false);
-        changeDetailsButton.toFront();
+    public void callAlertBox(){
+        NavigationController.lastSceneName="Spedition Organisation System - Administrator";
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(AlertBoxController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Alert!");
+        NavigationController.stage.show();
     }
+
     ////////////////////////////////////////////////////
     // Manager users tab
     public void manageUsersButtonOnAction() throws IOException {
@@ -196,37 +233,60 @@ public class AdministratorPanelController implements Initializable {
     }
 
     public void deleteButtonOnAction() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete that user ?", "Deleting User", "Ok", "Cancel");
-        if(isConfirmed.get() == ButtonType.OK) {
-            // Backend to do
-            // Deleting chosen user from table
-            int selectedId = usersTable.getSelectionModel().getSelectedIndex();
-            //operowanie na kolekcji frontendowej
-            users.remove(selectedId);
+        BasicUser selectedUser = usersTable.getSelectionModel().getSelectedItem();
+        if(!NavigationController.username.equals(selectedUser.getUserName()))
+        {
+            NavigationController.alertText="Are you sure you want to delete this user?";
+            NavigationController.operatedUser=selectedUser.getUserName();
+            NavigationController.lastSceneName=NavigationController.stage.getTitle();
+            NavigationController.lastScene = NavigationController.stage.getScene();
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(DeleteUserConfirmationBoxController.class);
+            Scene scene = new Scene(root);
+            NavigationController.stage.setScene(scene);
+            NavigationController.stage.setTitle("Confirm Delete");
+            NavigationController.stage.show();
+        }
+        else
+        {
+            NavigationController.alertText="You can't delete your account!";
+            NavigationController.lastSceneName=NavigationController.stage.getTitle();
+            NavigationController.lastScene = NavigationController.stage.getScene();
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(AlertBoxController.class);
+            Scene scene = new Scene(root);
+            NavigationController.stage.setScene(scene);
+            NavigationController.stage.setTitle("Alert!");
+            NavigationController.stage.show();
         }
     }
 
     public void updateButtonOnAction() throws IOException {
+        NavigationController.updatingUser = true;
         BasicUser selectedUser = usersTable.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../userForm.fxml"));
-        new UserFormController().init(fxmlLoader, selectedUser, "Update User");
-        // Backend to do
-        // Update data for selectedUser - inside of the UserFormController
+        NavigationController.operatedUser=selectedUser.getUserName();
+
+        NavigationController.lastSceneName="Spedition Organisation System - Administrator";
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(UserFormController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Change User Details");
+        NavigationController.stage.show();
     }
 
     public void addButtonOnAction() throws IOException {
-        BasicUser newUser = new Client();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../userForm.fxml"));
-        Optional<ButtonType> isConfirmed  = new UserFormController().init(fxmlLoader, newUser, "Add User");
-        if (isConfirmed.get() == ButtonType.OK){
-            // Backend to do
-            // Adding new user to table
-            //users.add(newUser);
-        }
+
+        NavigationController.updatingUser = false;
+        NavigationController.lastSceneName="Spedition Organisation System - Administrator";
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(UserFormController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("New User Details");
+        NavigationController.stage.show();
     }
 
     // Cleaning text in searching field

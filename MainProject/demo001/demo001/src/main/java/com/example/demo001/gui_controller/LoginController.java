@@ -56,13 +56,14 @@ public class LoginController {
             // by user name search for user and its role
             // if (basicUser.userRole.equals("ADMINISTRATOR")){
             if (user.getUserRole().toString().equals("ADMINISTRATOR")){
+                NavigationController.manageUsersToFront=false;
+                NavigationController.username=username;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(AdministratorPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Administrator");
                 NavigationController.stage.show();
-                NavigationController.username=username;
                 //AdministratorPanelController aa = fxWeaver.loadController(AdministratorPanelController.class);
                 //aa.setAdministratorDetails(user);
                /* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../administratorPanel.fxml"));
@@ -158,6 +159,9 @@ public class LoginController {
             }
         }
         else {
+            NavigationController.alertText="Wrong username or password";
+            NavigationController.lastSceneName="Login";
+            NavigationController.lastScene = NavigationController.stage.getScene();
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(AlertBoxController.class);
             Scene scene = new Scene(root);

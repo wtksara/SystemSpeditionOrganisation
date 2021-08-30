@@ -1,6 +1,8 @@
 package com.example.demo001.service;
 
 
+import com.example.demo001.domain.Actors.BasicUser;
+import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.repository.FactoryManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,20 @@ public class FactoryManagerServiceImpl implements FactoryManagerService{
                 return allBasicUser;
         }
         return null;
+    }
+
+    @Override
+    public boolean addUser(FactoryManager bUser)
+    {
+        FactoryManager bb = factoryManagerRepository.save(bUser);
+        return bb != null;
+    }
+
+    @Override
+    public boolean saveChangedUser(FactoryManager bUser)
+    {
+        FactoryManager bb = factoryManagerRepository.save(bUser);
+        return bb != null;
     }
 
 }

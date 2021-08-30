@@ -325,7 +325,7 @@ public class ClientPanelController implements Initializable {
     }
 
     public void basketButtonOnAction() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        /*FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../basket.fxml"));
         Optional<ButtonType> isConfirmed = new BasketController().init(fxmlLoader, cart, "Basket");
         if(isConfirmed.get() == ButtonType.OK) {
@@ -353,7 +353,7 @@ public class ClientPanelController implements Initializable {
             // Cleaning the order
             cart.clear();
 
-        }
+        }*/
     }
 
     // Current orders tab
@@ -507,11 +507,11 @@ public class ClientPanelController implements Initializable {
     public boolean notFinishedOrder() throws IOException {
         FXMLLoader fxmlLoaders = new FXMLLoader();
         fxmlLoaders.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoaders, "You haven't finished the order", "Order not finished", "Empty basket", "Cancel");
+        /*Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoaders, "You haven't finished the order", "Order not finished", "Empty basket", "Cancel");
         if (isConfirmed.get() == ButtonType.OK) {
             cart.clear();
             return true;
-        }
+        }*/
         return false;
     }
 }

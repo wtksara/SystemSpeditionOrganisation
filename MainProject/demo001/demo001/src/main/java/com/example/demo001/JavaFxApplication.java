@@ -30,10 +30,13 @@ public class JavaFxApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        NavigationController.alertText="";
+
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(LoginController.class);
         Scene scene = new Scene(root);
         NavigationController.stage=stage;
+        NavigationController.stage.setTitle("Login");
         NavigationController.stage.setScene(scene);
         NavigationController.stage.show();
     }

@@ -194,7 +194,7 @@ public class OrderManagerPanelController implements Initializable {
     public void saveDetailsButtonOnAction() throws IOException {
         // Backend
         // Saving changed details for a user
-
+/*
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
         String textInfo;
@@ -205,7 +205,7 @@ public class OrderManagerPanelController implements Initializable {
         else {
             savingDetails();
         }
-
+*/
     }
 
     public void savingDetails(){
@@ -480,13 +480,13 @@ public class OrderManagerPanelController implements Initializable {
     public void summarySendOfferButtonOnAction() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to send that offer?", "Send offer","Ok", "Cancel");
+        /*Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to send that offer?", "Send offer","Ok", "Cancel");
         if(isConfirmed.get() == ButtonType.OK) {
             // Backend
             // Deleting order from preparing list to do
             users.remove(selectedOrder);
             createOfferPage.toFront();
-        }
+        }*/
     }
 
     // Cleaning text in searching field
