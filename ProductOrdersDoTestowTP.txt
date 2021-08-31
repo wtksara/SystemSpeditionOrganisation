@@ -1,0 +1,77 @@
+//Dodawanie pustych Product Orderów do testowania ekranu Transport Providera:
+	TransportProvider tp = transportProviderService.findByUsername("PackageDeliveryService");
+        Client cl = clientService.findByUsername("Adam");
+
+        ProductOrder order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.PENDING_TP);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.PENDING_TP);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.PENDING_TP);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.PENDING_TP);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        tp = transportProviderService.findByUsername("FastPackageDelivery");
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.PENDING_TP);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+
+        tp = transportProviderService.findByUsername("PackageDeliveryService");
+        cl = clientService.findByUsername("Anna");
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.IN_TRANSPORT);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.IN_TRANSPORT);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.IN_TRANSPORT);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);
+
+        tp = transportProviderService.findByUsername("FastPackageDelivery");
+        order = new ProductOrder();
+        order.setOrderStatus(OrderStatus.IN_TRANSPORT);
+        order.setOrderedProducts(new ArrayList<OrderItem>());
+        order.setOrderClient(cl);
+        order.setOrderTransportProvider(tp);
+        productOrderService.createOrder(order);	        
+
+
+//Usuwanie wszystkich product orderów
+	productOrderService.deleteAllOrders();

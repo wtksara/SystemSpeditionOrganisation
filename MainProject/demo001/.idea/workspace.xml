@@ -5,37 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Connected frontend and backend.">
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/DeleteUserConfirmationBoxController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ClientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/OrderManagerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ClientService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ClientServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderManagerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderManagerServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/deleteUserConfirmationBox.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/MarkAsDeliveredConfirmationBoxController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/markAsDeliveredConfirmationBox.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AlertBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AlertBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryManagerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryManagerPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/TransportProviderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/TransportProviderPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/UserFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/UserFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/alertBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/alertBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/loginAlertBox.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/userForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/userForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/transportProviderPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/transportProviderPanel.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +120,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.46484375" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -168,17 +147,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Demo001SprinBootApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="bootRun" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -404,6 +372,9 @@
       <workItem from="1625052060868" duration="2712000" />
       <workItem from="1629978419588" duration="1780000" />
       <workItem from="1630320119516" duration="22288000" />
+      <workItem from="1630346385846" duration="446000" />
+      <workItem from="1630422521946" duration="156000" />
+      <workItem from="1630422691307" duration="12238000" />
     </task>
     <task id="LOCAL-00001" summary="Connected frontend and backend.">
       <created>1624702248314</created>

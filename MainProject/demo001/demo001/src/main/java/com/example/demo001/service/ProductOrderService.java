@@ -11,6 +11,13 @@ public interface ProductOrderService {
     List<ProductOrder> findCurrentOrders(String clientName); //pobranie wszystkich zamówień o danym statusie
     List<ProductOrder> findHistoricOrders(String clientName);
     List<ProductOrder> findOrdersByTransportProvider(String transportProviderName);
+
+    List<ProductOrder> findActualOrdersByTransportProvider(String transportProviderName); //Dodane przez Pawla
+    List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(String transportProviderName); //Dodane przez Pawla
+    boolean saveChangedOrder (ProductOrder order); //Dodane przez Pawla
+    void deleteAllOrders(); //Dodane przez Pawla
+    ProductOrder findOrderByID(Long ID); //Dodane przez Pawla
+
     List<ProductOrder> findPendingOrdersByTransportProvider(String transportProviderName);
     List<ProductOrder> findOrdersForManagements(); //wszystkie ProductOrder o statusie do rozporządzenia nimi
 }

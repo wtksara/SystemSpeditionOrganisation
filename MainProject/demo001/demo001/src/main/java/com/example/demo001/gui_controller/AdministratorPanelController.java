@@ -2,8 +2,14 @@ package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
+import com.example.demo001.domain.OrderManagement.OrderItem;
+import com.example.demo001.domain.OrderManagement.OrderStatus;
+import com.example.demo001.domain.OrderManagement.ProductOrder;
+import com.example.demo001.domain.Products.Product;
 import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.service.BasicUserService;
+import com.example.demo001.service.ClientService;
+import com.example.demo001.service.ProductOrderService;
 import com.example.demo001.service.TransportProviderService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleLongProperty;
@@ -32,6 +38,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -82,6 +89,12 @@ public class AdministratorPanelController implements Initializable {
 
     @Autowired
     private TransportProviderService transportProviderService;
+
+    @Autowired
+    private ProductOrderService productOrderService;
+
+    @Autowired
+    private ClientService clientService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -259,6 +272,7 @@ public class AdministratorPanelController implements Initializable {
             NavigationController.stage.setTitle("Alert!");
             NavigationController.stage.show();
         }
+
     }
 
     public void updateButtonOnAction() throws IOException {

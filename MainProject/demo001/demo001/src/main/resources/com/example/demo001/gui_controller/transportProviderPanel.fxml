@@ -38,12 +38,10 @@
                     <children>
                         <BorderPane fx:id="pendingOrdersPage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
                             <left>
-                                <TableView fx:id="pendingOrdersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                                <TableView fx:id="pendingOrdersView" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
                                     <columns>
-                                        <TableColumn fx:id="checkBoxTransportColumn" prefWidth="52.800002336502075" text="Select" />
                                         <TableColumn fx:id="idPendingOrdersColumn" prefWidth="40.79998779296875" text="ID" />
                                         <TableColumn fx:id="clientNamePendingOrdersColumn" prefWidth="96.79995727539062" text="Client name" />
-                                        <TableColumn fx:id="fromPendingOrdersColumn" prefWidth="96.79995727539062" text="From" />
                                         <TableColumn fx:id="toPendingOrdersColumn" prefWidth="99.199951171875" text="To" />
                                         <TableColumn fx:id="statePendingOrdersColumn" prefWidth="99.199951171875" text="State" />
                                     </columns>
@@ -84,11 +82,10 @@
                         </BorderPane>
                         <BorderPane fx:id="myRoutePage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" style="-fx-background-color: #ffffff;" stylesheets="@styling/tableView.css">
                             <left>
-                                <TableView fx:id="usersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                                <TableView fx:id="actualOrdersView" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
                                     <columns>
                                         <TableColumn fx:id="idColumn" prefWidth="40.79998779296875" text="ID" />
                                         <TableColumn fx:id="clientNameColumn" prefWidth="96.79995727539062" text="Client name" />
-                                        <TableColumn fx:id="fromColumn" prefWidth="96.79995727539062" text="From" />
                                         <TableColumn fx:id="toColumn" prefWidth="99.199951171875" text="To" />
                                         <TableColumn fx:id="stateColumn" prefWidth="99.199951171875" text="State" />
                                     </columns>
@@ -101,6 +98,16 @@
                                 <ToolBar maxHeight="65.0" minHeight="65.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                                     <items>
                                         <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                                        <Button fx:id="orderDeliveredButton" layoutX="169.0" layoutY="18.0" minHeight="35.0" minWidth="140.0" mnemonicParsing="false" onAction="#markAsDelivered" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #4caf50;" text="Mark as delievered" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="45.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="14.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="105.0" />
+                                        <Separator opacity="0.0" prefHeight="50.0" prefWidth="105.0" />
                                         <Button minHeight="35.0" minWidth="210.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="249.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
                                             <graphic>
                                                 <TextField fx:id="searchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />

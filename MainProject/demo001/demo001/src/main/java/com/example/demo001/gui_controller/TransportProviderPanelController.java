@@ -1,8 +1,11 @@
 package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Actors.BasicUser;
+import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.service.BasicUserService;
+import com.example.demo001.service.ProductOrderService;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,10 +16,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,15 +59,13 @@ public class TransportProviderPanelController implements Initializable {
     private Button changeDetailsButton, saveDetailsButton;
 
     // My route tab (2) - all transport provider routes
-    private ObservableList <ProductOrder> users = null;
+    private ObservableList <ProductOrder> ordersTable = null;
     @FXML
-    private TableView <ProductOrder> usersTable;
+    private TableView <ProductOrder> actualOrdersView;
     @FXML
     private TableColumn <ProductOrder, Number> idColumn;
     @FXML
     private TableColumn <ProductOrder, String> clientNameColumn;
-    @FXML
-    private TableColumn <ProductOrder, String> fromColumn;
     @FXML
     private TableColumn <ProductOrder, String> toColumn;
     @FXML
@@ -70,18 +74,16 @@ public class TransportProviderPanelController implements Initializable {
     private TextField searchField;
     @FXML
     private TextField currentOrderSearchField;
+    @FXML
+    private Button orderDeliveredButton;
 
     // Pending orders tab (3) - orders pending approval or rejection by transport provider
     @FXML
-    private TableView <ProductOrder> pendingOrdersTable;
-    @FXML
-    private TableColumn <ProductOrder, CheckBox> checkBoxTransportColumn;
+    private TableView <ProductOrder> pendingOrdersView;
     @FXML
     private TableColumn <ProductOrder, Number> idPendingOrdersColumn;
     @FXML
     private TableColumn <ProductOrder, String> clientNamePendingOrdersColumn;
-    @FXML
-    private TableColumn <ProductOrder, String> fromPendingOrdersColumn;
     @FXML
     private TableColumn <ProductOrder, String> toPendingOrdersColumn;
     @FXML
@@ -93,20 +95,30 @@ public class TransportProviderPanelController implements Initializable {
 
     @Autowired
     private BasicUserService basicUserService;
+    @Autowired
+    private ProductOrderService productOrderService;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        //To be (maybe) changed later
+        changeDetailsButton.setVisible(false);
+        saveDetailsButton.setVisible(false);
 
-
-
-
-    //NOWOSC
-    public void setTransportProviderDetails(BasicUser user) {
-        // Backend to do
-        // Getting details about transport provider
-        accountNameField.setText(user.getUserName());
-        accountPasswordField.setText(user.getUserPassword());
+        setUserDetails();
+        switch(NavigationController.transportProviderScreenToFront)
+        {
+            case 2:
+                try{NavigationController.transportProviderScreenToFront=1;myRouteButtonOnAction();}
+                catch(IOException e){}
+                break;
+            case 3:
+                try{NavigationController.transportProviderScreenToFront=1;pendingOrdersButtonOnAction();}
+                catch(IOException e){}
+                break;
+        }
     }
+
 
     public void setUserDetails()
     {
@@ -125,6 +137,7 @@ public class TransportProviderPanelController implements Initializable {
         tabText.setText("My account");
         setUserDetails();
         myAccountPage.toFront();
+        NavigationController.transportProviderScreenToFront=1;
     }
 
     public void changeDetailsButtonOnAction() { //to allow the user change the data
@@ -134,29 +147,6 @@ public class TransportProviderPanelController implements Initializable {
     }
 
     public void saveDetailsButtonOnAction() throws IOException { //saving the data changed by user
-        // Backend
-        // Saving changed details for a user
-/*
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
-        String textInfo;
-        if (accountNameField.getText().isEmpty()) {
-            textInfo = "This username is already taken";
-            new AlertBoxController().createAlert(fxmlLoader, textInfo);
-        }
-        else {
-            savingDetails();
-        }
-*/
-    }
-
-    public void savingDetails(){
-
-        accountNameField.getText();
-        accountPasswordField.getText();
-        saveDetailsButton.toFront();
-
-        //Set back field to uneditable
         accountNameField.setEditable(false);
         accountPasswordField.setEditable(false);
         changeDetailsButton.toFront();
@@ -165,28 +155,28 @@ public class TransportProviderPanelController implements Initializable {
     // My route tab (2)
     public void myRouteButtonOnAction() throws IOException { //change tab to "My route"
         // Set up the style
-        usersTable.getStylesheets().add("sample/styling/tableView.css");
-        usersTable.getStyleClass().add("tableview");
+        actualOrdersView.getStylesheets().add("sample/styling/tableView.css");
+        actualOrdersView.getStyleClass().add("tableview");
         tabText.setText("My route");
         myRoutePage.toFront();
+
+        orderDeliveredButton.disableProperty().bind(Bindings.isNull (
+                actualOrdersView.getSelectionModel().selectedItemProperty()));
 
         // Backend to do
         // Displaying in table all orders of the transport provider
         // (order/route ID, client name, from (city), to = destination (city), order state)
 
+        ordersTable = FXCollections.observableArrayList(productOrderService.findActualOrdersByTransportProvider(NavigationController.username));
+
         idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         clientNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
-        fromColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getClientCity().getCityName()));
-        //Dwa razy miasto klienta - na razie, bo ciężko ogarnąć wszystkie fabryki zamówienia
         toColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getClientCity().getCityName()));
         stateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
 
-        users = FXCollections.observableArrayList();
-        //users = FXCollections.observableArrayList(UsersRepository.getUsers());
-        //users = FXCollections.observableArrayList(factoryForOrderItemSetup.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts());
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
-        FilteredList<ProductOrder> filteredData = new FilteredList<>(users, b -> true);
+        FilteredList<ProductOrder> filteredData = new FilteredList<>(ordersTable, b -> true);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) return true;
@@ -202,52 +192,60 @@ public class TransportProviderPanelController implements Initializable {
                     return false;
             });
         });
-        SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(usersTable.comparatorProperty());
+        SortedList<ProductOrder> sortedData = new SortedList<ProductOrder>(filteredData);
+        sortedData.comparatorProperty().bind(actualOrdersView.comparatorProperty());
 
         //  Setting the table
-        usersTable.setItems(sortedData);
+        actualOrdersView.setItems(sortedData);
     }
 
     public void acceptTransportButtonOnAction(){ //acceptance of the order by transport provider
-        //TODO - ustawienie odpowiednich pól obiektu sesji
-        /*ObservableList<User> selectedList = FXCollections.observableArrayList();
-        for (User order : users){
-            if(order.getSelect().isSelected()){
-                // Backend to do
-                // Changing the status of order
-                order.changeStatus("In progress");
-                order.getSelect().setSelected(false);
-            } }*/
+        ProductOrder selectedOrder = pendingOrdersView.getSelectionModel().getSelectedItem();
+        selectedOrder.setOrderStatus(OrderStatus.OFFER_SENT);
+        productOrderService.saveChangedOrder(selectedOrder);
+        NavigationController.transportProviderScreenToFront=3;
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(TransportProviderPanelController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Spedition Organisation System - Transport Provider");
+        NavigationController.stage.show();
     }
 
     public void declineTransportButtonOnAction(){ //rejection of the order by transport provider
-        //TODO - ustawienie odpowiednich pól obiektu sesji
-       /* ObservableList<User> selectedList = FXCollections.observableArrayList();
-        for (User order : users){
-            if(order.getSelect().isSelected()){
-                // Backend to do
-                // Changing the status of order
-                order.changeStatus("Declined");
-                order.getSelect().setSelected(false);
-            } }*/
+        ProductOrder selectedOrder = pendingOrdersView.getSelectionModel().getSelectedItem();
+        selectedOrder.setOrderStatus(OrderStatus.LKN_4_TP);
+        productOrderService.saveChangedOrder(selectedOrder);
+        NavigationController.transportProviderScreenToFront=3;
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(TransportProviderPanelController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Spedition Organisation System - Transport Provider");
+        NavigationController.stage.show();
     }
 
     // Pending orders tab (3)
     public void pendingOrdersButtonOnAction() throws IOException { //change tab to "Pending orders"
         // Set up the style
-        pendingOrdersTable.getStylesheets().add("sample/styling/tableView.css");
-        pendingOrdersTable.getStyleClass().add("tableview");
-        checkBoxTransportColumn.setStyle("-fx-alignment: center;");
+        pendingOrdersView.getStylesheets().add("sample/styling/tableView.css");
+        pendingOrdersView.getStyleClass().add("tableview");
 
         tabText.setText("Pending orders");
         pendingOrdersPage.toFront();
+
+        //pobieranie danych
+        ordersTable = FXCollections.observableArrayList(productOrderService.findPendingOrdersForTransportProviderByTransportProvider(NavigationController.username));
+        //ordersTable = FXCollections.observableArrayList();
+        acceptTransportButton.disableProperty().bind(Bindings.isNull (
+                pendingOrdersView.getSelectionModel().selectedItemProperty()));
+        declineTransportButton.disableProperty().bind(Bindings.isNull(
+                pendingOrdersView.getSelectionModel().selectedItemProperty()));
 
         // Backend to do
         // Displaying in table only orders with state to accept by transport provider
         // (order/route ID, client name, from (city), to = destination (city), order state = to accept)
 
-        checkBoxTransportColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, CheckBox>("select"));
         /*idPendingOrdersColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         clientNamePendingOrdersColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         fromPendingOrdersColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -257,17 +255,14 @@ public class TransportProviderPanelController implements Initializable {
 
         idPendingOrdersColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         clientNamePendingOrdersColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
-        fromPendingOrdersColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getClientCity().getCityName()));
+        //fromPendingOrdersColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getClientCity().getCityName()));
         //Dwa razy miasto klienta - na razie, bo ciężko ogarnąć wszystkie fabryki zamówienia
         toPendingOrdersColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getClientCity().getCityName()));
         statePendingOrdersColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
 
-        //users = FXCollections.observableArrayList(UsersRepository.getUsers());
-        users = FXCollections.observableArrayList();
-
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
-        FilteredList<ProductOrder> filteredData = new FilteredList<>(users, b -> true);
+        FilteredList<ProductOrder> filteredData = new FilteredList<>(ordersTable, b -> true);
         currentOrderSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) return true;
@@ -284,10 +279,10 @@ public class TransportProviderPanelController implements Initializable {
             });
         });
         SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(usersTable.comparatorProperty());
+        sortedData.comparatorProperty().bind(pendingOrdersView.comparatorProperty());
 
         //  Setting the table
-        pendingOrdersTable.setItems(sortedData);
+        pendingOrdersView.setItems(sortedData);
     }
 
     // Cleaning text in searching field
@@ -296,4 +291,28 @@ public class TransportProviderPanelController implements Initializable {
         currentOrderSearchField.setText("");
     }
 
+    public void callAlertBox(){
+        NavigationController.lastSceneName="Spedition Organisation System - Transport Provider";
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(AlertBoxController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Alert!");
+        NavigationController.stage.show();
+    }
+
+    public void markAsDelivered(){ //mark order as delivered
+        ProductOrder selectedOrder = actualOrdersView.getSelectionModel().getSelectedItem();
+        NavigationController.alertText="Are you sure you want to mark this order as delivered?";
+        NavigationController.orderID = selectedOrder.getOrderId();
+        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        NavigationController.lastScene=NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(MarkAsDeliveredConfirmationBoxController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Confirm marking as delivered");
+        NavigationController.stage.show();
+    }
 }

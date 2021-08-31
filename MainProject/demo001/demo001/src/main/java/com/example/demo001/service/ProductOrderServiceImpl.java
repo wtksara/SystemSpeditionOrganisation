@@ -1,11 +1,15 @@
 package com.example.demo001.service;
 
+import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.*;
 import com.example.demo001.repository.ProductOrderRepository;
+import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 
@@ -90,6 +94,61 @@ public class ProductOrderServiceImpl implements ProductOrderService {
         List<ProductOrder> results = productOrderRepository.findProductOrdersByOrderStatus(OrderStatus.ISSUED);
         results.addAll(productOrderRepository.findProductOrdersByOrderStatus(OrderStatus.LKN_4_TP));
         return results;
+    }
+
+    @Override
+    public List<ProductOrder> findActualOrdersByTransportProvider(String transportProviderName) //Dodane przez Pawla
+    {
+        List<ProductOrder> results = new ArrayList<ProductOrder>();
+        List<ProductOrder> allOrders = productOrderRepository.findAll();
+        for(ProductOrder order : allOrders){
+            if(order.getOrderTransportProvider().getUserName().equals(transportProviderName)&& order.getOrderStatus()==OrderStatus.IN_TRANSPORT)
+            {
+                results.add(order);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(String transportProviderName) //Dodane przez Pawla
+    {
+        List<ProductOrder> results = new ArrayList<ProductOrder>();
+        List<ProductOrder> allOrders = productOrderRepository.findAll();
+        for(ProductOrder order : allOrders){
+            if(order.getOrderTransportProvider().getUserName().equals(transportProviderName)&& order.getOrderStatus()==OrderStatus.PENDING_TP)
+            {
+                results.add(order);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public boolean saveChangedOrder (ProductOrder order) //Dodane przez Pawla
+    {
+        ProductOrder order1 = productOrderRepository.save(order);
+        return order1 != null;
+    }
+
+    @Override
+    public void deleteAllOrders() //Dodane przez Pawla
+    {
+        productOrderRepository.deleteAll();
+    }
+
+    @Override
+    public ProductOrder findOrderByID(Long ID) //Dodane przez Pawla
+    {
+        List<ProductOrder> allProductOrders = productOrderRepository.findAll();
+        ProductOrder pOrder;
+        for (ProductOrder productOrders : allProductOrders) {
+            if (productOrders.getOrderId()==ID) {
+                pOrder = productOrders;
+                return pOrder;
+            }
+        }
+        return null;
     }
 
 }

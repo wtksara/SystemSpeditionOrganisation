@@ -78,13 +78,14 @@ public class LoginController {
                 administratorPanelController.setAdministratorDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("CLIENT")){ //client
+                NavigationController.username=username;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(ClientPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Client");
                 NavigationController.stage.show();
-                NavigationController.username=username;
+
 
                 /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../clientPanel.fxml"));
                 fxmlLoader.setLocation(getClass().getResource("../clientPanel.fxml"));
@@ -98,13 +99,14 @@ public class LoginController {
                 clientPanelController.setClientDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("ORDER_MANAGER")){ //order manager
+                NavigationController.username=username;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(OrderManagerPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Order Manager");
                 NavigationController.stage.show();
-                NavigationController.username=username;
+
 
                 /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../orderManagerPanel.fxml"));
                 fxmlLoader.setLocation(getClass().getResource("../orderManagerPanel.fxml"));
@@ -118,13 +120,14 @@ public class LoginController {
                 orderManagerPanelController.setOrderManagerDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("FACTORY_MANAGER")){ //factory manager
+                NavigationController.username=username;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Factory Manager");
                 NavigationController.stage.show();
-                NavigationController.username=username;
+
 
                 /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../factoryManagerPanel.fxml"));
                 fxmlLoader.setLocation(getClass().getResource("../factoryManagerPanel.fxml"));
@@ -138,13 +141,15 @@ public class LoginController {
                 factoryManagerPanelController.setFactoryManagerDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("TRANSPORT_PROVIDER")){ //transport provider
+                NavigationController.username=username;
+                NavigationController.transportProviderScreenToFront = 1;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(TransportProviderPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Transport Provider");
                 NavigationController.stage.show();
-                NavigationController.username=username;
+
 
                 /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../transportProviderPanel.fxml"));
                 fxmlLoader.setLocation(getClass().getResource("../transportProviderPanel.fxml"));

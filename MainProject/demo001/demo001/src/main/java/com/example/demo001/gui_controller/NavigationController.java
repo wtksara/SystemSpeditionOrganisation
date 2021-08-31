@@ -22,7 +22,11 @@ public class NavigationController {
 
     public static String operatedUser;
 
-    public static boolean manageUsersToFront;
+    public static boolean manageUsersToFront; //info for administrator panel
+
+    public static int transportProviderScreenToFront; //info for transport provider panel - 1 - Account, 2 - Route, 3 - Pending
+
+    public static Long orderID;
 
     public static ConfigurableApplicationContext applicationContext;
 
