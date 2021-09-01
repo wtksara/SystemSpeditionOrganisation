@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.Cipher;
 import com.example.demo001.service.BasicUserService;
 import com.example.demo001.service.TransportProviderService;
 import javafx.fxml.FXML;
@@ -34,11 +35,14 @@ public class LoginController {
     @Autowired
     private BasicUserService basicUserService;
 
+    private Cipher cipher = new Cipher();
+
     //NOWOSC
     public void loginButtonOnAction() throws IOException {
 
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String enc = cipher.encrypt(password);
 
         BasicUser user = basicUserService.findByUsername(username);
         boolean passwordOK=false;
@@ -47,7 +51,7 @@ public class LoginController {
         // Checking if details are alright
         if(user!=null)
         {
-            if(user.getUserPassword().equals(password))
+            if(user.getUserPassword().equals(enc))
                 passwordOK=true;
         }
         if(passwordOK){

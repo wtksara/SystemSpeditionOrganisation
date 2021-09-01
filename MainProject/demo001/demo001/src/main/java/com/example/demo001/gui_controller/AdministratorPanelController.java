@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.OrderItem;
@@ -96,6 +97,8 @@ public class AdministratorPanelController implements Initializable {
     @Autowired
     private ClientService clientService;
 
+    private Cipher cipher = new Cipher();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -131,6 +134,8 @@ public class AdministratorPanelController implements Initializable {
     public void changeDetailsButtonOnAction() {
         accountNameField.setEditable(true);
         accountPasswordField.setEditable(true);
+        accountPasswordField.setText("");
+        accountPasswordField.setPromptText("New Password");
         saveDetailsButton.toFront();
     }
 
@@ -162,20 +167,20 @@ public class AdministratorPanelController implements Initializable {
             }
         }
 
-        if(!newPassword.equals(oldPassword))
+        String enc="";
+        if(!newPassword.isEmpty())
         {
-            if(newPassword.isEmpty())
-            {
-                NavigationController.alertText="Password can not be empty";
-                changeDetails=false;
-            }
+            enc=cipher.encrypt(newPassword);
         }
 
         if(changeDetails)
         {
             NavigationController.username=newUsername;
             user.setUserName(newUsername);
-            user.setUserPassword(newPassword);
+            if(!enc.equals(""))
+            {
+                user.setUserPassword(enc);
+            }
             basicUserService.saveChangedUser(user);
             accountNameField.setEditable(false);
             accountPasswordField.setEditable(false);
