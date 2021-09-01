@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.OrderItem;
@@ -22,12 +23,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -141,8 +145,9 @@ public class ClientPanelController implements Initializable {
     private BasicUserService basicUserService;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    public void initialize(URL url, ResourceBundle resourceBundle) {setUserDetails(); }
 
+    private Cipher cipher = new Cipher();
 
     //NOWOSC
     public void setClientDetails(BasicUser user) {
@@ -185,45 +190,72 @@ public class ClientPanelController implements Initializable {
     public void changeDetailsButtonOnAction() {
         accountNameField.setEditable(true);
         accountPasswordField.setEditable(true);
+        accountPasswordField.setText("");
+        accountPasswordField.setPromptText("New Password");
         saveDetailsButton.toFront();
     }
 
+    // CHANGES HAS BEEN HERE
+    // Copy the code and just paste in
+    ////////////////////////////////////////////////////
     public void saveDetailsButtonOnAction() throws IOException {
-    /*    FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
-        String textInfo;
-        //search for user with inputted name - should return null if name is valid for use
-        BasicUser newName = clientService.FindClientByName(accountUserNameField.getText());
-        //search for given city in database - should exist to change it
-        City newCity = cityService.FindCityByName(accountNameField.getText());
-        if (accountUserNameField.getText().isEmpty() || newName != null) {
-            textInfo = "This username is already taken";
-            new AlertBoxController().createAlert(fxmlLoader, textInfo);
+
+        String newUsername = accountNameField.getText();
+        String newPassword = accountPasswordField.getText();
+        String oldUsername = NavigationController.username;
+        BasicUser user = basicUserService.findByUsername(oldUsername);
+        String oldPassword=user.getUserPassword();
+
+        boolean changeDetails = true;
+
+        if(!newUsername.equals(oldUsername))
+        {
+            BasicUser user2 = basicUserService.findByUsername(newUsername);
+            if (user2!=null)
+            {
+                NavigationController.alertText="Username taken, choose another username";
+                changeDetails=false;
+            }
+            else if(newUsername.isEmpty())
+            {
+                NavigationController.alertText="Username can not be empty";
+                changeDetails=false;
+            }
         }
-        else if (accountNameField.getText().isEmpty() || newCity == null){
-            textInfo ="Your city does not exist in database, check your spelling or contact system administrator";
-            new AlertBoxController().createAlert(fxmlLoader, textInfo);
+
+        String enc="";
+        if(!newPassword.isEmpty())
+        {
+            enc=cipher.encrypt(newPassword);
         }
-        else {
-            client.setClientCity(newCity);
-            client.setUserName(accountUserNameField.getText());
-            client.setUserPassword(accountPasswordField.getText());
-            clientService.ModifyClient(client);
-            savingDetails(); //is it necessary?
+
+        if(changeDetails)
+        {
+            NavigationController.username=newUsername;
+            user.setUserName(newUsername);
+            if(!enc.equals(""))
+            {
+                user.setUserPassword(enc);
+            }
+            basicUserService.saveChangedUser(user);
+            accountNameField.setEditable(false);
+            accountPasswordField.setEditable(false);
+            changeDetailsButton.toFront();
+            NavigationController.alertText="Details changed successfully";
         }
-*/
+        callAlertBox();
     }
 
-    public void savingDetails(){
 
-        accountNameField.getText();
-        accountPasswordField.getText();
-        saveDetailsButton.toFront();
-
-        //Set back field to uneditable
-        accountNameField.setEditable(false);
-        accountPasswordField.setEditable(false);
-        changeDetailsButton.toFront();
+    public void callAlertBox(){
+        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(AlertBoxController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Alert!");
+        NavigationController.stage.show();
     }
     ////////////////////////////////////////////////////
 

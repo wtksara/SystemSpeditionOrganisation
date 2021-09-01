@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
@@ -98,13 +99,11 @@ public class TransportProviderPanelController implements Initializable {
     @Autowired
     private ProductOrderService productOrderService;
 
+    private Cipher cipher = new Cipher();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        //To be (maybe) changed later
-        changeDetailsButton.setVisible(false);
-        saveDetailsButton.setVisible(false);
-
         setUserDetails();
         switch(NavigationController.transportProviderScreenToFront)
         {
@@ -120,11 +119,84 @@ public class TransportProviderPanelController implements Initializable {
     }
 
 
+
+
     public void setUserDetails()
     {
         BasicUser user = basicUserService.findByUsername(NavigationController.username);
         accountNameField.setText(user.getUserName());
         accountPasswordField.setText(user.getUserPassword());
+    }
+
+    public void changeDetailsButtonOnAction() {
+        accountNameField.setEditable(true);
+        accountPasswordField.setEditable(true);
+        accountPasswordField.setText("");
+        accountPasswordField.setPromptText("New Password");
+        saveDetailsButton.toFront();
+    }
+
+    // CHANGES HAS BEEN HERE
+    // Copy the code and just paste in
+    ////////////////////////////////////////////////////
+    public void saveDetailsButtonOnAction() throws IOException {
+
+        String newUsername = accountNameField.getText();
+        String newPassword = accountPasswordField.getText();
+        String oldUsername = NavigationController.username;
+        BasicUser user = basicUserService.findByUsername(oldUsername);
+        String oldPassword=user.getUserPassword();
+
+        boolean changeDetails = true;
+
+        if(!newUsername.equals(oldUsername))
+        {
+            BasicUser user2 = basicUserService.findByUsername(newUsername);
+            if (user2!=null)
+            {
+                NavigationController.alertText="Username taken, choose another username";
+                changeDetails=false;
+            }
+            else if(newUsername.isEmpty())
+            {
+                NavigationController.alertText="Username can not be empty";
+                changeDetails=false;
+            }
+        }
+
+        String enc="";
+        if(!newPassword.isEmpty())
+        {
+            enc=cipher.encrypt(newPassword);
+        }
+
+        if(changeDetails)
+        {
+            NavigationController.username=newUsername;
+            user.setUserName(newUsername);
+            if(!enc.equals(""))
+            {
+                user.setUserPassword(enc);
+            }
+            basicUserService.saveChangedUser(user);
+            accountNameField.setEditable(false);
+            accountPasswordField.setEditable(false);
+            changeDetailsButton.toFront();
+            NavigationController.alertText="Details changed successfully";
+        }
+        callAlertBox();
+    }
+
+
+    public void callAlertBox(){
+        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(AlertBoxController.class);
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Alert!");
+        NavigationController.stage.show();
     }
 
     // My account page (1)
@@ -140,17 +212,6 @@ public class TransportProviderPanelController implements Initializable {
         NavigationController.transportProviderScreenToFront=1;
     }
 
-    public void changeDetailsButtonOnAction() { //to allow the user change the data
-        accountNameField.setEditable(true);
-        accountPasswordField.setEditable(true);
-        saveDetailsButton.toFront();
-    }
-
-    public void saveDetailsButtonOnAction() throws IOException { //saving the data changed by user
-        accountNameField.setEditable(false);
-        accountPasswordField.setEditable(false);
-        changeDetailsButton.toFront();
-    }
 
     // My route tab (2)
     public void myRouteButtonOnAction() throws IOException { //change tab to "My route"
@@ -289,17 +350,6 @@ public class TransportProviderPanelController implements Initializable {
     public void clearFilters(){
         searchField.setText("");
         currentOrderSearchField.setText("");
-    }
-
-    public void callAlertBox(){
-        NavigationController.lastSceneName="Spedition Organisation System - Transport Provider";
-        NavigationController.lastScene = NavigationController.stage.getScene();
-        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(AlertBoxController.class);
-        Scene scene = new Scene(root);
-        NavigationController.stage.setScene(scene);
-        NavigationController.stage.setTitle("Alert!");
-        NavigationController.stage.show();
     }
 
     public void markAsDelivered(){ //mark order as delivered
