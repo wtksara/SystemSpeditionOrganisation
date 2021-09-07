@@ -1,19 +1,21 @@
 package com.example.demo001.service;
 
 import com.example.demo001.domain.Factory.Factory;
+import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.OrderManagement.OrderItem;
-import com.example.demo001.domain.Products.Product;
+import com.example.demo001.gui_controller.NavigationController;
 import com.example.demo001.repository.FactoryRepository;
 import com.example.demo001.repository.ProductionAbilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class FactoryForOrderItemSetupImpl implements FactoryForOrderItemSetup {
+public class ProductionAbilityServiceImpl implements ProductionAbilityService {
 
     @Autowired
     private FactoryRepository factoryRepository;
@@ -30,6 +32,7 @@ public class FactoryForOrderItemSetupImpl implements FactoryForOrderItemSetup {
                /* productionAbilityRepository.getAllByMyProduct(orderItem.getProduct())
                 .stream().map(ProductionAbility::getMyFactory).collect(Collectors.toList());*/
     }
+
 
     @Override
     public void setupProduction(Factory factoryToProduce, OrderItem itemToBeProvided) {
@@ -52,4 +55,27 @@ public class FactoryForOrderItemSetupImpl implements FactoryForOrderItemSetup {
     public Factory getFactoryByName(String name) {
         return factoryRepository.getFactoryByFactoryName(name);
     }
+
+    @Override
+    public void newProductionAbilityForFactory(Factory factory, ProductionAbility productionAbility) {
+        productionAbilityRepository.save(productionAbility);
+        Factory fact = factoryRepository.getFactoryByFactoryName(factory.getFactoryName());
+        List<ProductionAbility> newProd = fact.getProducedProducts();
+        newProd.add(productionAbility);
+        fact.setProducedProducts(newProd);
+        factoryRepository.save(fact);
+    }
+
+    @Override
+    public void updateProductionAbilityAmount(ProductionAbility productionAbility) {
+        ProductionAbility changedProductionAbility = productionAbilityRepository.getProductionAbilityById(productionAbility.getId());
+        changedProductionAbility.setProductAmount(productionAbility.getProductAmount());
+        productionAbilityRepository.save(changedProductionAbility);
+    }
+
+    @Override
+    public void deleteProductionAbility(ProductionAbility productionAbility) {
+        productionAbilityRepository.deleteById(productionAbility.getId());
+    }
+
 }

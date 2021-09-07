@@ -23,7 +23,7 @@ public class Factory {
     private String factoryName;
 
     /** List of products which factories produce (treated like warehouses) */
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ProductionAbility> producedProducts;
 
     /** City in which factory is located */

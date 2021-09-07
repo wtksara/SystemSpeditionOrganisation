@@ -16,4 +16,5 @@ public interface FactoryRepository extends JpaRepository<Factory, Long> {
     List<Factory> getFactoryByProducedProductsContains(ProductionAbility productionAbility);
 
     Factory getFactoryByFactoryName(String factoryName);
+
 }

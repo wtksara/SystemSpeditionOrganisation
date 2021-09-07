@@ -3,16 +3,11 @@ package com.example.demo001.gui_controller;
 import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Factory.Factory;
-import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.Factory.ProductionAbility;
-import com.example.demo001.service.BasicUserService;
-import com.example.demo001.service.FactoryForOrderItemSetup;
-import com.example.demo001.service.FactoryManagerService;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleIntegerProperty;
+import com.example.demo001.domain.Transport.City;
+import com.example.demo001.service.*;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,15 +21,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -65,7 +61,7 @@ public class FactoryManagerPanelController implements Initializable {
     @FXML
     private PasswordField accountPasswordField;
     @FXML
-    private Button changeDetailsButton, saveDetailsButton;
+    private Button changeDetailsButton, saveDetailsButton, myLoginDataButton;
 
     // My factory tab (2) - information about factory
     @FXML
@@ -90,9 +86,8 @@ public class FactoryManagerPanelController implements Initializable {
     @FXML
     private TextField searchField;
 
-
     @Autowired
-    private FactoryForOrderItemSetup factoryForOrderItemSetup;
+    private ProductionAbilityService productionAbilityService;
 
     @Autowired
     private FactoryManagerService factoryManagerService;
@@ -100,9 +95,30 @@ public class FactoryManagerPanelController implements Initializable {
     @Autowired
     private BasicUserService basicUserService;
 
+    @Autowired
+    private CityService cityService;
+
     private Factory sessionFactory;
+
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { setUserDetails();}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(NavigationController.factoryManagerScreenToFront==1)
+            setUserDetails();
+        else if(NavigationController.factoryManagerScreenToFront==2)
+            myFactoryButtonOnAction();
+        else
+        {
+            try{
+                myProductsButtonOnAction();
+            }
+            catch (IOException e)
+            {
+
+            }
+        }
+
+
+    }
 
     private Cipher cipher = new Cipher();
 
@@ -189,9 +205,9 @@ public class FactoryManagerPanelController implements Initializable {
             changeDetailsButton.toFront();
             NavigationController.alertText="Details changed successfully";
         }
+        NavigationController.factoryManagerScreenToFront = 1;
         callAlertBox();
     }
-
 
     public void callAlertBox(){
         NavigationController.lastSceneName=NavigationController.stage.getTitle();
@@ -220,9 +236,7 @@ public class FactoryManagerPanelController implements Initializable {
     }
 
     public void saveFactoryDetailsButtonOnAction() throws IOException { //saving information about factory changed by user
-        // Backend
-        // Saving changed details for a factory
-/*
+        NavigationController.factoryManagerScreenToFront = 2;
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../AlertBox.fxml"));
         String textInfo;
@@ -237,14 +251,34 @@ public class FactoryManagerPanelController implements Initializable {
         else {
             savingFactoryDetails();
         }
-*/
+
+
+    }
+
+    private void initializeFactory(){
+        this.sessionFactory = this.factoryManagerService.findByUsername(NavigationController.username).getManagedFactory();
+        System.out.println("this.sessionFactory: ");
+        System.out.println(this.sessionFactory.getFactoryName());
     }
 
     public void savingFactoryDetails(){
+        if(this.sessionFactory == null){
+            initializeFactory();
+        }
+        /*
+        Saving factory info
+         */
+        System.out.println("factoryNameField.getText(): " + factoryNameField.getText());
+        System.out.println("factoryIdField.getText(): " + factoryIdField.getText());
+        System.out.println("localizationField.getText(): " + localizationField.getText());
+        this.sessionFactory.setFactoryName(factoryNameField.getText());
+        this.sessionFactory.setFactoryId(Long.parseLong(factoryIdField.getText()));
+        City factoryLocation = this.cityService.FindCityByName(localizationField.getText());
+        System.out.println("factoryLocation");
+        System.out.println(factoryLocation.getCityName());
+        this.sessionFactory.setFactoryLocation(factoryLocation);
 
-        factoryNameField.getText();
-        factoryIdField.getText();
-        localizationField.getText();
+
         saveFactoryDetailsButton.toFront();
 
         //Set back field to uneditable
@@ -252,10 +286,15 @@ public class FactoryManagerPanelController implements Initializable {
         factoryIdField.setEditable(false);
         localizationField.setEditable(false);
         changeFactoryDetailsButton.toFront();
+
+
     }
 
     // My products tab (3)
     public void myProductsButtonOnAction() throws IOException { //change tab to "My products"
+        if(this.sessionFactory == null){
+            initializeFactory();
+        }
         // Set up the style
         usersTable.getStylesheets().add("sample/styling/tableView.css");
         usersTable.getStyleClass().add("tableview");
@@ -270,26 +309,28 @@ public class FactoryManagerPanelController implements Initializable {
         productNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMyProduct().getProductName()));
         amountColumn.setCellValueFactory(cellData -> new SimpleStringProperty(((Integer)cellData.getValue().getProductAmount()).toString()));
         categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(
-        cellData.getValue().getMyProduct().getProductType().toString()));
+                cellData.getValue().getMyProduct().getProductType().toString()));
 
 
         //TODO - POTEŻNY ONELINER
-        //users = FXCollections.observableArrayList(factoryForOrderItemSetup.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts());
-        users = FXCollections.observableArrayList();
+        List<ProductionAbility> producedProd = productionAbilityService.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts();
+
+        users = FXCollections.observableArrayList(productionAbilityService.getFactoryByName(sessionFactory.getFactoryName()).getProducedProducts());
+        //users = FXCollections.observableArrayList();
 
         /*FactoryManager fm = factoryManagerService.findByUsername(NavigationController.username);
-
         Factory fc = fm.getManagedFactory();
         //FXCollections.observableArrayList
         List<ProductionAbility> ls = fc.getProducedProducts();
         users = FXCollections.observableArrayList();
         users.addAll(ls);*/
 
-
+        /*
         deleteProductsButton.disableProperty().bind(Bindings.isNull (
                 usersTable.getSelectionModel().selectedItemProperty()));
         updateProductsButton.disableProperty().bind(Bindings.isNull(
                 usersTable.getSelectionModel().selectedItemProperty()));
+        */
 
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
@@ -317,36 +358,54 @@ public class FactoryManagerPanelController implements Initializable {
     }
 
     public void deleteProductsButtonOnAction() throws IOException { //to delete products from factory
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        /*Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete these products?", "Deleting products", "Ok", "Cancel");
+        NavigationController.factoryManagerScreenToFront = 3;
+        NavigationController.deleteProducts = true;
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Do you want to delete these products?");
+        stage.show();
+
+        /* Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete these products?", "Deleting products", "Ok", "Cancel");
         if(isConfirmed.get() == ButtonType.OK) {
-            // Backend to do
-            // Deleting chosen products from table
+            // Backend
+            // Deleting chosen products from table - ConfirmationBoxController
             int selectedId = usersTable.getSelectionModel().getSelectedIndex();
             users.remove(selectedId);
-        }*/
+        } */
     }
 
     public void updateProductsButtonOnAction() throws IOException { //to update only amount of products in factory
-        ProductionAbility selectedUser = usersTable.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../productForm.fxml"));
-        new ProductFormController().init(fxmlLoader, selectedUser.getMyProduct(), "Update products");
-        // Backend to do
-        // Update data (only amount) for selectedProducts - inside of the ProductFormController
+        NavigationController.factoryManagerScreenToFront = 3;
+        NavigationController.productionAbilityToUpdate = usersTable.getSelectionModel().getSelectedItem();
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(ProductFormController.class);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Update amount of products");
+        stage.show();
     }
+
 
     public void addProductsButtonOnAction() throws IOException { //to add products to the factory
         ProductionAbility newUser = new ProductionAbility();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../factoryForm.fxml"));
-        Optional<ButtonType> isConfirmed  = new FactoryFormController().init(fxmlLoader, newUser, "Add products");
-        if (isConfirmed.get() == ButtonType.OK){
-            // Backend to do
-            // Adding products to table
-            users.add(newUser);
-        }
+        NavigationController.factoryManagerScreenToFront = 3;
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(FactoryFormController.class);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Add products");
+        stage.show();
+        // Backend
+        // Adding products to table - inside FactoryFormController
     }
 
     // Cleaning text in searching field

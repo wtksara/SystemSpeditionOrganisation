@@ -69,6 +69,15 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
+    public List<ProductOrder> findAllHistoricOrders(){
+        List<ProductOrder> results = productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.DELIVERED);
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.REJECTED));
+        return results;
+    }
+
+    @Override
     public List<ProductOrder> findOrdersByTransportProvider(String transportProviderName) {
         List<ProductOrder> results = productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus

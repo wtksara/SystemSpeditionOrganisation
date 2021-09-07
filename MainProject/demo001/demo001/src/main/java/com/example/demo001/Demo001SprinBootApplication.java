@@ -1,10 +1,7 @@
 package com.example.demo001;
 
 
-import com.example.demo001.service.FactoryForOrderItemSetup;
-import com.example.demo001.service.FactoryForOrderItemSetupImpl;
 import javafx.application.Application;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 

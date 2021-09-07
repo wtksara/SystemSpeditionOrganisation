@@ -12,4 +12,5 @@ public interface ProductionAbilityRepository extends JpaRepository<ProductionAbi
 
     ProductionAbility getByMyProduct(Product product);
 
+    ProductionAbility getProductionAbilityById(long id);
 }

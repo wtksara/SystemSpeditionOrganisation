@@ -39,11 +39,6 @@
                                 <Font size="14.0" />
                             </font>
                         </Button>
-                        <TextField fx:id="productIdField" prefHeight="30.0" prefWidth="243.0" promptText="    Product ID" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </TextField>
                         <TextField fx:id="productNameField" prefHeight="30.0" prefWidth="243.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <font>
                                 <Font size="14.0" />
@@ -59,11 +54,6 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
-                        <Label prefHeight="26.0" prefWidth="96.0" text="Product ID" GridPane.rowIndex="0">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
                         <Label prefHeight="26.0" prefWidth="96.0" text="Name" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold" size="14.0" />

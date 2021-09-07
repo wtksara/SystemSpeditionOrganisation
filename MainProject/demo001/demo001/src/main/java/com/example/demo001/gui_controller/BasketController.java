@@ -1,21 +1,28 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.domain.OrderManagement.OrderItem;
+import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @FxmlView("basket.fxml")
@@ -34,28 +41,17 @@ public class BasketController {
     @FXML
     private TableColumn <Product, String> productColumn;
     @FXML
-    private TableColumn <Product, String> amountOfProductColumn; //czemu to jest string????
+    private TableColumn <Product, String> amountOfProductColumn;
     @FXML
     private TableColumn deleteColumn;
 
-    public Optional<ButtonType> init (FXMLLoader fxmlLoader, HashMap<Product, Integer> order, String title) throws IOException {
-        DialogPane dialogPane = fxmlLoader.load();
-        dialogPane.getStylesheets().add("sample/styling/buttomView.css");
-
-        BasketController basketController = fxmlLoader.getController();
-        basketController.setStyling();
-        //operacje na obiekcie sesjii
-        //basketController.setBasketDetails(order);
-
-        Dialog<ButtonType> dialog = new Dialog <>();
-        dialog.setDialogPane(dialogPane);
-        dialog.setTitle(title);
-        return dialog.showAndWait();
+    public void initialize() {
+        setBasketDetails(NavigationController.listOfProducts);
     }
-    public List<Product> setBasketDetails(List<Product> order) {
+
+    public void setBasketDetails(List<Product> order) {
         // Backend to do
         // Get details about the order - calculate them mostly
-        // TODO: 07.06.2021  czy w koszyku jest już obliczana cena...? - przepływ programu
         // idOrderField.setText(Integer.toString(user.getId()));
         // amountField.setText(user.getName());
         idOrderField.setText("12");
@@ -87,20 +83,26 @@ public class BasketController {
                         addButton.getStyleClass().add("buttom");
 
                         addButton.setOnAction(event -> {
-                            FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("../confirmationBox.fxml"));
-                            Optional<ButtonType> isConfirmed = null;
-                           /* try {
-                                isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete that product ?", "Deleting product", "Ok", "Cancel");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            if(isConfirmed.get() == ButtonType.OK) {
+
+                            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+                            NavigationController.alertText ="Are you sure you would like to delete that product ?";
+                            Parent root = fxWeaver.loadView(BasketController.class);
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("Deleting product");
+                            stage.show();
+
+                            // SPRAWDZIC CZY TO GOWNO DZIALA <3
+
+                            if (NavigationController.result){
+                                NavigationController.result=false;
                                 // Backend to do
                                 // Deleting the product from order
                                 orders.remove(getIndex());
                                 order.remove(getIndex());
-                            }*/
+                            }
+                            else{}
                         });
                         setGraphic(addButton);
                     }
@@ -111,22 +113,34 @@ public class BasketController {
         };
         deleteColumn.setCellFactory(cellFactory);
         productsTable.setItems(orders);
-        return orders;
     }
 
-    public void setStyling() {
-        Button okButton = (Button) dialogPane.lookupButton(dialogPane.getButtonTypes().get(0));
-        okButton.getStyleClass().add("buttom");
-        okButton.setText("Finish order");
-        Button cancelButton = (Button) dialogPane.lookupButton(dialogPane.getButtonTypes().get(1));
-        cancelButton.getStyleClass().add("buttom");
-        cancelButton.setText("Continue order");
+    public void okButtonOnAction(ActionEvent event) throws IOException {
+        // Backend
+        NavigationController.basketResult = true;
+        // close the window
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
+        NavigationController.alertText="";
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Confirmation");
+        NavigationController.stage.show();
     }
+
+
+    public void cancelButtonOnAction(ActionEvent event) throws IOException {
+        // do nothing and close the window
+        NavigationController.basketResult = false;
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }
+
 
     private boolean validateFormData() {
         // Backend to do
         // Checking if the input is correct
-        // TODO: 07.06.2021  co to robi, nawet używane nie jest aktualnie
         if (idOrderField.getText().isEmpty() || idOrderField.getText().equals("0")) {
             idOrderField.requestFocus();
             return false;

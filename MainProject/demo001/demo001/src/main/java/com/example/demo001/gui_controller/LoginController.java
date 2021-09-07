@@ -37,7 +37,6 @@ public class LoginController {
 
     private Cipher cipher = new Cipher();
 
-    //NOWOSC
     public void loginButtonOnAction() throws IOException {
 
         String username = usernameField.getText();
@@ -47,18 +46,12 @@ public class LoginController {
         BasicUser user = basicUserService.findByUsername(username);
         boolean passwordOK=false;
 
-        // Backend to do
-        // Checking if details are alright
         if(user!=null)
         {
             if(user.getUserPassword().equals(enc))
                 passwordOK=true;
         }
         if(passwordOK){
-
-            // Backend to do
-            // by user name search for user and its role
-            // if (basicUser.userRole.equals("ADMINISTRATOR")){
             if (user.getUserRole().toString().equals("ADMINISTRATOR")){
                 NavigationController.manageUsersToFront=false;
                 NavigationController.username=username;
@@ -68,18 +61,6 @@ public class LoginController {
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Administrator");
                 NavigationController.stage.show();
-                //AdministratorPanelController aa = fxWeaver.loadController(AdministratorPanelController.class);
-                //aa.setAdministratorDetails(user);
-               /* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../administratorPanel.fxml"));
-                fxmlLoader.setLocation(getClass().getResource("../administratorPanel.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                AdministratorPanelController administratorPanelController = fxmlLoader.getController();
-                stage.setTitle("Spedition Organisation System - Administrator");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-                administratorPanelController.setAdministratorDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("CLIENT")){ //client
                 NavigationController.username=username;
@@ -89,60 +70,26 @@ public class LoginController {
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Client");
                 NavigationController.stage.show();
-
-
-                /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../clientPanel.fxml"));
-                fxmlLoader.setLocation(getClass().getResource("../clientPanel.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                ClientPanelController clientPanelController = fxmlLoader.getController();
-                stage.setTitle("Spedition Organisation System - Client");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-                clientPanelController.setClientDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("ORDER_MANAGER")){ //order manager
                 NavigationController.username=username;
+                NavigationController.orderScreenToFront = 1;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(OrderManagerPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Order Manager");
                 NavigationController.stage.show();
-
-
-                /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../orderManagerPanel.fxml"));
-                fxmlLoader.setLocation(getClass().getResource("../orderManagerPanel.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                OrderManagerPanelController orderManagerPanelController = fxmlLoader.getController();
-                stage.setTitle("Spedition Organisation System - Order Manager");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-                orderManagerPanelController.setOrderManagerDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("FACTORY_MANAGER")){ //factory manager
                 NavigationController.username=username;
+                NavigationController.factoryManagerScreenToFront=1;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
                 Scene scene = new Scene(root);
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Factory Manager");
                 NavigationController.stage.show();
-
-
-                /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../factoryManagerPanel.fxml"));
-                fxmlLoader.setLocation(getClass().getResource("../factoryManagerPanel.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                FactoryManagerPanelController factoryManagerPanelController = fxmlLoader.getController();
-                stage.setTitle("Spedition Organisation System - Factory Manager");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-                factoryManagerPanelController.setFactoryManagerDetails(user);*/
             }
             else if(user.getUserRole().toString().equals("TRANSPORT_PROVIDER")){ //transport provider
                 NavigationController.username=username;
@@ -153,18 +100,6 @@ public class LoginController {
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Transport Provider");
                 NavigationController.stage.show();
-
-
-                /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../transportProviderPanel.fxml"));
-                fxmlLoader.setLocation(getClass().getResource("../transportProviderPanel.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
-                TransportProviderPanelController transportProviderPanelController = fxmlLoader.getController();
-                stage.setTitle("Spedition Organisation System - Transport Provider");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-                transportProviderPanelController.setTransportProviderDetails(user);*/
             }
         }
         else {
@@ -177,25 +112,7 @@ public class LoginController {
             NavigationController.stage.setScene(scene);
             NavigationController.stage.setTitle("Warning!");
             NavigationController.stage.show();
-            //AlertBoxController.createAlert()
-
-
-            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../alertBox.fxml"));
-            fxmlLoader.setLocation(getClass().getResource("../alertBox.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            AlertBoxController alertBoxController = fxmlLoader.getController();
-            stage.setTitle("Alert");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-            alertBoxController.createAlert(fxmlLoader, "Incorrect password or login. Please try again.");*/
         }
     }
 
 }
-
-
-
-
-

@@ -20,4 +20,5 @@ public interface ProductOrderService {
 
     List<ProductOrder> findPendingOrdersByTransportProvider(String transportProviderName);
     List<ProductOrder> findOrdersForManagements(); //wszystkie ProductOrder o statusie do rozporządzenia nimi
+    List<ProductOrder> findAllHistoricOrders();//Piotr
 }

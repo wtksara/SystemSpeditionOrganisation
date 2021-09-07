@@ -131,9 +131,10 @@
                      <left>
                         <TableView fx:id="usersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
                            <columns>
-                              <TableColumn fx:id="idColumn" prefWidth="40.79998779296875" text="ID" />
-                              <TableColumn fx:id="nameColumn" prefWidth="96.79995727539062" text="Name" />
-                              <TableColumn fx:id="surnameColumn" prefWidth="99.199951171875" text="Surname" />
+                              <TableColumn fx:id="orderIDColumn" prefWidth="100.00" text="Order ID" />
+                              <TableColumn fx:id="statusOrderColumn" prefWidth="100.00" text="Status" />
+                              <TableColumn fx:id="clientOrderColumn" prefWidth="100.00" text="Client" />
+                              <TableColumn fx:id="transportProviderOrderColumn" prefWidth="180.00" text="Transport Provider" />
                            </columns>
                            <BorderPane.margin>
                               <Insets left="10.0" />
@@ -166,9 +167,10 @@
                      <left>
                         <TableView fx:id="createOfferUsersTable" prefHeight="446.0" prefWidth="755.0" BorderPane.alignment="CENTER">
                            <columns>
-                              <TableColumn fx:id="createOfferIdColumn" prefWidth="40.79998779296875" text="ID" />
-                              <TableColumn fx:id="createOfferNameColumn" prefWidth="96.79995727539062" text="Name" />
-                              <TableColumn fx:id="createOfferSurnameColumn" prefWidth="99.199951171875" text="Surname" />
+                              <TableColumn fx:id="createOfferOrderIDColumn" prefWidth="100.00" text="Order ID" />
+                              <TableColumn fx:id="createOfferStatusOrderColumn" prefWidth="100.00" text="Status" />
+                              <TableColumn fx:id="createOfferClientOrderColumn" prefWidth="100.00" text="Client" />
+                              <!--<TableColumn fx:id="createOfferTransportProviderOrderColumn" prefWidth="180.00" text="Transport Provider" />-->
                            </columns>
                            <BorderPane.margin>
                               <Insets left="10.0" />
@@ -315,7 +317,7 @@
                         <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="ssss" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -330,12 +332,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="Sara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                        <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </TextField>
-                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
                            <children>
                               <Button fx:id="saveDetailsButton" mnemonicParsing="false" onAction="#saveDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Save" textFill="WHITE">
                                  <font>

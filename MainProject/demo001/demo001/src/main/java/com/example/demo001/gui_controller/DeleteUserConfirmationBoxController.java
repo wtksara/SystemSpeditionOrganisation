@@ -33,11 +33,12 @@ public class DeleteUserConfirmationBoxController {
     public void confirmButton() throws IOException{
         basicUserService.deleteByUsername(NavigationController.operatedUser);
         NavigationController.alertText = "User deleted successfully";
+        NavigationController.manageUsersToFront=true;
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(AdministratorPanelController.class);
         Scene scene = new Scene(root);
         NavigationController.lastScene = scene;
-        NavigationController.manageUsersToFront=true;
+
 
         root = fxWeaver.loadView(AlertBoxController.class);
         scene = new Scene(root);

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <DialogPane fx:id="dialogPane" style="-fx-background-color: #b3e5fc;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo001.gui_controller.ConfirmationBoxController">
    <content>
@@ -18,8 +15,16 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Button layoutX="100.0" layoutY="131.0" mnemonicParsing="false" text="YES" onAction="#confirmButton"/>
-            <Button layoutX="180.0" layoutY="131.0" mnemonicParsing="false" text="NO" onAction="#rejectButton"/>
+            <Button fx:id="confirmButton" layoutX="190.0" layoutY="125.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="38.0" prefWidth="68.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Accept" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="declineButton" layoutX="268.0" layoutY="125.0" mnemonicParsing="false" onAction="#declineButton" prefHeight="38.0" prefWidth="68.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </content>

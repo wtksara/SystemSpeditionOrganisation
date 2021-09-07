@@ -4,21 +4,22 @@ import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.OrderItem;
-import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
 import com.example.demo001.domain.Products.ProductType;
-import com.example.demo001.domain.Transport.City;
-import com.example.demo001.gui_controller.OrderDetailsController;
 import com.example.demo001.service.*;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -40,10 +43,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-
+@SuppressWarnings("rawtypes")
 @Component
 @FxmlView("clientPanel.fxml")
 public class ClientPanelController implements Initializable {
+
 
     @Autowired
     private BasicUserService clientService;
@@ -60,6 +64,7 @@ public class ClientPanelController implements Initializable {
     private List<Product> products;
     private List<ProductOrder> orders;
     private HashMap<Product, Integer> cart = new HashMap();
+    private Integer productAmount;
 
     // All tableview has to change depending from the data which will be in table
 
@@ -77,7 +82,7 @@ public class ClientPanelController implements Initializable {
 
     // My account tab
     @FXML
-    private TextField accountNameField;
+    private TextField accountNameField, accountUserNameField, accountEmailField;
 
     @FXML
     private PasswordField accountPasswordField;
@@ -111,13 +116,9 @@ public class ClientPanelController implements Initializable {
     @FXML
     private TableView <ProductOrder> currentOrdersTable;
     @FXML
-    private TableColumn <ProductOrder, CheckBox> checkBoxColumn;
-    @FXML
     private TableColumn <ProductOrder, Number> currentOrderIdColumn;
     @FXML
-    private TableColumn <ProductOrder, String> currentOrderCompanyColumn;
-    @FXML
-    private TableColumn <ProductOrder, String> currentOrderAmountColumn;
+    private TableColumn <ProductOrder, String> currentOrderCostColumn;
     @FXML
     private TableColumn <ProductOrder, String> currentOrderStatusColumn;
     @FXML
@@ -131,9 +132,7 @@ public class ClientPanelController implements Initializable {
     @FXML
     private TableColumn <ProductOrder, Number> idOrderColumn;
     @FXML
-    private TableColumn <ProductOrder, String> companyOrderColumn;
-    @FXML
-    private TableColumn <ProductOrder, String> amountOrderColumn;
+    private TableColumn <ProductOrder, String> costOrderColumn;
     @FXML
     private TableColumn <ProductOrder, String> statusOrderColumn;
     @FXML
@@ -144,49 +143,75 @@ public class ClientPanelController implements Initializable {
     @Autowired
     private BasicUserService basicUserService;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {setUserDetails(); }
-
     private Cipher cipher = new Cipher();
 
-    //NOWOSC
-    public void setClientDetails(BasicUser user) {
-        // Backend to do
-        // Getting details about client
-        accountNameField.setText(user.getUserName());
-        accountPasswordField.setText(user.getUserPassword());
+    @Autowired
+    public ClientPanelController(ProductService productService, ProductOrderService productOrderService, OrderItemService orderItemService){
+        this.productService = productService;
+        this.productOrderService = productOrderService;
+        this.orderItemService = orderItemService;
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(NavigationController.basketResult){
+            // To chyba trzeba przelozyc do basketa ! //NIE??
+            // Order completed
+            //creating and saving order to db
+
+            ////place order
+         ProductOrder productOrder = new ProductOrder(client);
+        this.productOrderService.createOrder(productOrder);
+        ////create order item list
+        List<OrderItem> orderedItems = new ArrayList();
+        for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
+            OrderItem orderItem = new OrderItem(productOrder, entry.getKey(), entry.getValue());
+            this.orderItemService.CreateOrderItem(orderItem);
+            orderedItems.add(orderItem);
+        }
+        ////save ordered items to order
+        productOrder.setOrderedProducts(orderedItems);
+        this.productOrderService.modifyOrder(productOrder);
+
+        // Cleaning the order
+        cart.clear();
+        }
+    }
+
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    /// WKLEJ TO
 
     public void setUserDetails()
     {
-        BasicUser user = basicUserService.findByUsername(NavigationController.username);
-        accountNameField.setText(user.getUserName());
-        accountPasswordField.setText(user.getUserPassword());
+        //BasicUser user = basicUserService.findByUsername(NavigationController.username);
+        //accountNameField.setText(user.getUserName());
+        //accountPasswordField.setText(user.getUserPassword());
     }
 
-    //ilość produktu wybrana przez klienta
-    private Integer productAmount = 0;
-
     // My account page
-    public void myAccountButtonOnAction() throws IOException {
-        // Checking if the order has finished
+    // That details are the same for all client Panel for now.
+    // It can be taken out to the main class, but it depends if details are gonna be the same. It is up to you.
+    public void myAccountButtonOnAction() throws IOException  {
+        // Setting the color of te top vBox for more dynamic view
         /*if (!cart.isEmpty()) {
-            if (!notFinishedOrder()) {}
-            else {
-                vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
-                clearFilters();
-                tabText.setText("My account");
-                setUserDetails();
-                myAccountPage.toFront();
-            }
-        }*/
-        vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
+           //if (notFinishedOrder()) {
+           //    setUpMyAccountPage();
+           //}
+        }
+        else { setUpMyAccountPage();}*/
+        if (!cart.isEmpty()) {
+            if (notFinishedOrder()) { setUpMyAccountPage();}
+        }
+        else { setUpMyAccountPage();}
+    }
+
+    private void setUpMyAccountPage(){
         clearFilters();
+        vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My account");
         setUserDetails();
         myAccountPage.toFront();
     }
-    // This three methods can be taken out for all Panel if the details will be the same
     public void changeDetailsButtonOnAction() {
         accountNameField.setEditable(true);
         accountPasswordField.setEditable(true);
@@ -243,12 +268,12 @@ public class ClientPanelController implements Initializable {
             changeDetailsButton.toFront();
             NavigationController.alertText="Details changed successfully";
         }
+        changeDetailsButton.toFront();
         callAlertBox();
     }
 
-
     public void callAlertBox(){
-        NavigationController.lastSceneName=NavigationController.stage.getTitle();
+        NavigationController.lastSceneName="Spedition Organisation System - Client";
         NavigationController.lastScene = NavigationController.stage.getScene();
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(AlertBoxController.class);
@@ -257,6 +282,10 @@ public class ClientPanelController implements Initializable {
         NavigationController.stage.setTitle("Alert!");
         NavigationController.stage.show();
     }
+
+
+    /// KONIEC TEGO
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ////////////////////////////////////////////////////
 
 
@@ -331,118 +360,108 @@ public class ClientPanelController implements Initializable {
                         addButton.getStyleClass().add("buttom");
 
                         addButton.setOnAction(event -> {
+                            NavigationController.addProduct = true;
+                            NavigationController.cart = cart;
                             Product product = getTableView().getItems().get(getIndex());
-                            FXMLLoader fxmlLoader = new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("../productForm.fxml"));
-                            Optional<ButtonType> isConfirmed = null;
-                            try {
-                                isConfirmed = new ProductFormController().init(fxmlLoader, product , "Add a product");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            if(isConfirmed.get() == ButtonType.OK) {
-                                cart.put(product, productAmount); //product amount should be set by client! and is
-                            }
+                            NavigationController.product = product;
+
+                            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+                            Parent root = fxWeaver.loadView(ProductFormController.class);
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage();
+                            stage.setTitle("Add a product");
+                            stage.setScene(scene);
+                            stage.show();
                         });
                         setGraphic(addButton);
                     }
                     setText(null);
-                };
+                }
             };
             return cell;
         };
         addToBasketButtonColumn.setCellFactory(cellFactory);
-        createOrderTable.setItems((ObservableList<Product>) products);
+        //createOrderTable.setItems((ObservableList<Product>) products);
         productsListPage.toFront();
+
     }
 
+
     public void basketButtonOnAction() throws IOException {
-        /*FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../basket.fxml"));
-        Optional<ButtonType> isConfirmed = new BasketController().init(fxmlLoader, cart, "Basket");
-        if(isConfirmed.get() == ButtonType.OK) {
-            // Order completed
-            //creating and saving order to db
 
-            //place order
-            ProductOrder productOrder = new ProductOrder(client);
-            this.productOrderService.createOrder(productOrder);
-            //create order item list
-            List<OrderItem> orderedItems = new ArrayList();
-            for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
-                OrderItem orderItem = new OrderItem(productOrder, entry.getKey(), entry.getValue());
-                this.orderItemService.CreateOrderItem(orderItem);
-                orderedItems.add(orderItem);
-            }
-            //save ordered items to order
-            productOrder.setOrderedProducts(orderedItems);
-            this.productOrderService.modifyOrder(productOrder);
-
-
-            FXMLLoader fxmlLoaders = new FXMLLoader();
-            fxmlLoaders.setLocation(getClass().getResource("../alertBox.fxml"));
-            new AlertBoxController().createAlert(fxmlLoaders, "You successfully placed the order");
-            // Cleaning the order
-            cart.clear();
-
-        }*/
+        if(!NavigationController.result) {
+            NavigationController.listOfProducts = products;
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(BasketController.class);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Basket");
+            stage.show();
+        }
     }
 
     // Current orders tab
     public void currentOrdersButtonOnAction() throws IOException {
         // Clear
         if (!cart.isEmpty()) {
-            if (!notFinishedOrder()) {}
-            else {
-                clearFilters();
-                // Set up the style
-                currentOrdersTable.getStylesheets().add("sample/styling/tableView.css");
-                currentOrdersTable.getStyleClass().add("tableview");
-                checkBoxColumn.setStyle("-fx-alignment: center;");
-
-                orders = productOrderService.findCurrentOrders(client.getUserName());
-
-                checkBoxColumn.setCellValueFactory(new PropertyValueFactory<ProductOrder, CheckBox>("select"));
-                currentOrderIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getOrderId()));
-                // TODO: 07.06.2021  czy cenę przechowujemy w zamówieniu, czy on ma być za każdym razem na nowo obliczana (trochę to zasobożerne)
-                //currentOrderAmountColumn.setCellValueFactory(cellData -> cellData.getValue());
-                currentOrderStatusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
-
-                currentOrderDetailsButton.disableProperty().bind(Bindings.isNull(
-                        currentOrdersTable.getSelectionModel().selectedItemProperty()));
-
-                // This could also be taken out but it depends if there will be different data in table view.
-                // Searching in table view
-                FilteredList<ProductOrder> filteredData = new FilteredList<ProductOrder>((ObservableList<ProductOrder>) orders, b -> true);
-
-                currentOrderSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredData.setPredicate(order -> {
-                        if (newValue == null || newValue.isEmpty()) return true;
-
-                        String lowerCaseFilter = newValue.toLowerCase();
-
-                        if (String.valueOf(order.getOrderId()).indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else if (order.getOrderStatus().toString().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else if (order.getOrderTransportProvider().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else
-                            return false;
-                    });
-                });
-                SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
-                sortedData.comparatorProperty().bind(currentOrdersTable.comparatorProperty());
-
-                currentOrdersTable.setItems(sortedData);
-
-                // You can change the color of Vbox if needed
-                //vBox.setBackground(new Background(new BackgroundFill(Color.web("#e1f5fe"), CornerRadii.EMPTY, Insets.EMPTY)));
-                tabText.setText("Current orders");
-                currentOrdersPage.toFront();
-            }
+            if (notFinishedOrder()) { setUpCurrentOrdersPage();}
         }
+        else { setUpCurrentOrdersPage();}
+        /*if (!cart.isEmpty()) {
+            //if (notFinishedOrder()) {
+            //setUpCurrentOrdersPage();
+        //}
+        }
+        else { setUpCurrentOrdersPage();} */
     }
+    public void setUpCurrentOrdersPage(){
+        clearFilters();
+        // Set up the style
+        currentOrdersTable.getStylesheets().add("sample/styling/tableView.css");
+        currentOrdersTable.getStyleClass().add("tableview");
+//
+//        orders = productOrderService.findCurrentOrders(client.getUserName());
+//
+//        currentOrderIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getOrderId()));
+//        // TODO: 28.06.2021  cena zamówienia
+//        //currentOrderAmountColumn.setCellValueFactory(cellData -> cellData.getValue());
+//        currentOrderStatusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
+//
+//        currentOrderDetailsButton.disableProperty().bind(Bindings.isNull(
+//                currentOrdersTable.getSelectionModel().selectedItemProperty()));
+//
+//        // This could also be taken out but it depends if there will be different data in table view.
+//        // Searching in table view
+//        FilteredList<ProductOrder> filteredData = new FilteredList<ProductOrder>((ObservableList<ProductOrder>) orders, b -> true);
+//
+//        currentOrderSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+//            filteredData.setPredicate(order -> {
+//                if (newValue == null || newValue.isEmpty()) return true;
+//
+//                String lowerCaseFilter = newValue.toLowerCase();
+//
+//                if (String.valueOf(order.getOrderId()).indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else if (order.getOrderStatus().toString().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else if (order.getOrderTransportProvider().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else
+//                    return false;
+//            });
+//        });
+//        SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
+//        sortedData.comparatorProperty().bind(currentOrdersTable.comparatorProperty());
+//
+//        currentOrdersTable.setItems(sortedData);
+//
+//        // You can change the color of Vbox if needed
+//        //vBox.setBackground(new Background(new BackgroundFill(Color.web("#e1f5fe"), CornerRadii.EMPTY, Insets.EMPTY)));
+        tabText.setText("Current orders");
+        currentOrdersPage.toFront();
+    }
+
 
     public void acceptButtonOnAction(){
         //TODO - ZAMIENIĆ NA CALLBACK
@@ -458,6 +477,11 @@ public class ClientPanelController implements Initializable {
     }
 
     public void declineButtonOnAction(){
+
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        // WKLEJ TO
+
+        // DOPISALAM INFO
         //TODO - ZAMIENIĆ NA CALLBACK
     /*    ObservableList<ProductOrder> selectedList = FXCollections.observableArrayList();
         for (ProductOrder order : orders){
@@ -467,68 +491,109 @@ public class ClientPanelController implements Initializable {
                 order.setOrderStatus(OrderStatus.REJECTED);
                 productOrderService.modifyOrder(order);
                 order.getSelect().setSelected(false);//?????????????
+
+                TO MUSI TAK BYC zeby dobrze dzialo zmiany w liscie obserwujacej
+                nalezy tylko w tej dziurze zmienic status order na rejected
+                i w bazie danych tez to zmienic zeby potem jak sie znowu wlaczy ta zakladke to sie samo odswiezy z tymi danymi <3
+                analogicznie accept
             } }*/
     }
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    // WKLEJ TO
 
     // History page
     public void historyButtonOnAction() throws IOException {
         if (!cart.isEmpty()) {
-            if (!notFinishedOrder()) {
-            } else {
-                clearFilters();
-                orders = productOrderService.findHistoricOrders(client.getUserName());
-
-                historyTable.getStylesheets().add("sample/styling/tableView.css");
-                historyTable.getStyleClass().add("tableview");
-
-                idOrderColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getOrderId()));
-                // TODO: 07.06.2021  cenę przechowujemy w zamówieniu
-                //amountOrderColumn.setCellValueFactory(cellData -> cellData.getValue());
-                statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
-                orderDetailsButton.disableProperty().bind(Bindings.isNull(
-                        historyTable.getSelectionModel().selectedItemProperty()));
-
-                // This could also be taken out but it depends if there will be different data in table view.
-                // Searching in table view
-                FilteredList<ProductOrder> filteredData = new FilteredList<ProductOrder>((ObservableList<ProductOrder>) orders, b -> true);
-
-                historySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredData.setPredicate(order -> {
-                        if (newValue == null || newValue.isEmpty()) return true;
-
-                        String lowerCaseFilter = newValue.toLowerCase();
-
-                        if (String.valueOf(order.getOrderId()).indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else if (order.getOrderStatus().toString().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else if (order.getOrderTransportProvider().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                            return true;
-                        else
-                            return false;
-                    });
-                });
-                SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
-                sortedData.comparatorProperty().bind(historyTable.comparatorProperty());
-                historyTable.setItems(sortedData);
-
-                //vBox.setBackground(new Background(new BackgroundFill(Color.web("#e1f5fe"), CornerRadii.EMPTY, Insets.EMPTY)));
-                tabText.setText("History");
-                historyPage.toFront();
-            }
+            if (notFinishedOrder()) { setUpHistoryPage();}
         }
+        else { setUpHistoryPage();}
+        /*if (!cart.isEmpty()) {
+                NavigationController.notFinishedOrder = true;
+                FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+                Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
+                NavigationController.alertText="";
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Confirmation");
+                stage.show();
+                if(NavigationController.emptyBasket) {
+                    setUpHistoryPage();
+                }
+        }
+        else {
+            setUpHistoryPage();
+        }*/
     }
+
+    private void setUpHistoryPage(){
+        clearFilters();
+        //orders = productOrderService.findHistoricOrders(client.getUserName());
+//
+//        historyTable.getStylesheets().add("sample/styling/tableView.css");
+//        historyTable.getStyleClass().add("tableview");
+//
+//        idOrderColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getOrderId()));
+//        // TODO: 28.06.2021  cena zamówienia
+//        //amountOrderColumn.setCellValueFactory(cellData -> cellData.getValue());
+//        statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
+//        orderDetailsButton.disableProperty().bind(Bindings.isNull(
+//                historyTable.getSelectionModel().selectedItemProperty()));
+//
+//        // This could also be taken out but it depends if there will be different data in table view.
+//        // Searching in table view
+//        FilteredList<ProductOrder> filteredData = new FilteredList<ProductOrder>((ObservableList<ProductOrder>) orders, b -> true);
+//
+//        historySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+//            filteredData.setPredicate(order -> {
+//                if (newValue == null || newValue.isEmpty()) return true;
+//
+//                String lowerCaseFilter = newValue.toLowerCase();
+//
+//                if (String.valueOf(order.getOrderId()).indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else if (order.getOrderStatus().toString().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else if (order.getOrderTransportProvider().getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                    return true;
+//                else
+//        return false;
+//    });
+//});
+//        SortedList<ProductOrder> sortedData = new SortedList<>(filteredData);
+//        sortedData.comparatorProperty().bind(historyTable.comparatorProperty());
+//        historyTable.setItems(sortedData);
+
+        //vBox.setBackground(new Background(new BackgroundFill(Color.web("#e1f5fe"), CornerRadii.EMPTY, Insets.EMPTY)));
+        tabText.setText("History");
+        historyPage.toFront();
+    }
+
 
     public void orderDetailsButtonOnAction() throws IOException {
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        // WKLEJ TO
         ProductOrder selectedOrder;
-        if (tabText.getText() == "Current orders")
+        if (tabText.getText().equals("Current orders"))
             selectedOrder = currentOrdersTable.getSelectionModel().getSelectedItem();
         else
-            selectedOrder = historyTable.getSelectionModel() .getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../orderDetails.fxml"));
-        new OrderDetailsController().init(fxmlLoader, selectedOrder, "Order Details",true);
+            selectedOrder = historyTable.getSelectionModel().getSelectedItem();
+
+        NavigationController.selectedOrder=selectedOrder;
+        NavigationController.orderDetailsType = true;
+        NavigationController.lastSceneName="Spedition Organisation System - Client";
+        NavigationController.lastScene = NavigationController.stage.getScene();
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(OrderDetailsController.class);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Order details");
+        stage.show();
     }
+
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    // WKLEJ TO
 
     // Additional functions
     public void clearFilters(){
@@ -536,14 +601,26 @@ public class ClientPanelController implements Initializable {
         historySearchField.setText("");
     }
 
-    public boolean notFinishedOrder() throws IOException {
-        FXMLLoader fxmlLoaders = new FXMLLoader();
-        fxmlLoaders.setLocation(getClass().getResource("../confirmationBox.fxml"));
-        /*Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoaders, "You haven't finished the order", "Order not finished", "Empty basket", "Cancel");
-        if (isConfirmed.get() == ButtonType.OK) {
-            cart.clear();
-            return true;
-        }*/
+    public boolean notFinishedOrder(){ //throws IOException {
+
+        //proba
+        /* FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+        Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
+        NavigationController.alertText="";
+        Scene scene = new Scene(root);
+        NavigationController.stage.setScene(scene);
+        NavigationController.stage.setTitle("Confirmation");
+        NavigationController.stage.show(); */
+
+        //zmienic
+//        FXMLLoader fxmlLoaders = new FXMLLoader();
+//        fxmlLoaders.setLocation(getClass().getResource("../confirmationBox.fxml"));
+//        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoaders, "You haven't finished the order", "Order not finished", "Empty basket", "Cancel");
+//        if (isConfirmed.get() == ButtonType.OK) {
+//            cart.clear();
+//            return true;
+//        }
+//        return false;
         return false;
     }
 }

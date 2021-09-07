@@ -1,9 +1,7 @@
 package com.example.demo001.gui_controller;
 
 import com.example.demo001.controller.SimpleCtrl;
-import com.example.demo001.service.FactoryForOrderItemSetup;
-import com.example.demo001.service.ManageFactoriesLives;
-import com.example.demo001.service.ManageFactoriesLivesImpl;
+import com.example.demo001.service.ProductionAbilityService;
 import com.example.demo001.service.SomeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +20,7 @@ public class MainController {
     private SomeService someService;
 
     @Autowired
-    private FactoryForOrderItemSetup factoryForOrderItemSetup;
+    private ProductionAbilityService productionAbilityService;
 
     @Autowired
     private SimpleCtrl simpleCtrl;
@@ -31,7 +29,7 @@ public class MainController {
 
 
      @Autowired
-     public MainController(SomeService someService, FactoryForOrderItemSetup factoryForOrderItemSetup) {
+     public MainController(SomeService someService, ProductionAbilityService productionAbilityService) {
          this.someService = someService;
          /*this.factoryForOrderItemSetup = factoryForOrderItemSetup;
          this.factoryForOrderItemSetup.printProductAbility();*/

@@ -78,7 +78,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel1" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel1" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="HARDWARE" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -110,7 +110,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel2" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Łopata" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel2" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="TOOLS" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -142,7 +142,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel3" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel3" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="WOOD" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -174,7 +174,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel4" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel4" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="FLOORING" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -206,7 +206,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel5" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel5" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="TILES" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -238,7 +238,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel6" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel6" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="PAINT" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -270,7 +270,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel7" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel7" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="WALLPAPERS" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -302,7 +302,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </ImageView>
-                                    <Label fx:id="categoryLabel8" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Gwozdzie" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                    <Label fx:id="categoryLabel8" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="LIGHTING" textAlignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -490,47 +490,27 @@
                         <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="accountUserNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Username" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="szara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="accountEmailField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    E-mail" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="szara@gmail.com" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                        <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="ssss" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                        <PasswordField fx:id="accountPasswordField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Password" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </PasswordField>
-                        <Label text="Username" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="Name" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="Sara" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <TextField fx:id="accountNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </TextField>
-                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                        <StackPane prefHeight="467.0" prefWidth="467.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
                            <children>
                               <Button fx:id="saveDetailsButton" mnemonicParsing="false" onAction="#saveDetailsButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Save" textFill="WHITE">
                                  <font>
