@@ -44,7 +44,10 @@ public class BasketController {
     private TableColumn <Product, String> amountOfProductColumn;
     @FXML
     private TableColumn deleteColumn;
-
+    /*
+    Tu trzeba będzie się wyświetlić na nowo
+    TAK JAK PRZY ADMINISTRATORZE !!!!!!!!!
+     */
     public void initialize() {
         setBasketDetails(NavigationController.listOfProducts);
     }
@@ -86,7 +89,9 @@ public class BasketController {
 
                             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                             NavigationController.alertText ="Are you sure you would like to delete that product ?";
-                            Parent root = fxWeaver.loadView(BasketController.class);
+                            ///////////////////////////////////////////UWAGA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
+                            ///////////////////////////////////////////UWAGA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Scene scene = new Scene(root);
                             Stage stage = new Stage();
                             stage.setScene(scene);

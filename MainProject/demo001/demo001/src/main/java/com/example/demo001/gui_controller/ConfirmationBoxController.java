@@ -104,6 +104,13 @@ public class ConfirmationBoxController {
         else if(NavigationController.notFinishedOrder){
             NavigationController.emptyBasket = true;
             NavigationController.notFinishedOrder = false;
+
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(ClientPanelController.class);
+            Scene scene = new Scene(root);
+            NavigationController.stage.setScene(scene);
+            NavigationController.stage.setTitle("Spedition Organisation System - Client");
+            NavigationController.stage.show();
         }
         else{
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();

@@ -4,39 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Connected frontend and backend.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/489a9daa-d877-4134-8ed7-45c164b7ef6b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/489a9daa-d877-4134-8ed7-45c164b7ef6b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2021_18_25__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2021_18_25__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Potężny commit.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/Demo001SprinBootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/Demo001SprinBootApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Factory/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/domain/Factory/Factory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AlertBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AlertBoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/DeleteUserConfirmationBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/DeleteUserConfirmationBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryManagerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/FactoryManagerPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ProductFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ProductFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/FactoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/repository/ProductionAbilityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryForOrderItemSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryForOrderItemSetupImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/clientPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/clientPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/confirmationBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/factoryForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/factoryForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderDetails.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderManagerPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/orderManagerPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/productForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/resources/com/example/demo001/gui_controller/productForm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +65,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="server-side" />
+        <entry key="$PROJECT_DIR$/../.." value="Back-Pawel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -409,7 +385,7 @@
       <workItem from="1630952396051" duration="10913000" />
       <workItem from="1631024395384" duration="2198000" />
       <workItem from="1631028794920" duration="825000" />
-      <workItem from="1631032323891" duration="11411000" />
+      <workItem from="1631032323891" duration="15922000" />
     </task>
     <task id="LOCAL-00001" summary="Connected frontend and backend.">
       <created>1624702248314</created>
@@ -418,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624702248314</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Potężny commit.">
+      <created>1631047197812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631047197812</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -438,7 +421,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Connected frontend and backend." />
-    <option name="LAST_COMMIT_MESSAGE" value="Connected frontend and backend." />
+    <MESSAGE value="Potężny commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Potężny commit." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -580,42 +564,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>409</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>514</line>
+          <line>516</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>523</line>
+          <line>525</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>536</line>
+          <line>538</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>560</line>
+          <line>562</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>571</line>
+          <line>573</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>576</line>
+          <line>578</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>589</line>
+          <line>591</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -625,13 +604,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java</url>
-          <line>145</line>
+          <line>146</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>367</line>
+          <line>368</line>
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
+          <line>415</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
+          <line>298</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
+          <line>379</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

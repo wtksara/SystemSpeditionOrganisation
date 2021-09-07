@@ -87,5 +87,6 @@ public class NavigationController {
     public static int productAmount;
     public static Product product;
     public static boolean addProduct;
+    public static int orderScreenToFrontClient;
 
 }

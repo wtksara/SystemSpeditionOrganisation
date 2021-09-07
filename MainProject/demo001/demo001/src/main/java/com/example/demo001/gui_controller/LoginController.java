@@ -64,6 +64,7 @@ public class LoginController {
             }
             else if(user.getUserRole().toString().equals("CLIENT")){ //client
                 NavigationController.username=username;
+                NavigationController.orderScreenToFrontClient=1;
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(ClientPanelController.class);
                 Scene scene = new Scene(root);

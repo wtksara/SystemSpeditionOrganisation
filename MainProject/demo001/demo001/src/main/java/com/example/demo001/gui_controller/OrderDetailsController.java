@@ -85,27 +85,28 @@ public class OrderDetailsController {
         productsTable.setItems(products);
         }
         else{
+            ////////////////////////////////TU ZOBACZYĆ
             transportField.setVisible(false);
             transportProviderLabel.setVisible(false);
             confirmButton.setText("Create offer");
-            ProductOrder currentOrder = NavigationController.selectedOrder;
 //
 //             Backend to do
 //             Getting details about products in order
-            idOrderField.setText(Integer.toString((int) currentOrder.getOrderId()));
-            statusField.setText(currentOrder.getOrderStatus().toString());
-            clientField.setText(currentOrder.getOrderClient().getUserName());
-            transportField.setText(currentOrder.getOrderTransportProvider().getUserName());
+            idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+            statusField.setText(NavigationController.selectedOrder.getOrderStatus().toString());
+            clientField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
+            transportField.setText(NavigationController.selectedOrder.getOrderTransportProvider().getUserName());
         // TODO: 28.06.2021  cena zamówienia
 
         //download list of orderitems from db
-        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(currentOrder.getOrderId()));
+        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrder.getOrderId()));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
 
         idProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int) cellData.getValue().getId()));
-        productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+        //productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+            productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
         amountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getProductAmount())));
         factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
         factoryColumn.setVisible(false);

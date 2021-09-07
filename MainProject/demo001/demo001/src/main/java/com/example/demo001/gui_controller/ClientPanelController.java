@@ -34,6 +34,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
+import lombok.SneakyThrows;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,9 +153,12 @@ public class ClientPanelController implements Initializable {
         this.orderItemService = orderItemService;
     }
 
+    @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(NavigationController.basketResult){
+            NavigationController.basketResult = false;
+            //GDZIE TO ZADZIAŁA ?
             // To chyba trzeba przelozyc do basketa ! //NIE??
             // Order completed
             //creating and saving order to db
@@ -175,6 +179,15 @@ public class ClientPanelController implements Initializable {
 
         // Cleaning the order
         cart.clear();
+        }else{
+            if(NavigationController.orderScreenToFrontClient==1)
+                myAccountButtonOnAction();
+            else if(NavigationController.orderScreenToFrontClient==3){
+                currentOrdersButtonOnAction();
+            }
+            else if(NavigationController.orderScreenToFrontClient==4){
+                historyButtonOnAction();
+            }
         }
     }
 
@@ -183,9 +196,9 @@ public class ClientPanelController implements Initializable {
 
     public void setUserDetails()
     {
-        //BasicUser user = basicUserService.findByUsername(NavigationController.username);
-        //accountNameField.setText(user.getUserName());
-        //accountPasswordField.setText(user.getUserPassword());
+        BasicUser user = basicUserService.findByUsername(NavigationController.username);
+        accountNameField.setText(user.getUserName());
+        accountPasswordField.setText(user.getUserPassword());
     }
 
     // My account page
@@ -193,14 +206,10 @@ public class ClientPanelController implements Initializable {
     // It can be taken out to the main class, but it depends if details are gonna be the same. It is up to you.
     public void myAccountButtonOnAction() throws IOException  {
         // Setting the color of te top vBox for more dynamic view
-        /*if (!cart.isEmpty()) {
-           //if (notFinishedOrder()) {
-           //    setUpMyAccountPage();
-           //}
-        }
-        else { setUpMyAccountPage();}*/
         if (!cart.isEmpty()) {
-            if (notFinishedOrder()) { setUpMyAccountPage();}
+            NavigationController.notFinishedOrder = true;
+            NavigationController.orderScreenToFrontClient = 1;
+            notFinishedOrder();
         }
         else { setUpMyAccountPage();}
     }
@@ -405,7 +414,9 @@ public class ClientPanelController implements Initializable {
     public void currentOrdersButtonOnAction() throws IOException {
         // Clear
         if (!cart.isEmpty()) {
-            if (notFinishedOrder()) { setUpCurrentOrdersPage();}
+            NavigationController.notFinishedOrder = true;
+            NavigationController.orderScreenToFrontClient = 3;
+            notFinishedOrder();
         }
         else { setUpCurrentOrdersPage();}
         /*if (!cart.isEmpty()) {
@@ -504,7 +515,10 @@ public class ClientPanelController implements Initializable {
     // History page
     public void historyButtonOnAction() throws IOException {
         if (!cart.isEmpty()) {
-            if (notFinishedOrder()) { setUpHistoryPage();}
+            NavigationController.notFinishedOrder = true;
+            NavigationController.orderScreenToFrontClient = 4;
+            notFinishedOrder();
+            //if (notFinishedOrder()) { setUpHistoryPage();}
         }
         else { setUpHistoryPage();}
         /*if (!cart.isEmpty()) {
@@ -601,26 +615,13 @@ public class ClientPanelController implements Initializable {
         historySearchField.setText("");
     }
 
-    public boolean notFinishedOrder(){ //throws IOException {
-
-        //proba
-        /* FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+    public void notFinishedOrder(){ //throws IOException {
+        FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
         NavigationController.alertText="";
         Scene scene = new Scene(root);
         NavigationController.stage.setScene(scene);
         NavigationController.stage.setTitle("Confirmation");
-        NavigationController.stage.show(); */
-
-        //zmienic
-//        FXMLLoader fxmlLoaders = new FXMLLoader();
-//        fxmlLoaders.setLocation(getClass().getResource("../confirmationBox.fxml"));
-//        Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoaders, "You haven't finished the order", "Order not finished", "Empty basket", "Cancel");
-//        if (isConfirmed.get() == ButtonType.OK) {
-//            cart.clear();
-//            return true;
-//        }
-//        return false;
-        return false;
+        NavigationController.stage.show();
     }
 }

@@ -351,7 +351,8 @@ public class OrderManagerPanelController implements Initializable {
         NavigationController.createOffer = false;
         //////////////////////TU ZMIANA BO NIE DZIAŁAŁO
         //NavigationController.selectedOrder = this.productOrderService.findOrderByID(createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId());
-        NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
+        //NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
+        //NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
         NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(OrderDetailsController.class);
@@ -376,8 +377,8 @@ public class OrderManagerPanelController implements Initializable {
         //createOfferTransportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
 
         ////users = FXCollections.observableArrayList(UsersRepository.getUsers());
-        users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
-
+        //users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
+        users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
 
         createOfferOrderDetailsButton.disableProperty().bind(Bindings.isNull (
                 createOfferUsersTable.getSelectionModel().selectedItemProperty()));
@@ -412,17 +413,18 @@ public class OrderManagerPanelController implements Initializable {
         newOfferPage.toFront();
 
 
-        NavigationController.selectedOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
+        //NavigationController.selectedOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
 
 
         idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+        /*clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
         statusOrderField.setText(NavigationController.selectedOrder.getOrderStatus().toString());
         clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().toString());
-        transportProviderOrderField.setText(NavigationController.selectedOrder.getOrderTransportProvider().toString());
+        transportProviderOrderField.setText(NavigationController.selectedOrder.getOrderTransportProvider().toString());*/
 
         // Backend to do
         // Normally taken the list of product for selected order - sth similiary for check already done
-        productsArray = FXCollections.observableArrayList(NavigationController.selectedOrder.getOrderedProducts());
+        //productsArray = FXCollections.observableArrayList(NavigationController.selectedOrder.getOrderedProducts());
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
 
