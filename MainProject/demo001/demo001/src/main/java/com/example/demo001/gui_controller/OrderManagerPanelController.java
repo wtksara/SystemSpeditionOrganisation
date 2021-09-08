@@ -371,14 +371,14 @@ public class OrderManagerPanelController implements Initializable {
         tabText.setText("Create a offer");
         createOfferPage.toFront();
 
-        createOfferOrderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderClient().getUserId()));
+        createOfferOrderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         createOfferStatusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
-        createOfferClientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
+        createOfferClientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
         //createOfferTransportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
 
         ////users = FXCollections.observableArrayList(UsersRepository.getUsers());
-        //users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
-        users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
+        users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
+        //users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
 
         createOfferOrderDetailsButton.disableProperty().bind(Bindings.isNull (
                 createOfferUsersTable.getSelectionModel().selectedItemProperty()));

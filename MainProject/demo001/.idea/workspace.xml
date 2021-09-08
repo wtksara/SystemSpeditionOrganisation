@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Potężny commit.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ClientPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ConfirmationBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/NavigationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderDetailsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" afterDir="false" />
-    </list>
+    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,16 +70,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/Demo001SprinBootApplication.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/TransportProviderPanelController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/Demo001SprinBootApplication.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1sakCQm49suouTU3t8XlAhn3Wz9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

@@ -1,17 +1,15 @@
 package com.example.demo001.service;
 
-import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
-import com.example.demo001.domain.OrderManagement.*;
+import com.example.demo001.domain.OrderManagement.OrderStatus;
+import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.repository.ProductOrderRepository;
-import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductOrderServiceImpl implements ProductOrderService {
@@ -41,7 +39,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
-    public List<ProductOrder> findCurrentOrders(String clientName) {
+    public List<ProductOrder> findCurrentOrders(Client clientName) {
         List<ProductOrder> results = productOrderRepository
                 .findProductOrderByOrderClientAndOrderStatus(clientName, OrderStatus.ISSUED);
         results.addAll(productOrderRepository
@@ -57,10 +55,11 @@ public class ProductOrderServiceImpl implements ProductOrderService {
         results.addAll(productOrderRepository
                 .findProductOrderByOrderClientAndOrderStatus(clientName, OrderStatus.IN_TRANSPORT));
         return results;
+        //return productOrderRepository.findAll();
     }
 
     @Override
-    public List<ProductOrder> findHistoricOrders(String clientName) {
+    public List<ProductOrder> findHistoricOrders(Client clientName) {
         List<ProductOrder> results = productOrderRepository
                 .findProductOrderByOrderClientAndOrderStatus(clientName, OrderStatus.DELIVERED);
         results.addAll(productOrderRepository

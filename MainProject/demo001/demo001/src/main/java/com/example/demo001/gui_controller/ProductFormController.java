@@ -55,9 +55,6 @@ public class ProductFormController{ // extends ConfirmationBoxController
                 return;
             }
             if ((amountField.getText().isEmpty()) || isInteger(amountField.getText()) || Integer.parseInt(amountField.getText()) > 0) {
-                // Backend
-                // Update products
-                //users.add(newUser);
                 NavigationController.alertText = "Amount is not a valid number";
                 callAlertBox();
                 return;
@@ -89,24 +86,17 @@ public class ProductFormController{ // extends ConfirmationBoxController
     }
 
     public void setProductDetails (Integer amount){
-        //Variable used in lambda expression should be final or effectively final
-        //TODO solution 1
         final Integer[] a = new Integer[1];
         Button okButton = (Button)dialogPane.lookupButton(ButtonType.OK);
         okButton.addEventFilter(
-                ActionEvent.ACTION, event -> {
-                    if (!validateFormData()) {
-                        event.consume();
-                        //TODO solution 2: can we return here? seems less weird
-                        //return;
-                    }
-                    else {
-                        //solution 1
-                        a[0] = Integer.parseInt(amountField.getText());
-                    }
-                });
-        //Solution 2
-        //amount = a[0];
+            ActionEvent.ACTION, event -> {
+                if (!validateFormData()) {
+                    event.consume();
+                }
+                else {
+                    a[0] = Integer.parseInt(amountField.getText());
+                }
+            });
     }
 
     public void setStyling() {
