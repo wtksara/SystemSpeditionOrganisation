@@ -1,47 +1,44 @@
 package com.example.demo001.gui_controller;
 
-import com.example.demo001.domain.OrderManagement.OrderItem;
-import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @FxmlView("basket.fxml")
 public class BasketController {
 
-    private ObservableList<Product> orders = null;
+    private ObservableList<CartWrapperController> orders = null;
+    private List<CartWrapperController> tmpCart = new ArrayList<>();
 
     @FXML
     private DialogPane dialogPane;
     @FXML
-    private TextField idOrderField, amountField;
+    private TableView <CartWrapperController> productsTable;
     @FXML
-    private TableView <Product> productsTable;
+    private TableColumn <CartWrapperController, Number> idProductColumn;
     @FXML
-    private TableColumn <Product, Number> idProductColumn;
+    private TableColumn <CartWrapperController, String> productColumn;
     @FXML
-    private TableColumn <Product, String> productColumn;
-    @FXML
-    private TableColumn <Product, String> amountOfProductColumn;
+    private TableColumn <CartWrapperController, String> amountOfProductColumn;
     @FXML
     private TableColumn deleteColumn;
     /*
@@ -49,31 +46,28 @@ public class BasketController {
     TAK JAK PRZY ADMINISTRATORZE !!!!!!!!!
      */
     public void initialize() {
-        setBasketDetails(NavigationController.listOfProducts);
+        setBasketDetails(NavigationController.cart);
     }
-
-    public void setBasketDetails(List<Product> order) {
-        // Backend to do
-        // Get details about the order - calculate them mostly
-        // idOrderField.setText(Integer.toString(user.getId()));
-        // amountField.setText(user.getName());
-        idOrderField.setText("12");
-        amountField.setText("250");
-
+    public void setBasketDetails(HashMap<Product, Integer> cart) {
         // Set up the style
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStylesheets().add("sample/styling/buttomView.css");
         productsTable.getStyleClass().add("tableview");
         deleteColumn.setStyle( "-fx-alignment: center;");
 
-        orders = FXCollections.observableArrayList(order);
+        for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+            tmpCart.add(new CartWrapperController(entry.getKey(), entry.getValue()));
+        }
 
-        idProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getProductId()));
-        productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
-        amountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString((int)cellData.getValue().getProductPrize()))); //??????
+        orders = FXCollections.observableArrayList(tmpCart);
 
-        Callback<TableColumn <Product, String>, TableCell <Product, String>> cellFactory = (param) -> {
-            final TableCell<Product, String> cell = new TableCell<Product, String>() {
+        idProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getProduct().getProductId()));
+        productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
+        amountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getProductAmount())));
+
+        Callback<TableColumn <CartWrapperController, String>, TableCell <CartWrapperController, String>> cellFactory = (param) -> {
+            final TableCell<CartWrapperController, String> cell = new TableCell<CartWrapperController, String>() {
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -102,10 +96,19 @@ public class BasketController {
 
                             if (NavigationController.result){
                                 NavigationController.result=false;
-                                // Backend to do
-                                // Deleting the product from order
                                 orders.remove(getIndex());
-                                order.remove(getIndex());
+                                CartWrapperController temp = getTableView().getItems().get(getIndex());
+//                                System.out.println(temp.getProduct());
+                                cart.remove(temp.getProduct());
+
+//                                for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
+//                                    System.out.println(entry.getKey() + " - " + entry.getValue());
+//                                }
+//                                System.out.println("--------------------------------");
+//                                for (CartWrapperController o : orders) {
+//                                    System.out.println(o.getProduct() + " - " + o.getProductAmount());
+//                                }
+
                             }
                             else{}
                         });
@@ -140,16 +143,5 @@ public class BasketController {
         // do nothing and close the window
         NavigationController.basketResult = false;
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-    }
-
-
-    private boolean validateFormData() {
-        // Backend to do
-        // Checking if the input is correct
-        if (idOrderField.getText().isEmpty() || idOrderField.getText().equals("0")) {
-            idOrderField.requestFocus();
-            return false;
-        }
-        return true;
     }
 }

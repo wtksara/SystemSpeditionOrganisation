@@ -8,8 +8,8 @@ import java.util.List;
 public interface ProductOrderService {
     ProductOrder createOrder(ProductOrder order); //wysłanie zamówienia do bazy
     ServiceErrorCode modifyOrder(ProductOrder order); //zmiana informacji w zamówieniu*/
-    List<ProductOrder> findCurrentOrders(String clientName); //pobranie wszystkich zamówień o danym statusie
-    List<ProductOrder> findHistoricOrders(String clientName);
+    List<ProductOrder> findCurrentOrders(Client clientName); //pobranie wszystkich zamówień o danym statusie
+    List<ProductOrder> findHistoricOrders(Client clientName);
     List<ProductOrder> findOrdersByTransportProvider(String transportProviderName);
 
     List<ProductOrder> findActualOrdersByTransportProvider(String transportProviderName); //Dodane przez Pawla

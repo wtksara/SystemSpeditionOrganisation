@@ -15,7 +15,7 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder, Long
 
     List<ProductOrder> findProductOrderByOrderTransportProviderAndOrderStatus(String transportProviderName, OrderStatus orderStatus);
 
-    List<ProductOrder> findProductOrderByOrderClientAndOrderStatus(String clientName, OrderStatus orderStatus);
+    List<ProductOrder> findProductOrderByOrderClientAndOrderStatus(Client clientName, OrderStatus orderStatus);
 
     List<ProductOrder> findProductOrdersByOrderStatus(OrderStatus orderStatus);
 
