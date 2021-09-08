@@ -2,6 +2,9 @@ package com.example.demo001.domain.Factory;
 
 import com.example.demo001.domain.Products.Product;
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +22,7 @@ public class ProductionAbility {
 
     /** Product produced by factory, stored in the warehouse */
     @OneToOne
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Product myProduct;
 
     /** Factory producing and storing product */

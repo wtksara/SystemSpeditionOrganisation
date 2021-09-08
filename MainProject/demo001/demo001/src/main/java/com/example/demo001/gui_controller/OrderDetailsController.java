@@ -7,6 +7,7 @@ import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.service.OrderItemService;
+import com.example.demo001.service.ProductOrderService;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -32,6 +33,9 @@ public class OrderDetailsController {
 
     @Autowired
     private OrderItemService orderItemService;
+
+    @Autowired
+    private ProductOrderService productOrderService;
 
     @FXML
     private DialogPane dialogPane;
@@ -61,8 +65,14 @@ public class OrderDetailsController {
 
         NavigationController.lastScene2 = NavigationController.lastScene;
         NavigationController.lastSceneName2 = NavigationController.lastSceneName;
+        ProductOrder currentOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
+        NavigationController.selectedOrder = currentOrder;
+        NavigationController.selectedOrderId = currentOrder.getOrderId();
+        NavigationController.selectedOrderStatusName = currentOrder.getOrderStatus().name();
+        NavigationController.selectedOrderClientName = currentOrder.getOrderClient().getUserName();
+        NavigationController.selectedOrderTransportProviderName = currentOrder.getOrderTransportProvider().getUserName();
         if (NavigationController.orderDetailsType == true) {
-            ProductOrder currentOrder = NavigationController.selectedOrder;
+            //ProductOrder currentOrder = NavigationController.selectedOrder;
 
             // Backend to do
             // Getting details about products in order
@@ -73,7 +83,7 @@ public class OrderDetailsController {
         // TODO: 28.06.2021  cena zamówienia
 
         //download list of orderitems from db
-        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(currentOrder.getOrderId()));
+        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
@@ -92,14 +102,18 @@ public class OrderDetailsController {
 //
 //             Backend to do
 //             Getting details about products in order
-            idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+            idOrderField.setText(Integer.toString((int) currentOrder.getOrderId()));
+            statusField.setText(currentOrder.getOrderStatus().toString());
+            clientField.setText(currentOrder.getOrderClient().getUserName());
+            transportField.setText(currentOrder.getOrderTransportProvider().getUserName());
+            /*idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
             statusField.setText(NavigationController.selectedOrder.getOrderStatus().toString());
             clientField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
-            transportField.setText(NavigationController.selectedOrder.getOrderTransportProvider().getUserName());
+            transportField.setText(NavigationController.selectedOrder.getOrderTransportProvider().getUserName());*/
         // TODO: 28.06.2021  cena zamówienia
 
         //download list of orderitems from db
-        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrder.getOrderId()));
+        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");

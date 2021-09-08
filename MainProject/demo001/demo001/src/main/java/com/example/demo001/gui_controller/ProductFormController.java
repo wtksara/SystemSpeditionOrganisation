@@ -54,7 +54,7 @@ public class ProductFormController{ // extends ConfirmationBoxController
                 callAlertBox();
                 return;
             }
-            if ((amountField.getText().isEmpty()) || isInteger(amountField.getText()) || Integer.parseInt(amountField.getText()) > 0) {
+            if ((amountField.getText().isEmpty()) || !isInteger(amountField.getText()) || Integer.parseInt(amountField.getText()) < 0) {
                 // Backend
                 // Update products
                 //users.add(newUser);

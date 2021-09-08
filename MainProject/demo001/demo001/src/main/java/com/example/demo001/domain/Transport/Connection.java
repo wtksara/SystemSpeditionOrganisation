@@ -17,11 +17,11 @@ public class Connection {
     private long connectionId;
 
     /** First city of the connection - may be both source and destination */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private City firstCity;
 
     /** Second city of the connection - may be both source and destination */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private City secondCity;
 
     /** Connection's length calculated manually and input to database */

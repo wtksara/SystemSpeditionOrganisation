@@ -8,9 +8,7 @@ import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
 import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.gui_controller.ConfirmationBoxController;
-import com.example.demo001.service.BasicUserService;
-import com.example.demo001.service.ProductOrderService;
-import com.example.demo001.service.ProductionAbilityService;
+import com.example.demo001.service.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -40,10 +38,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -163,6 +158,12 @@ public class OrderManagerPanelController implements Initializable {
 
     @Autowired
     private ProductionAbilityService productionAbilityService;
+
+    @Autowired
+    private OrderItemService orderItemService;
+
+    @Autowired
+    private TransportProviderService transportProviderService;
 
     @SneakyThrows
     @Override
@@ -351,9 +352,8 @@ public class OrderManagerPanelController implements Initializable {
         NavigationController.createOffer = false;
         //////////////////////TU ZMIANA BO NIE DZIAŁAŁO
         //NavigationController.selectedOrder = this.productOrderService.findOrderByID(createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId());
-        //NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
+        NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
         //NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
-        NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(OrderDetailsController.class);
         Scene scene = new Scene(root);
@@ -377,8 +377,8 @@ public class OrderManagerPanelController implements Initializable {
         //createOfferTransportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
 
         ////users = FXCollections.observableArrayList(UsersRepository.getUsers());
-        //users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
-        users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
+        users = FXCollections.observableArrayList(productOrderService.findOrdersForManagements());
+        //users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
 
         createOfferOrderDetailsButton.disableProperty().bind(Bindings.isNull (
                 createOfferUsersTable.getSelectionModel().selectedItemProperty()));
@@ -413,18 +413,26 @@ public class OrderManagerPanelController implements Initializable {
         newOfferPage.toFront();
 
 
-        //NavigationController.selectedOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
+        //ProductOrder productOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
+        //ProductOrder productOrder = new ProductOrder();
 
-
-        idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
-        /*clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
-        statusOrderField.setText(NavigationController.selectedOrder.getOrderStatus().toString());
-        clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().toString());
-        transportProviderOrderField.setText(NavigationController.selectedOrder.getOrderTransportProvider().toString());*/
+//        idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+//        clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
+        idOrderField.setText(Long.toString(NavigationController.selectedOrderId));
+        clientOrderField.setText(NavigationController.selectedOrderClientName);
+//        idOrderField.setText(Long.toString(NavigationController.selectedOrderId));
+        //clientOrderField.setText(productOrder.getOrderClient().getUserName());
+//        statusOrderField.setText(this.productOrderService.findOrderByID(NavigationController.selectedOrderId).getOrderStatus().name());
+//        clientOrderField.setText(this.productOrderService.findOrderByID(NavigationController.selectedOrderId).getOrderClient().getUserName());
+//        transportProviderOrderField.setText(this.productOrderService.findOrderByID(NavigationController.selectedOrderId).getOrderTransportProvider().getUserName());
+//        statusOrderField.setText(NavigationController.selectedOrderStatusName);
+//        transportProviderOrderField.setText(NavigationController.selectedOrderTransportProviderName);
 
         // Backend to do
         // Normally taken the list of product for selected order - sth similiary for check already done
         //productsArray = FXCollections.observableArrayList(NavigationController.selectedOrder.getOrderedProducts());
+        productsArray = FXCollections.observableArrayList(this.orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
 
@@ -481,7 +489,7 @@ public class OrderManagerPanelController implements Initializable {
         // Getting available transport
 
         //get transport providers for selected order
-        transportProviders = possibleTransportProviders(NavigationController.selectedOrder);
+        transportProviders = Collections.emptyList();//this.transportProviderService.getPossibleTransportProvidersForProductOrder(NavigationController.selectedOrderId);
 
         //extract the names of transport providers for selected order
         transportProvidersNames = FXCollections.observableArrayList(transportProviders.stream()
@@ -530,29 +538,31 @@ public class OrderManagerPanelController implements Initializable {
         return productOrder.getOrderTransportProvider().getUserName();
     }
 
-    private List<TransportProvider> possibleTransportProviders(ProductOrder productOrder){
-        return new ArrayList<>();
-    }
-
     public void summaryOfferButtonOnAction(){
         // Backend to do
         tabText.setText("Summary offer");
         summaryGoBackToCategoryButton.setDisable(false);
         summaryNewOfferPage.toFront();
-        //summaryIdOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
-        //summaryCompanyField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
-        ////summaryAmountField.setText(NavigationController.selectedOrder.getSurname());
-        //summaryTransportProviderField.setText(NavigationController.selectedOrder.getOrderTransportProvider().getUserName());
+
+        summaryIdOrderField.setText(Long.toString(NavigationController.selectedOrderId));
+        summaryCompanyField.setText(NavigationController.selectedOrderClientName);
+        //summaryAmountField.setText(NavigationController.selectedOrder.getSurname());
+        summaryTransportProviderField.setText(NavigationController.selectedOrderTransportProviderName);
 
         summaryProductsTable.getStylesheets().add("sample/styling/tableView.css");
         summaryProductsTable.getStyleClass().add("tableview");
 
-        //summaryIdProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProduct().getProductId()));
-        //summaryProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
-        ////summaryAmountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().surnameProperty());
-        //summaryFactoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
-        //productsArray = FXCollections.observableArrayList(NavigationController.selectedOrder.getOrderedProducts());
-        //summaryProductsTable.setItems(productsArray);
+        summaryIdProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProduct().getProductId()));
+        summaryProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
+        //summaryAmountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().surnameProperty());
+        summaryFactoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+
+
+        productsArray = FXCollections.observableArrayList(this.orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+
+
+        summaryProductsTable.setItems(productsArray);
+
     }
 
     /**

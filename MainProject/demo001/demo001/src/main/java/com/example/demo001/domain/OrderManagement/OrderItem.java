@@ -19,11 +19,11 @@ public class OrderItem {
     private long id;
 
     /** Order in which item was ordered */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ProductOrder order;
 
     /** Ordered product */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Product product;
 
     /** Ordered amount of product */
@@ -31,7 +31,7 @@ public class OrderItem {
     private int productAmount;
 
     /** Factory producing ordered item */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Factory factory;
 
     public OrderItem() {}

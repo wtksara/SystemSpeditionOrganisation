@@ -7,6 +7,7 @@ import com.example.demo001.repository.ProductOrderRepository;
 import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -147,6 +148,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
+    @Transactional
     public ProductOrder findOrderByID(Long ID) //Dodane przez Pawla
     {
         List<ProductOrder> allProductOrders = productOrderRepository.findAll();

@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TransportProviderService {
     List<TransportProvider> getPossibleTransportProvidersForOrderItem(ProductOrder productOrder, OrderItem orderItem);
+    List<TransportProvider> getPossibleTransportProvidersForProductOrder(long productOrderId);
     public List<TransportProvider> findAll();
     TransportProvider findByUsername(String username);
     boolean addUser(TransportProvider bUser);

@@ -69,12 +69,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Total amount" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <!--<Label text="Total amount" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
-                        </Label>
-                        <Label text="Company" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        </Label>-->
+                        <Label text="Client" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -85,22 +85,22 @@
                               <Font size="16.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="companyField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Company" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="2">
+                        <TextField fx:id="clientOrderField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Client" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="amountField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Amount" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="3">
+                        <!--<TextField fx:id="clientOrderField" editable="false" prefHeight="40.0" prefWidth="439.0" promptText="    Amount" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
-                        </TextField>
+                        </TextField>-->
                         <Button fx:id="summaryOfferButton" mnemonicParsing="false" onAction="#summaryOfferButtonOnAction" prefHeight="38.0" prefWidth="251.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Summary" textFill="WHITE" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="9">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TableView fx:id="productsTable" prefHeight="136.0" prefWidth="179.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                        <TableView fx:id="productsTable" prefHeight="136.0" prefWidth="179.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="4" GridPane.rowSpan="3">
                            <columns>
                               <TableColumn fx:id="idProductColumn" prefWidth="40.79998779296875" text="ID" />
                               <TableColumn fx:id="productColumn" prefWidth="182.39997100830078" text="Product" />

@@ -58,6 +58,14 @@ public class NavigationController {
 
     public static ProductOrder selectedOrder;
 
+    public static String selectedOrderClientId;
+
+    public static String selectedOrderClientName;
+
+    public static String selectedOrderStatusName;
+
+    public static String selectedOrderTransportProviderName;
+
     //public static ProductOrder newOrder;
 
     ////////////////////////////////Factory manager variables

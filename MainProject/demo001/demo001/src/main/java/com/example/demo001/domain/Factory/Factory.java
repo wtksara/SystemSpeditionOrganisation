@@ -2,6 +2,9 @@ package com.example.demo001.domain.Factory;
 
 import com.example.demo001.domain.Transport.City;
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,7 +26,8 @@ public class Factory {
     private String factoryName;
 
     /** List of products which factories produce (treated like warehouses) */
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<ProductionAbility> producedProducts;
 
     /** City in which factory is located */
