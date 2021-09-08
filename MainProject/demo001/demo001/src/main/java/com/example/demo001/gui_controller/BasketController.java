@@ -46,7 +46,17 @@ public class BasketController {
     TAK JAK PRZY ADMINISTRATORZE !!!!!!!!!
      */
     public void initialize() {
-        setBasketDetails(NavigationController.cart);
+        if(NavigationController.wantToDelete) {
+            NavigationController.wantToDelete = false;
+            // Backend to do
+            // Deleting the product from order
+            //orders.remove(NavigationController.ordersIndex);
+            NavigationController.cart.remove(NavigationController.productToDelete.getProduct());
+            setBasketDetails(NavigationController.cart);
+        }
+        else{
+            setBasketDetails(NavigationController.cart);
+        }
     }
     public void setBasketDetails(HashMap<Product, Integer> cart) {
         // Set up the style
@@ -54,6 +64,8 @@ public class BasketController {
         productsTable.getStylesheets().add("sample/styling/buttomView.css");
         productsTable.getStyleClass().add("tableview");
         deleteColumn.setStyle( "-fx-alignment: center;");
+
+        tmpCart.clear();
 
         for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
@@ -81,36 +93,19 @@ public class BasketController {
 
                         addButton.setOnAction(event -> {
 
+                            NavigationController.ordersIndex = getIndex();
+                            NavigationController.productToDelete = getTableView().getItems().get(getIndex());
+
                             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                             NavigationController.alertText ="Are you sure you would like to delete that product ?";
-                            ///////////////////////////////////////////UWAGA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
-                            ///////////////////////////////////////////UWAGA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Scene scene = new Scene(root);
                             Stage stage = new Stage();
                             stage.setScene(scene);
                             stage.setTitle("Deleting product");
+                            //NavigationController.lastScene = stage.getScene(); //zapis sceny otwieranego koszyka
+                            NavigationController.wantToDelete = true;
                             stage.show();
-
-                            // SPRAWDZIC CZY TO GOWNO DZIALA <3
-
-                            if (NavigationController.result){
-                                NavigationController.result=false;
-                                orders.remove(getIndex());
-                                CartWrapperController temp = getTableView().getItems().get(getIndex());
-//                                System.out.println(temp.getProduct());
-                                cart.remove(temp.getProduct());
-
-//                                for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
-//                                    System.out.println(entry.getKey() + " - " + entry.getValue());
-//                                }
-//                                System.out.println("--------------------------------");
-//                                for (CartWrapperController o : orders) {
-//                                    System.out.println(o.getProduct() + " - " + o.getProductAmount());
-//                                }
-
-                            }
-                            else{}
                         });
                         setGraphic(addButton);
                     }

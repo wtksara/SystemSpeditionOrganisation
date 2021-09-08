@@ -1,37 +1,40 @@
-package com.example.demo001.gui_controller;
 
-import com.example.demo001.Cipher;
-import com.example.demo001.domain.Actors.BasicUser;
-import com.example.demo001.domain.OrderManagement.OrderStatus;
-import com.example.demo001.domain.OrderManagement.ProductOrder;
-import com.example.demo001.service.BasicUserService;
-import com.example.demo001.service.ProductOrderService;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import net.rgielen.fxweaver.core.FxWeaver;
-import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+        package com.example.demo001.gui_controller;
+
+        import com.example.demo001.Cipher;
+        import com.example.demo001.domain.Actors.BasicUser;
+        import com.example.demo001.domain.OrderManagement.OrderStatus;
+        import com.example.demo001.domain.OrderManagement.ProductOrder;
+        import com.example.demo001.domain.Transport.TransportProvider;
+        import com.example.demo001.service.BasicUserService;
+        import com.example.demo001.service.ProductOrderService;
+        import com.example.demo001.service.TransportProviderService;
+        import javafx.beans.binding.Bindings;
+        import javafx.beans.property.SimpleLongProperty;
+        import javafx.beans.property.SimpleStringProperty;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.collections.transformation.FilteredList;
+        import javafx.collections.transformation.SortedList;
+        import javafx.fxml.FXML;
+        import javafx.fxml.FXMLLoader;
+        import javafx.fxml.Initializable;
+        import javafx.geometry.Insets;
+        import javafx.scene.Parent;
+        import javafx.scene.Scene;
+        import javafx.scene.control.*;
+        import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.layout.*;
+        import javafx.scene.paint.Color;
+        import net.rgielen.fxweaver.core.FxWeaver;
+        import net.rgielen.fxweaver.core.FxmlView;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Component;
 
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+        import java.io.IOException;
+        import java.net.URL;
+        import java.util.ResourceBundle;
 
 @Component
 @FxmlView("transportProviderPanel.fxml")
@@ -98,6 +101,8 @@ public class TransportProviderPanelController implements Initializable {
     private BasicUserService basicUserService;
     @Autowired
     private ProductOrderService productOrderService;
+    @Autowired
+    private TransportProviderService transportProviderService;
 
     private Cipher cipher = new Cipher();
 
@@ -228,7 +233,8 @@ public class TransportProviderPanelController implements Initializable {
         // Displaying in table all orders of the transport provider
         // (order/route ID, client name, from (city), to = destination (city), order state)
 
-        ordersTable = FXCollections.observableArrayList(productOrderService.findActualOrdersByTransportProvider(NavigationController.username));
+        TransportProvider tp = transportProviderService.findByUsername(NavigationController.username);
+        ordersTable = FXCollections.observableArrayList(productOrderService.findActualOrdersByTransportProvider(tp));
 
         idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         clientNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
@@ -296,7 +302,8 @@ public class TransportProviderPanelController implements Initializable {
         pendingOrdersPage.toFront();
 
         //pobieranie danych
-        ordersTable = FXCollections.observableArrayList(productOrderService.findPendingOrdersForTransportProviderByTransportProvider(NavigationController.username));
+        TransportProvider tp = transportProviderService.findByUsername(NavigationController.username);
+        ordersTable = FXCollections.observableArrayList(productOrderService.findPendingOrdersForTransportProviderByTransportProvider(tp));
         //ordersTable = FXCollections.observableArrayList();
         acceptTransportButton.disableProperty().bind(Bindings.isNull (
                 pendingOrdersView.getSelectionModel().selectedItemProperty()));
@@ -366,3 +373,4 @@ public class TransportProviderPanelController implements Initializable {
         NavigationController.stage.show();
     }
 }
+

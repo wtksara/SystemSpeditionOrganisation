@@ -68,6 +68,7 @@ public class LoginController {
                 FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                 Parent root = fxWeaver.loadView(ClientPanelController.class);
                 Scene scene = new Scene(root);
+                NavigationController.oldClient = scene;
                 NavigationController.stage.setScene(scene);
                 NavigationController.stage.setTitle("Spedition Organisation System - Client");
                 NavigationController.stage.show();

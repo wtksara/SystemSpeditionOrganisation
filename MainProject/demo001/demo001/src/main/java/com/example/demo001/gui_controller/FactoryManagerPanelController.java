@@ -360,12 +360,14 @@ public class FactoryManagerPanelController implements Initializable {
     public void deleteProductsButtonOnAction() throws IOException { //to delete products from factory
         NavigationController.factoryManagerScreenToFront = 3;
         NavigationController.deleteProducts = true;
+        NavigationController.productionAbilityToDelete = usersTable.getSelectionModel().getSelectedItem();
+        NavigationController.alertText = "Do you want to delete these products?";
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Do you want to delete these products?");
+        stage.setTitle("Alert");
         stage.show();
 
         /* Optional<ButtonType> isConfirmed = new ConfirmationBoxController().createConfirmation(fxmlLoader, "Are you sure you would like to delete these products?", "Deleting products", "Ok", "Cancel");

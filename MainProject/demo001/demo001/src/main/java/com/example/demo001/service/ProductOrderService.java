@@ -2,6 +2,7 @@ package com.example.demo001.service;
 
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.*;
+import com.example.demo001.domain.Transport.TransportProvider;
 
 import java.util.List;
 
@@ -10,15 +11,15 @@ public interface ProductOrderService {
     ServiceErrorCode modifyOrder(ProductOrder order); //zmiana informacji w zamówieniu*/
     List<ProductOrder> findCurrentOrders(Client clientName); //pobranie wszystkich zamówień o danym statusie
     List<ProductOrder> findHistoricOrders(Client clientName);
-    List<ProductOrder> findOrdersByTransportProvider(String transportProviderName);
+    List<ProductOrder> findOrdersByTransportProvider(TransportProvider transportProvider);
 
-    List<ProductOrder> findActualOrdersByTransportProvider(String transportProviderName); //Dodane przez Pawla
-    List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(String transportProviderName); //Dodane przez Pawla
+    List<ProductOrder> findActualOrdersByTransportProvider(TransportProvider transportProvider); //Dodane przez Pawla
+    List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(TransportProvider transportProvider); //Dodane przez Pawla
     boolean saveChangedOrder (ProductOrder order); //Dodane przez Pawla
     void deleteAllOrders(); //Dodane przez Pawla
     ProductOrder findOrderByID(Long ID); //Dodane przez Pawla
 
-    List<ProductOrder> findPendingOrdersByTransportProvider(String transportProviderName);
+    List<ProductOrder> findPendingOrdersByTransportProvider(TransportProvider transportProvider);
     List<ProductOrder> findOrdersForManagements(); //wszystkie ProductOrder o statusie do rozporządzenia nimi
     List<ProductOrder> findAllHistoricOrders();//Piotr
 }

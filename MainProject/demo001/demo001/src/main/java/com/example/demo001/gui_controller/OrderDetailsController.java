@@ -70,7 +70,7 @@ public class OrderDetailsController {
         NavigationController.selectedOrderId = currentOrder.getOrderId();
         NavigationController.selectedOrderStatusName = currentOrder.getOrderStatus().name();
         NavigationController.selectedOrderClientName = currentOrder.getOrderClient().getUserName();
-        NavigationController.selectedOrderTransportProviderName = currentOrder.getOrderTransportProvider().getUserName();
+       // NavigationController.selectedOrderTransportProviderName = currentOrder.getOrderTransportProvider().getUserName();
         if (NavigationController.orderDetailsType == true) {
             //ProductOrder currentOrder = NavigationController.selectedOrder;
 

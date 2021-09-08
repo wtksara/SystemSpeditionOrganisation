@@ -1,22 +1,24 @@
 package com.example.demo001.gui_controller;
 
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.FXMLLoader;
-        import javafx.scene.Parent;
-        import javafx.scene.Scene;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.ButtonType;
-        import javafx.scene.control.Dialog;
-        import javafx.scene.control.DialogPane;
-        import javafx.scene.text.Text;
-        import javafx.stage.Stage;
-        import net.rgielen.fxweaver.core.FxWeaver;
-        import net.rgielen.fxweaver.core.FxmlView;
-        import org.springframework.stereotype.Component;
+import com.example.demo001.service.ProductionAbilityService;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import net.rgielen.fxweaver.core.FxWeaver;
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-        import java.io.IOException;
-        import java.util.Optional;
+import java.io.IOException;
+import java.util.Optional;
 
 @Component
 @FxmlView("confirmationBox.fxml")
@@ -30,6 +32,9 @@ public class ConfirmationBoxController {
     private Button okButton, cancelButton;
     @FXML
     private Button declineButton;
+
+    @Autowired
+    private ProductionAbilityService productionAbilityService;
 
     public void initialize() {
         if (!NavigationController.alertText.isEmpty()) {
@@ -90,13 +95,14 @@ public class ConfirmationBoxController {
             NavigationController.summarySendOffer = false;
         }
         else if(NavigationController.basketResult){
+            ((Stage)NavigationController.oldClient.getWindow()).close();
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(ClientPanelController.class);
             NavigationController.alertText="";
             Scene scene = new Scene(root);
             NavigationController.stage.setScene(scene);
-            NavigationController.stage.setTitle("Confirmation");
+            NavigationController.stage.setTitle("Spedition Organisation System - Client");
             NavigationController.stage.show();
 
             NavigationController.basketResult = false;
@@ -104,13 +110,43 @@ public class ConfirmationBoxController {
         else if(NavigationController.notFinishedOrder){
             NavigationController.emptyBasket = true;
             NavigationController.notFinishedOrder = false;
-
+            NavigationController.stage.close();
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(ClientPanelController.class);
             Scene scene = new Scene(root);
             NavigationController.stage.setScene(scene);
             NavigationController.stage.setTitle("Spedition Organisation System - Client");
             NavigationController.stage.show();
+        }
+        else if(NavigationController.wantToDelete){
+
+            NavigationController.stage.close(); //zamkniecie koszyka
+
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(BasketController.class);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Basket");
+            stage.show();
+        }
+        else if(NavigationController.deleteProducts){
+            // Backend
+            // Deleting chosen products from table - przeniesione z FactoryManagerPanel
+            /*int selectedId = usersTable.getSelectionModel().getSelectedIndex();
+            users.remove(selectedId);*/
+            NavigationController.factoryManagerScreenToFront =3;
+            this.productionAbilityService.deleteProductionAbility(NavigationController.productionAbilityToDelete);
+            NavigationController.deleteProducts = false;
+            NavigationController.alertText = "";
+            FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
+            Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
+            Scene scene = new Scene(root);
+            NavigationController.stage.setScene(scene);
+            NavigationController.stage.setTitle(NavigationController.lastSceneName);
+            NavigationController.stage.show();
+            System.out.println("Usunieto produkty");
         }
         else{
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
@@ -135,6 +171,9 @@ public class ConfirmationBoxController {
             NavigationController.emptyBasket = false;
             NavigationController.notFinishedOrder = false;
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        }
+        else if(NavigationController.wantToDelete){
+            NavigationController.wantToDelete = false;
         }
         else{
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();

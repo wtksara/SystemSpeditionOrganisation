@@ -63,8 +63,6 @@ public class ClientPanelController implements Initializable {
     @FXML
     private VBox vBox;
     @FXML
-    private Button myAccountButton, createOrderButton, currentOrdersButton, historyButton;
-    @FXML
     private GridPane myAccountPage ,categoryPage , productsListPage;
     @FXML
     private BorderPane currentOrdersPage, historyPage;
@@ -83,21 +81,9 @@ public class ClientPanelController implements Initializable {
     @FXML
     private Button categoryButton1,categoryButton2,categoryButton3,categoryButton4,categoryButton5,categoryButton6,categoryButton7,categoryButton8;
     @FXML
-    private ImageView categoryImage1,categoryImage2,categoryImage3,categoryImage4,categoryImage5,categoryImage6,categoryImage7,categoryImage8;
-    @FXML
-    private Label categoryLabel1, categoryLabel2, categoryLabel3, categoryLabel4, categoryLabel5, categoryLabel6, categoryLabel7, categoryLabel8;
-    @FXML
-    private Button basketButton , productsListBasketButton, goBackToCategoryButton;
-    @FXML
     private TableView <Product> createOrderTable;
     @FXML
-    private TableColumn <Product, Number> createOrderIDColumn;
-    @FXML
     private TableColumn <Product, String> createOrderItemColumn;
-    @FXML
-    private TableColumn <Product, String> createOrderCompanyColumn;
-    @FXML
-    private TableColumn <Product, String> createOrderStatusColumn;
     @FXML
     private TableColumn addToBasketButtonColumn;
 
@@ -126,8 +112,6 @@ public class ClientPanelController implements Initializable {
     private TableColumn <ProductOrder, String> statusOrderColumn;
     @FXML
     private TextField historySearchField;
-    @FXML
-    private Button orderDetailsButton;
 
     @Autowired
     private BasicUserService basicUserService;
@@ -165,7 +149,13 @@ public class ClientPanelController implements Initializable {
 
             // Cleaning the order
             cart.clear();
-        }else{
+
+            myAccountButtonOnAction();
+        } else {
+            if(NavigationController.emptyBasket){
+                NavigationController.emptyBasket = false;
+                cart.clear();
+            }
             if(NavigationController.orderScreenToFrontClient==1)
                 myAccountButtonOnAction();
             else if(NavigationController.orderScreenToFrontClient==3){
@@ -176,9 +166,6 @@ public class ClientPanelController implements Initializable {
             }
         }
     }
-
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    /// WKLEJ TO
 
     public void setUserDetails()
     {
@@ -215,9 +202,6 @@ public class ClientPanelController implements Initializable {
         saveDetailsButton.toFront();
     }
 
-    // CHANGES HAS BEEN HERE
-    // Copy the code and just paste in
-    ////////////////////////////////////////////////////
     public void saveDetailsButtonOnAction() throws IOException {
 
         String newUsername = accountNameField.getText();
@@ -277,12 +261,6 @@ public class ClientPanelController implements Initializable {
         NavigationController.stage.setTitle("Alert!");
         NavigationController.stage.show();
     }
-
-
-    /// KONIEC TEGO
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ////////////////////////////////////////////////////
-
 
     // Create order tab
     public void createOrderButtonOnAction() throws IOException {
@@ -357,8 +335,7 @@ public class ClientPanelController implements Initializable {
                         addButton.setOnAction(event -> {
                             NavigationController.addProduct = true;
                             NavigationController.cart = cart;
-                            Product product = getTableView().getItems().get(getIndex());
-                            NavigationController.product = product;
+                            NavigationController.product = getTableView().getItems().get(getIndex());
 
                             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
                             Parent root = fxWeaver.loadView(ProductFormController.class);
@@ -384,13 +361,13 @@ public class ClientPanelController implements Initializable {
     public void basketButtonOnAction() throws IOException {
 
         if(!NavigationController.result) {
-            NavigationController.listOfProducts = products;
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(BasketController.class);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Basket");
+            NavigationController.stage = stage; //zapis sceny otwieranego koszyka
             stage.show();
         }
     }
@@ -486,7 +463,6 @@ public class ClientPanelController implements Initializable {
                 order.setOrderStatus(OrderStatus.REJECTED);
                 productOrderService.modifyOrder(order);
                 order.getSelect().setSelected(false);//?????????????
-
                 TO MUSI TAK BYC zeby dobrze dzialo zmiany w liscie obserwujacej
                 nalezy tylko w tej dziurze zmienic status order na rejected
                 i w bazie danych tez to zmienic zeby potem jak sie znowu wlaczy ta zakladke to sie samo odswiezy z tymi danymi <3
@@ -569,8 +545,6 @@ public class ClientPanelController implements Initializable {
 
 
     public void orderDetailsButtonOnAction() throws IOException {
-        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        // WKLEJ TO
         ProductOrder selectedOrder;
         if (tabText.getText().equals("Current orders"))
             selectedOrder = currentOrdersTable.getSelectionModel().getSelectedItem();
@@ -589,9 +563,6 @@ public class ClientPanelController implements Initializable {
         stage.setTitle("Order details");
         stage.show();
     }
-
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    // WKLEJ TO
 
     // Additional functions
     public void clearFilters(){

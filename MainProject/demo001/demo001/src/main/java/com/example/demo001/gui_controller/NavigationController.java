@@ -70,6 +70,7 @@ public class NavigationController {
 
     ////////////////////////////////Factory manager variables
     public static ProductionAbility productionAbilityToUpdate;
+    public static ProductionAbility productionAbilityToDelete;
 
     //////////////////////////////Confirmation box variables (Order)
     public static boolean result;
@@ -96,5 +97,12 @@ public class NavigationController {
     public static Product product;
     public static boolean addProduct;
     public static int orderScreenToFrontClient;
+
+
+    public static boolean wantToDelete = false;
+    public static int ordersIndex;
+    public static CartWrapperController productToDelete;
+
+    public static Scene oldClient;
 
 }

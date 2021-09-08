@@ -4,6 +4,7 @@ import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Factory.Factory;
 import com.example.demo001.domain.OrderManagement.OrderItem;
+import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
 import com.example.demo001.domain.Transport.TransportProvider;
@@ -489,8 +490,8 @@ public class OrderManagerPanelController implements Initializable {
         // Getting available transport
 
         //get transport providers for selected order
-        transportProviders = Collections.emptyList();//this.transportProviderService.getPossibleTransportProvidersForProductOrder(NavigationController.selectedOrderId);
-
+        transportProviders = this.transportProviderService.getPossibleTransportProvidersForProductOrder(NavigationController.selectedOrderId);
+        //Collections.emptyList();
         //extract the names of transport providers for selected order
         transportProvidersNames = FXCollections.observableArrayList(transportProviders.stream()
                 .map(TransportProvider::getUserName).collect(Collectors.toList()));
@@ -587,6 +588,8 @@ public class OrderManagerPanelController implements Initializable {
 
     public void summarySendOfferButtonOnAction() throws IOException {
         NavigationController.summarySendOffer = true;
+        NavigationController.selectedOrder.setOrderStatus(OrderStatus.PENDING_TP);
+        this.productOrderService.modifyOrder(NavigationController.selectedOrder);
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
         Scene scene = new Scene(root);

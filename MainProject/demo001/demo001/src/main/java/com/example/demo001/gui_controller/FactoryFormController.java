@@ -113,7 +113,7 @@ public class FactoryFormController {
 
             //może to dać do serwisu
             this.productionAbilityService.newProductionAbilityForFactory(this.sessionFactory, productionAbility);
-
+            NavigationController.addProduct = true;
             //users.add(newUser);
             System.out.println("Dodano produkty");
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();

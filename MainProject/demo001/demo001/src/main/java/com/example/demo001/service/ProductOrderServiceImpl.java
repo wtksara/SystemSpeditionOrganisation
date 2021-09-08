@@ -3,6 +3,7 @@ package com.example.demo001.service;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
+import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.repository.ProductOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,28 +75,38 @@ public class ProductOrderServiceImpl implements ProductOrderService {
                 .findProductOrdersByOrderStatus(OrderStatus.DELIVERED);
         results.addAll(productOrderRepository
                 .findProductOrdersByOrderStatus(OrderStatus.REJECTED));
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.PENDING_TP));
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.OFFER_SENT));
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.ACCEPTED));
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.COMPLETED));
+        results.addAll(productOrderRepository
+                .findProductOrdersByOrderStatus(OrderStatus.IN_TRANSPORT));
         return results;
     }
 
     @Override
-    public List<ProductOrder> findOrdersByTransportProvider(String transportProviderName) {
+    public List<ProductOrder> findOrdersByTransportProvider(TransportProvider transportProvider) {
         List<ProductOrder> results = productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus
-                        (transportProviderName, OrderStatus.COMPLETED);
+                        (transportProvider, OrderStatus.COMPLETED);
         results.addAll(productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus
-                        (transportProviderName, OrderStatus.IN_TRANSPORT));
+                        (transportProvider, OrderStatus.IN_TRANSPORT));
         results.addAll(productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus
-                        (transportProviderName, OrderStatus.DELIVERED));
+                        (transportProvider, OrderStatus.DELIVERED));
         return results;
     }
 
     @Override
-    public List<ProductOrder> findPendingOrdersByTransportProvider(String transportProviderName) {
+    public List<ProductOrder> findPendingOrdersByTransportProvider(TransportProvider transportProvider) {
         return productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus
-                        (transportProviderName, OrderStatus.PENDING_TP);
+                        (transportProvider, OrderStatus.PENDING_TP);
     }
 
     @Override
@@ -106,12 +117,12 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
-    public List<ProductOrder> findActualOrdersByTransportProvider(String transportProviderName) //Dodane przez Pawla
+    public List<ProductOrder> findActualOrdersByTransportProvider(TransportProvider transportProvider) //Dodane przez Pawla
     {
         List<ProductOrder> results = new ArrayList<ProductOrder>();
         List<ProductOrder> allOrders = productOrderRepository.findAll();
         for(ProductOrder order : allOrders){
-            if(order.getOrderTransportProvider().getUserName().equals(transportProviderName)&& order.getOrderStatus()==OrderStatus.IN_TRANSPORT)
+            if(order.getOrderTransportProvider().getUserName().equals(transportProvider.getUserName())&& order.getOrderStatus()==OrderStatus.IN_TRANSPORT)
             {
                 results.add(order);
             }
@@ -120,12 +131,12 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
-    public List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(String transportProviderName) //Dodane przez Pawla
+    public List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(TransportProvider transportProviderName) //Dodane przez Pawla
     {
         List<ProductOrder> results = new ArrayList<ProductOrder>();
         List<ProductOrder> allOrders = productOrderRepository.findAll();
         for(ProductOrder order : allOrders){
-            if(order.getOrderTransportProvider().getUserName().equals(transportProviderName)&& order.getOrderStatus()==OrderStatus.PENDING_TP)
+            if(order.getOrderTransportProvider().getUserName().equals(transportProviderName.getUserName())&& order.getOrderStatus()==OrderStatus.PENDING_TP)
             {
                 results.add(order);
             }
