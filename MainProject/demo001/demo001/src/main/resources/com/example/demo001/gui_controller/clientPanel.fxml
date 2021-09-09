@@ -418,10 +418,9 @@
                      <center>
                         <TableView fx:id="currentOrdersTable" prefHeight="430.0" prefWidth="748.0" BorderPane.alignment="CENTER">
                            <columns>
-                              <TableColumn fx:id="checkBoxColumn" prefWidth="52.800002336502075" text="Select" />
                               <TableColumn fx:id="currentOrderIdColumn" prefWidth="60.799991607666016" text="ID" />
                               <TableColumn fx:id="currentOrderCompanyColumn" prefWidth="297.59999084472656" text="Company" />
-                              <TableColumn fx:id="currentOrderAmountColumn" prefWidth="114.4000244140625" text="Amount" />
+                              <TableColumn fx:id="currentOrderAmountColumn" prefWidth="114.4000244140625" text="Prize" />
                               <TableColumn fx:id="currentOrderStatusColumn" prefWidth="188.7999267578125" text="Status" />
                            </columns>
                            <BorderPane.margin>

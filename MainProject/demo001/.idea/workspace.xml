@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Kwiat jednej nocy.">
+    <list default="true" id="9f8f08a9-5fc4-46f7-ba0f-81d691abff2f" name="Default Changelist" comment="Problem wczorajszego popołudnia.">
       <change beforePath="$PROJECT_DIR$/.idea/demo001.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo001.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/fontawesomefx_commons_9_1_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/fontawesomefx_fontawesome_4_7_0_9_1_2.xml" beforeDir="false" />
@@ -409,7 +409,7 @@
       <workItem from="1631132508868" duration="2351000" />
       <workItem from="1631135047930" duration="9684000" />
       <workItem from="1631168656843" duration="2849000" />
-      <workItem from="1631171547493" duration="10924000" />
+      <workItem from="1631171547493" duration="16472000" />
     </task>
     <task id="LOCAL-00001" summary="Connected frontend and backend.">
       <created>1624702248314</created>
@@ -439,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631177348407</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Problem wczorajszego popołudnia.">
+      <created>1631182826465</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631182826465</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +481,8 @@
     <MESSAGE value="Potężny commit." />
     <MESSAGE value="Mniej potężny commit." />
     <MESSAGE value="Kwiat jednej nocy." />
-    <option name="LAST_COMMIT_MESSAGE" value="Kwiat jednej nocy." />
+    <MESSAGE value="Problem wczorajszego popołudnia." />
+    <option name="LAST_COMMIT_MESSAGE" value="Problem wczorajszego popołudnia." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -500,29 +508,9 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>468</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductOrderServiceImpl.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/ProductFormController.java</url>
           <line>65</line>
           <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
-          <line>598</line>
-          <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/FactoryServiceImpl.java</url>
@@ -545,29 +533,24 @@
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/OrderItemServiceImpl.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="121" />
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
+          <line>477</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="122" />
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="123" />
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="129" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="125" />
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
+          <line>626</line>
+          <option name="timeStamp" value="134" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

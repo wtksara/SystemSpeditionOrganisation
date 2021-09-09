@@ -137,7 +137,7 @@ public class OrderManagerPanelController implements Initializable {
     @FXML
     private TableColumn<OrderItem, String> summaryProductColumn;
     @FXML
-    private TableColumn<OrderItem, Integer> summaryAmountOfProductColumn;
+    private TableColumn<OrderItem, Number> summaryAmountOfProductColumn;
     @FXML
     private TableColumn<OrderItem, String>summaryFactoryColumn;
 
@@ -165,6 +165,9 @@ public class OrderManagerPanelController implements Initializable {
 
     @Autowired
     private TransportProviderService transportProviderService;
+
+    @Autowired
+    private FactoryService factoryService;
 
     @SneakyThrows
     @Override
@@ -295,13 +298,13 @@ public class OrderManagerPanelController implements Initializable {
         orderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderClient().getUserId()));
         statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
         clientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
-        transportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
+        //transportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
 
         //get all orders that have been issued from base
         users = FXCollections.observableArrayList(productOrderService.findAllHistoricOrders());
 
-         orderDetailsButton.disableProperty().bind(Bindings.isNull (
-                usersTable.getSelectionModel().selectedItemProperty()));  // ODKOMENTOWAĆ
+         /*orderDetailsButton.disableProperty().bind(Bindings.isNull (
+                usersTable.getSelectionModel().selectedItemProperty()));  // ODKOMENTOWAĆ*/
 
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view
@@ -353,8 +356,8 @@ public class OrderManagerPanelController implements Initializable {
         NavigationController.createOffer = false;
         //////////////////////TU ZMIANA BO NIE DZIAŁAŁO
         //NavigationController.selectedOrder = this.productOrderService.findOrderByID(createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId());
-        NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
-        //NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
+        //NavigationController.selectedOrderId = createOfferUsersTable.getSelectionModel().getSelectedItem().getOrderId();
+        NavigationController.selectedOrder = createOfferUsersTable.getSelectionModel().getSelectedItem();
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(OrderDetailsController.class);
         Scene scene = new Scene(root);
@@ -374,7 +377,7 @@ public class OrderManagerPanelController implements Initializable {
 
         createOfferOrderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         createOfferStatusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
-        createOfferClientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
+        createOfferClientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
         //createOfferTransportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
 
         ////users = FXCollections.observableArrayList(UsersRepository.getUsers());
@@ -419,8 +422,8 @@ public class OrderManagerPanelController implements Initializable {
 
 //        idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
 //        clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
-        idOrderField.setText(Long.toString(NavigationController.selectedOrderId));
-        clientOrderField.setText(NavigationController.selectedOrderClientName);
+        idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+        clientOrderField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
 //        idOrderField.setText(Long.toString(NavigationController.selectedOrderId));
         //clientOrderField.setText(productOrder.getOrderClient().getUserName());
 //        statusOrderField.setText(this.productOrderService.findOrderByID(NavigationController.selectedOrderId).getOrderStatus().name());
@@ -432,7 +435,7 @@ public class OrderManagerPanelController implements Initializable {
         // Backend to do
         // Normally taken the list of product for selected order - sth similiary for check already done
         //productsArray = FXCollections.observableArrayList(NavigationController.selectedOrder.getOrderedProducts());
-        productsArray = FXCollections.observableArrayList(this.orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+        productsArray = FXCollections.observableArrayList(this.orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrder.getOrderId()));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
@@ -471,7 +474,9 @@ public class OrderManagerPanelController implements Initializable {
                         comboBox.setOnAction(event -> {
                             // Backend to do
                             // Changing the company for selected one
-                            product.setFactory((Factory) comboBox.getValue());
+                            product.setFactory(factoryService.findByName(comboBox.getValue().toString()));
+                            NavigationController.offerOrderItems = productsArray;
+                            setupTransportProviders();
                         });
                         setGraphic(comboBox);
                         setText(null);
@@ -490,7 +495,26 @@ public class OrderManagerPanelController implements Initializable {
         // Getting available transport
 
         //get transport providers for selected order
-        transportProviders = this.transportProviderService.getPossibleTransportProvidersForProductOrder(NavigationController.selectedOrderId);
+        setupTransportProviders();
+
+        if(NavigationController.result){
+            NavigationController.result = false;
+            // Backend
+            // Deleting order from preparing list to do
+            //users.remove(NavigationController.selectedOrder);
+            tabText.setText("Create a offer");
+            createOfferPage.toFront();
+            try{createOfferButtonOnAction();}
+            catch(IOException e){}
+        }
+    }
+
+    private void setupTransportProviders(){
+        if(ifFactoriesInitialised()) {
+            transportProviders = this.transportProviderService.getPossibleTransportProvidersForProductOrder(NavigationController.selectedOrder.getOrderId());
+        }else{
+            transportProviders = Collections.emptyList();
+        }
         //Collections.emptyList();
         //extract the names of transport providers for selected order
         transportProvidersNames = FXCollections.observableArrayList(transportProviders.stream()
@@ -508,17 +532,18 @@ public class OrderManagerPanelController implements Initializable {
                     .filter(transportProvider -> transportProvider.getUserName().equals(transportProviderCombobox.getValue()))
                     .findFirst().get());
         });
+    }
 
-        if(NavigationController.result){
-            NavigationController.result = false;
-            // Backend
-            // Deleting order from preparing list to do
-            //users.remove(NavigationController.selectedOrder);
-            tabText.setText("Create a offer");
-            createOfferPage.toFront();
-            try{createOfferButtonOnAction();}
-            catch(IOException e){}
+    private boolean ifFactoriesInitialised(){
+        if(NavigationController.offerOrderItems == null || NavigationController.offerOrderItems.isEmpty()){
+            return false;
         }
+        for(OrderItem orderItem : NavigationController.offerOrderItems){
+            if(orderItem.getFactory() == null){
+                return false;
+            }
+        }
+        return true;
     }
 
     private String currentFactory(OrderItem orderItem)
@@ -545,21 +570,26 @@ public class OrderManagerPanelController implements Initializable {
         summaryGoBackToCategoryButton.setDisable(false);
         summaryNewOfferPage.toFront();
 
-        summaryIdOrderField.setText(Long.toString(NavigationController.selectedOrderId));
-        summaryCompanyField.setText(NavigationController.selectedOrderClientName);
-        //summaryAmountField.setText(NavigationController.selectedOrder.getSurname());
-        summaryTransportProviderField.setText(NavigationController.selectedOrderTransportProviderName);
+        summaryIdOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
+        //summaryCompanyField.setText(NavigationController.selectedOrder);
+        double price = 0;
+        for (OrderItem item : NavigationController.offerOrderItems) {
+            price += item.getProductAmount() * item.getProduct().getProductPrize();
+        }
+        summaryAmountField.setText(Double.toString(price));
+        //String transportProviderName = NavigationController.selectedOrder.getOrderTransportProvider().getUserName();
+        summaryTransportProviderField.setText(NavigationController.selectedOrder.getOrderTransportProvider().getUserName());
 
         summaryProductsTable.getStylesheets().add("sample/styling/tableView.css");
         summaryProductsTable.getStyleClass().add("tableview");
 
         summaryIdProductColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProduct().getProductId()));
         summaryProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
-        //summaryAmountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().surnameProperty());
+        summaryAmountOfProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getProductAmount()));
         summaryFactoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
 
 
-        productsArray = FXCollections.observableArrayList(this.orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+        productsArray = FXCollections.observableArrayList(NavigationController.offerOrderItems);
 
 
         summaryProductsTable.setItems(productsArray);
@@ -588,8 +618,15 @@ public class OrderManagerPanelController implements Initializable {
 
     public void summarySendOfferButtonOnAction() throws IOException {
         NavigationController.summarySendOffer = true;
+
+        for (OrderItem orderItem : NavigationController.offerOrderItems) {
+            this.orderItemService.modifyOrderItem(orderItem);
+        }
+
         NavigationController.selectedOrder.setOrderStatus(OrderStatus.PENDING_TP);
         this.productOrderService.modifyOrder(NavigationController.selectedOrder);
+
+
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
         Scene scene = new Scene(root);

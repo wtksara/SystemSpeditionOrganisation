@@ -60,27 +60,17 @@
                                 <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="54.40001220703124" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <TextField fx:id="factoryNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Factory name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="fabryczka" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                <TextField fx:id="factoryNameField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Factory name" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </TextField>
-                                <TextField fx:id="factoryIdField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Factory ID" style="-fx-background-radius: 90; -fx-background-color: #e0e0e0; -fx-border-color: transparent;" text="1" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </TextField>
-                                <TextField fx:id="localizationField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Localization" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" text="Gliwice" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                                <TextField fx:id="localizationField" editable="false" prefHeight="38.0" prefWidth="272.0" promptText="    Localization" style="-fx-background-radius: 90; -fx-border-color: transparent; -fx-background-color: #e0e0e0;" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </TextField>
                                 <Label text="Factory name" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Factory ID" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <font>
                                         <Font size="16.0" />
                                     </font>

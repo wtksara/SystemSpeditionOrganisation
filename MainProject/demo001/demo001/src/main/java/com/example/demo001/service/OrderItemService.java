@@ -10,4 +10,5 @@ public interface OrderItemService {
     List<OrderItem> FindOrderItemsByOrder(long orderID);
     ServiceErrorCode setFactoryForOrderItem(OrderItem actualOrderItem, Factory chosenFactory);
     List<Factory> getPossibleFactories(OrderItem actualOrderItem);//lista fabryk w których można wyprodukować produkt z tego OrderItem
+    ServiceErrorCode modifyOrderItem(OrderItem orderItem);
 }

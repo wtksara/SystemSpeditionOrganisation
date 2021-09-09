@@ -8,6 +8,7 @@ import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Transport.City;
 import com.example.demo001.domain.Transport.Connection;
 import com.example.demo001.domain.Transport.TransportProvider;
+import com.example.demo001.gui_controller.NavigationController;
 import com.example.demo001.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,9 +63,8 @@ public class TransportProviderServiceImpl implements TransportProviderService{
 
         List<TransportProvider> possibleTransportProviders = new ArrayList<>();
 
-        List<OrderItem> orderItems = this.orderItemRepository.getOrderItemsByOrder_OrderId(productOrderId);
 
-        for(OrderItem orderItem : orderItems){
+        for(OrderItem orderItem : NavigationController.offerOrderItems){
             possibleTransportProviders.addAll(getPossibleTransportProvidersForOrderItem(productOrder, orderItem));
         }
 

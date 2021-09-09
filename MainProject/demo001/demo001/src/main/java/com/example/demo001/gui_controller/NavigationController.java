@@ -2,12 +2,14 @@ package com.example.demo001.gui_controller;
 
 import com.example.demo001.domain.Factory.Factory;
 import com.example.demo001.domain.Factory.ProductionAbility;
+import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -106,5 +108,7 @@ public class NavigationController {
     public static CartWrapperController productToDelete;
 
     public static Scene oldClient;
+
+    public static List<OrderItem> offerOrderItems = new ArrayList<>();
 
 }

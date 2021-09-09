@@ -4,6 +4,7 @@ import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
 import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.OrderManagement.OrderItem;
+import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Transport.TransportProvider;
 import com.example.demo001.service.OrderItemService;
@@ -65,11 +66,14 @@ public class OrderDetailsController {
 
         NavigationController.lastScene2 = NavigationController.lastScene;
         NavigationController.lastSceneName2 = NavigationController.lastSceneName;
-        ProductOrder currentOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
+
+        ProductOrder currentOrder = NavigationController.selectedOrder;
+
+        /*ProductOrder currentOrder = this.productOrderService.findOrderByID(NavigationController.selectedOrderId);
         NavigationController.selectedOrder = currentOrder;
         NavigationController.selectedOrderId = currentOrder.getOrderId();
         NavigationController.selectedOrderStatusName = currentOrder.getOrderStatus().name();
-        NavigationController.selectedOrderClientName = currentOrder.getOrderClient().getUserName();
+        NavigationController.selectedOrderClientName = currentOrder.getOrderClient().getUserName();*/
        // NavigationController.selectedOrderTransportProviderName = currentOrder.getOrderTransportProvider().getUserName();
         if (NavigationController.orderDetailsType == true) {
             //ProductOrder currentOrder = NavigationController.selectedOrder;
@@ -79,11 +83,15 @@ public class OrderDetailsController {
         idOrderField.setText(Integer.toString((int) currentOrder.getOrderId()));
         statusField.setText(currentOrder.getOrderStatus().toString());
             clientField.setText(currentOrder.getOrderClient().getUserName());
+
+        if(currentOrder.getOrderStatus() != OrderStatus.ISSUED && currentOrder.getOrderStatus() != OrderStatus.LKN_4_TP && currentOrder.getOrderStatus() != OrderStatus.PENDING_TP)
             transportField.setText(currentOrder.getOrderTransportProvider().getUserName());
+        else
+            transportField.setText("N/A");
         // TODO: 28.06.2021  cena zamówienia
 
         //download list of orderitems from db
-        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrder.getOrderId()));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
@@ -91,7 +99,10 @@ public class OrderDetailsController {
         idProductColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int) cellData.getValue().getId()));
         productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
         amountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getProductAmount())));
+        if(currentOrder.getOrderStatus() != OrderStatus.ISSUED)
             factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+        else
+            factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty("N/A"));
         productsTable.setItems(products);
         }
         else{
@@ -105,7 +116,10 @@ public class OrderDetailsController {
             idOrderField.setText(Integer.toString((int) currentOrder.getOrderId()));
             statusField.setText(currentOrder.getOrderStatus().toString());
             clientField.setText(currentOrder.getOrderClient().getUserName());
-            transportField.setText(currentOrder.getOrderTransportProvider().getUserName());
+            if(currentOrder.getOrderStatus() != OrderStatus.ISSUED && currentOrder.getOrderStatus() != OrderStatus.LKN_4_TP && currentOrder.getOrderStatus() != OrderStatus.PENDING_TP)
+                transportField.setText(currentOrder.getOrderTransportProvider().getUserName());
+            else
+                transportField.setText("N/A");
             /*idOrderField.setText(Long.toString(NavigationController.selectedOrder.getOrderId()));
             statusField.setText(NavigationController.selectedOrder.getOrderStatus().toString());
             clientField.setText(NavigationController.selectedOrder.getOrderClient().getUserName());
@@ -113,7 +127,7 @@ public class OrderDetailsController {
         // TODO: 28.06.2021  cena zamówienia
 
         //download list of orderitems from db
-        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrderId));
+        products = FXCollections.observableArrayList(orderItemService.FindOrderItemsByOrder(NavigationController.selectedOrder.getOrderId()));
 
         productsTable.getStylesheets().add("sample/styling/tableView.css");
         productsTable.getStyleClass().add("tableview");
@@ -122,7 +136,10 @@ public class OrderDetailsController {
         //productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
             productColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProduct().getProductName()));
         amountOfProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getProductAmount())));
-        factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+        if(currentOrder.getOrderStatus() != OrderStatus.ISSUED)
+            factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactory().getFactoryName()));
+        else
+            factoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty("N/A"));
         factoryColumn.setVisible(false);
         productsTable.setItems(products);
 
