@@ -32,7 +32,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
         }
         ProductOrder pord = ord.get();
         pord.setOrderStatus(order.getOrderStatus());
-        pord.setOrderTransportProvider(pord.getOrderTransportProvider());
+        pord.setOrderTransportProvider(order.getOrderTransportProvider());
         pord = productOrderRepository.save(pord);
         if(pord == null) {
             return ServiceErrorCode.INTERNAL_SERVER_ERROR;
@@ -99,6 +99,9 @@ public class ProductOrderServiceImpl implements ProductOrderService {
         results.addAll(productOrderRepository
                 .findProductOrderByOrderTransportProviderAndOrderStatus
                         (transportProvider, OrderStatus.DELIVERED));
+        results.addAll(productOrderRepository
+                .findProductOrderByOrderTransportProviderAndOrderStatus
+                        (transportProvider, OrderStatus.ACCEPTED));
         return results;
     }
 
@@ -133,6 +136,8 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     @Override
     public List<ProductOrder> findPendingOrdersForTransportProviderByTransportProvider(TransportProvider transportProviderName) //Dodane przez Pawla
     {
+
+
         List<ProductOrder> results = new ArrayList<ProductOrder>();
         List<ProductOrder> allOrders = productOrderRepository.findAll();
         for(ProductOrder order : allOrders){

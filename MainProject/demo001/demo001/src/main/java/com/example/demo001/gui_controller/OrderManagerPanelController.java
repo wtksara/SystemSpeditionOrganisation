@@ -295,7 +295,7 @@ public class OrderManagerPanelController implements Initializable {
         tabText.setText("Manage offers");
         manageUserPage.toFront();
 
-        orderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderClient().getUserId()));
+        orderIDColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderStatus().toString()));
         clientOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
         //transportProviderOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderTransportProvider().getUserName()));
@@ -528,9 +528,11 @@ public class OrderManagerPanelController implements Initializable {
 
             //set chosen TransportProvider object from session TransportProvider's list
             //for selected Order
-            NavigationController.selectedOrder.setOrderTransportProvider(transportProviders.stream()
-                    .filter(transportProvider -> transportProvider.getUserName().equals(transportProviderCombobox.getValue()))
-                    .findFirst().get());
+            TransportProvider transProv = transportProviderService.findByUsername(transportProviderCombobox.getValue().toString());
+            NavigationController.selectedOrder.setOrderTransportProvider(transProv);
+//            NavigationController.selectedOrder.setOrderTransportProvider(transportProviders.stream()
+//                    .filter(transportProvider -> transportProvider.getUserName().equals(transportProviderCombobox.getValue()))
+//                    .findFirst().get());
         });
     }
 

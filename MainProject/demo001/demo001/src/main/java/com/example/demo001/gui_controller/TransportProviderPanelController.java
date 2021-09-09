@@ -234,7 +234,7 @@ public class TransportProviderPanelController implements Initializable {
         // (order/route ID, client name, from (city), to = destination (city), order state)
 
         TransportProvider tp = transportProviderService.findByUsername(NavigationController.username);
-        ordersTable = FXCollections.observableArrayList(productOrderService.findActualOrdersByTransportProvider(tp));
+        ordersTable = FXCollections.observableArrayList(productOrderService.findOrdersByTransportProvider(tp));
 
         idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getOrderId()));
         clientNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOrderClient().getUserName()));
@@ -303,7 +303,7 @@ public class TransportProviderPanelController implements Initializable {
 
         //pobieranie danych
         TransportProvider tp = transportProviderService.findByUsername(NavigationController.username);
-        ordersTable = FXCollections.observableArrayList(productOrderService.findPendingOrdersForTransportProviderByTransportProvider(tp));
+        ordersTable = FXCollections.observableArrayList(productOrderService.findPendingOrdersByTransportProvider(tp));
         //ordersTable = FXCollections.observableArrayList();
         acceptTransportButton.disableProperty().bind(Bindings.isNull (
                 pendingOrdersView.getSelectionModel().selectedItemProperty()));

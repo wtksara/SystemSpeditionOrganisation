@@ -483,7 +483,7 @@ public class ClientPanelController implements Initializable {
 
         idOrderColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getProductOrder().getOrderId()));
 
-        costOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getOrderCost())));
+       // costOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getOrderCost())));
 
         statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductOrder().getOrderStatus().toString()));
         orderDetailsButton.disableProperty().bind(Bindings.isNull(
