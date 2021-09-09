@@ -101,6 +101,8 @@ public class ClientPanelController implements Initializable {
     @FXML
     private TextField currentOrderSearchField;
     @FXML
+    private TableColumn <OrderWrapperController, String> companyOrderColumn;
+    @FXML
     private Button currentOrderDetailsButton;
 
     // History tab
@@ -109,7 +111,7 @@ public class ClientPanelController implements Initializable {
     @FXML
     private TableColumn <OrderWrapperController, Number> idOrderColumn;
     @FXML
-    private TableColumn <OrderWrapperController, String> costOrderColumn;
+    private TableColumn <OrderWrapperController, String> amountOrderColumn;
     @FXML
     private TableColumn <OrderWrapperController, String> statusOrderColumn;
     @FXML
@@ -445,6 +447,8 @@ public class ClientPanelController implements Initializable {
     public void acceptButtonOnAction(){
         OrderWrapperController selectedOrder = currentOrdersTable.getSelectionModel().getSelectedItem();
         if(selectedOrder.getProductOrder().getOrderStatus() == OrderStatus.OFFER_SENT) { //tylko jesli do zaakceptowania
+            selectedOrder.getProductOrder().setOrderStatus(OrderStatus.ACCEPTED);
+            productOrderService.modifyOrder(selectedOrder.getProductOrder());
             /*orderedItems = orderItemService.FindOrderItemsByOrder(selectedOrder.productOrder.getOrderId());
             selectedOrder.getProductOrder().setOrderStatus(OrderStatus.ACCEPTED);
             for(OrderItem orderItem : orderedItems)
@@ -458,7 +462,6 @@ public class ClientPanelController implements Initializable {
                 productionAbilityToModify.setProductAmount(newProductAmount);
                 productionAbilityService.updateProductionAbilityAmount(productionAbilityToModify);
             }*/
-            productOrderService.modifyOrder(selectedOrder.getProductOrder());
         }
     }
 
@@ -503,11 +506,11 @@ public class ClientPanelController implements Initializable {
 
         idOrderColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int)cellData.getValue().getProductOrder().getOrderId()));
 
-       // costOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getOrderCost())));
-
+        amountOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getOrderCost())));
+        companyOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductOrder().getOrderTransportProvider().getUserName()));
         statusOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductOrder().getOrderStatus().toString()));
-        orderDetailsButton.disableProperty().bind(Bindings.isNull(
-                historyTable.getSelectionModel().selectedItemProperty()));
+        /*orderDetailsButton.disableProperty().bind(Bindings.isNull(
+                historyTable.getSelectionModel().selectedItemProperty()));*/
 
         // This could also be taken out but it depends if there will be different data in table view.
         // Searching in table view

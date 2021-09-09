@@ -361,10 +361,10 @@
                         </Button>
                         <TableView fx:id="createOrderTable" maxWidth="700.0" minHeight="350.0" prefHeight="386.0" prefWidth="670.0" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="1" GridPane.rowSpan="3">
                            <columns>
-                              <TableColumn fx:id="createOrderIDColumn" prefWidth="52.799991607666016" text="ID" />
+                              <!--<TableColumn fx:id="createOrderIDColumn" prefWidth="52.799991607666016" text="ID" />-->
                               <TableColumn fx:id="createOrderItemColumn" prefWidth="108.00006103515625" text="Item" />
-                              <TableColumn fx:id="createOrderCompanyColumn" prefWidth="154.40003967285156" text="Company" />
-                              <TableColumn fx:id="createOrderStatusColumn" prefWidth="204.79998779296875" text="Status" />
+                              <!--<TableColumn fx:id="createOrderCompanyColumn" prefWidth="154.40003967285156" text="Company" />
+                              <TableColumn fx:id="createOrderStatusColumn" prefWidth="204.79998779296875" text="Status" />-->
                               <TableColumn fx:id="addToBasketButtonColumn" prefWidth="128.0" />
                            </columns>
                         </TableView>
