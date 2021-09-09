@@ -213,7 +213,7 @@ public class AdministratorPanelController implements Initializable {
 
         idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getUserId()));
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUserName()));
-        surnameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUserName()));
+        surnameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUserRole().toString()));
 
         //pobieranie danych
         users = FXCollections.observableArrayList(basicUserService.findAll());

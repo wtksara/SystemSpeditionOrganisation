@@ -48,7 +48,7 @@ public class LoginController {
 
         if(user!=null)
         {
-            if(user.getUserPassword().equals(enc))
+            if(user.getUserPassword().equals(enc) && user.isActive())
                 passwordOK=true;
         }
         if(passwordOK){

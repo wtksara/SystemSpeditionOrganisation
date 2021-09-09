@@ -42,7 +42,7 @@
                                     <columns>
                                         <TableColumn fx:id="idColumn" prefWidth="40.79998779296875" text="ID" />
                                         <TableColumn fx:id="nameColumn" prefWidth="96.79995727539062" text="Name" />
-                                        <TableColumn fx:id="surnameColumn" prefWidth="99.199951171875" text="Surname" />
+                                        <TableColumn fx:id="surnameColumn" prefWidth="99.199951171875" text="Role" />
                                     </columns>
                                     <BorderPane.margin>
                                         <Insets left="10.0" />

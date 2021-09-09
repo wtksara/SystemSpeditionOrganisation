@@ -4,6 +4,7 @@ import com.example.demo001.domain.Factory.Factory;
 import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.OrderManagement.OrderItem;
+import com.example.demo001.domain.Products.Product;
 import com.example.demo001.gui_controller.NavigationController;
 import com.example.demo001.repository.FactoryRepository;
 import com.example.demo001.repository.ProductionAbilityRepository;
@@ -83,6 +84,17 @@ public class ProductionAbilityServiceImpl implements ProductionAbilityService {
         ProductionAbility changedProductionAbility = productionAbilityRepository.getProductionAbilityById(productionAbility.getId());
         changedProductionAbility.setProductAmount(productionAbility.getProductAmount());
         productionAbilityRepository.save(changedProductionAbility);
+    }
+
+    @Override
+    public ProductionAbility getProductionAbilityAmountByProductAndFactory(Factory factory, Product product) {
+        Factory factoryToModify = factoryRepository.getFactoryByFactoryName(factory.getFactoryName());
+        for(ProductionAbility productionAbility : factoryToModify.getProducedProducts()){
+            if(productionAbility.getMyProduct().getProductName().equals(product.getProductName())){
+                return productionAbility;
+            }
+        }
+        return null;
     }
 
     @Override

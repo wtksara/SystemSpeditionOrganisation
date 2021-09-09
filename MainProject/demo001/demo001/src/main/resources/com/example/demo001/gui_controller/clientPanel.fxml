@@ -447,11 +447,11 @@
                         <ToolBar maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" BorderPane.alignment="CENTER">
                            <items>
                               <Separator opacity="0.0" prefHeight="42.0" prefWidth="337.0" />
-                              <Button fx:id="orderDetailsButton" mnemonicParsing="false" onAction="#orderDetailsButtonOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
+                              <!--<Button fx:id="orderDetailsButton" mnemonicParsing="false" onAction="#orderDetailsButtonOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
-                              </Button>
+                              </Button>-->
                               <Separator opacity="0.0" prefHeight="42.0" prefWidth="10.0" />
                               <Button maxWidth="250.0" minHeight="35.0" minWidth="250.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
                                  <graphic>

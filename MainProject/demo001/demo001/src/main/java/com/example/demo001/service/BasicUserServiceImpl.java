@@ -37,7 +37,8 @@ public class BasicUserServiceImpl implements BasicUserService{
         for (BasicUser allBasicUser : allBasicUsers) {
             if (allBasicUser.getUserName().equals(username)) {
                 bUser = allBasicUser;
-                basicUserRepository.delete(bUser);
+                bUser.setActive(false);
+                basicUserRepository.save(bUser);
                 return bUser;
             }
         }

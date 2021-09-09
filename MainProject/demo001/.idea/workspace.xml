@@ -78,16 +78,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/TransportProviderPanelController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderService.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/TransportProviderServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/AdministratorPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/LoginController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/BasicUserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/BasketController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/Demo001SprinBootApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/TransportProviderPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/JavaFxApplication.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1sakCQm49suouTU3t8XlAhn3Wz9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -145,6 +145,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Demo001SprinBootApplication">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="bootRun" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -543,6 +554,16 @@
           <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/gui_controller/OrderManagerPanelController.java</url>
           <line>627</line>
           <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo001/src/main/java/com/example/demo001/service/ProductionAbilityServiceImpl.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="140" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

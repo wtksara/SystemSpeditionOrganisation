@@ -11,4 +11,5 @@ public interface FactoryService {
     Factory findByName(String name);
 
     void deleteProductionAbilityFromFactory(Factory factory, ProductionAbility productionAbility);
+
 }

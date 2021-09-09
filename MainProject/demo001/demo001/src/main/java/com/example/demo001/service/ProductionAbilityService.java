@@ -22,5 +22,7 @@ public interface ProductionAbilityService {
 
     void updateProductionAbilityAmount(ProductionAbility productionAbility);
 
+    ProductionAbility getProductionAbilityAmountByProductAndFactory(Factory factory, Product product);
+
     void deleteProductionAbility(ProductionAbility productionAbility);
 }

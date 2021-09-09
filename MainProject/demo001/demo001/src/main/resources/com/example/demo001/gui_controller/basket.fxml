@@ -18,7 +18,7 @@
             <children>
                 <AnchorPane layoutY="-41.0" prefHeight="78.0" prefWidth="400.0" style="-fx-background-color: #40c4ff;" />
                 <AnchorPane layoutX="-6.0" layoutY="37.0" prefHeight="19.0" prefWidth="407.0" style="-fx-background-color: #000000;" />
-                <GridPane layoutX="28.0" layoutY="74.0" prefHeight="355.0" prefWidth="346.0">
+                <GridPane layoutX="28.0" layoutY="20.0" prefHeight="355.0" prefWidth="346.0">
                     <columnConstraints>
                         <ColumnConstraints />
                         <ColumnConstraints />
@@ -42,7 +42,7 @@
                         <RowConstraints />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="idOrderField" editable="false" prefHeight="30.0" prefWidth="243.0" promptText="    Order number" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="5">
+                        <!--<TextField fx:id="idOrderField" editable="false" prefHeight="30.0" prefWidth="243.0" promptText="    Order number" style="-fx-background-radius: 90; -fx-background-color: #b3e5fc; -fx-border-color: transparent;" GridPane.columnIndex="5">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -61,7 +61,7 @@
                             <font>
                                 <Font size="14.0" />
                             </font>
-                        </TextField>
+                        </TextField>-->
                         <TableView fx:id="productsTable" prefHeight="234.0" prefWidth="348.0" style="-fx-border-color: #ffffff; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #ffffff;" stylesheets="@styling/tableView.css" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
                             <columns>
                                 <TableColumn fx:id="idProductColumn" prefWidth="36.0" text="ID" />

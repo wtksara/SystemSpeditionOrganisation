@@ -3,6 +3,7 @@ package com.example.demo001.gui_controller;
 import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
+import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
@@ -118,6 +119,13 @@ public class ClientPanelController implements Initializable {
 
     @Autowired
     private BasicUserService basicUserService;
+
+    @Autowired
+    private FactoryService factoryService;
+
+    @Autowired
+    private ProductionAbilityService productionAbilityService;
+
 
     private final Cipher cipher = new Cipher();
 
@@ -437,7 +445,19 @@ public class ClientPanelController implements Initializable {
     public void acceptButtonOnAction(){
         OrderWrapperController selectedOrder = currentOrdersTable.getSelectionModel().getSelectedItem();
         if(selectedOrder.getProductOrder().getOrderStatus() == OrderStatus.OFFER_SENT) { //tylko jesli do zaakceptowania
+            /*orderedItems = orderItemService.FindOrderItemsByOrder(selectedOrder.productOrder.getOrderId());
             selectedOrder.getProductOrder().setOrderStatus(OrderStatus.ACCEPTED);
+            for(OrderItem orderItem : orderedItems)
+            {
+                ProductionAbility productionAbilityToModify
+                = productionAbilityService.getProductionAbilityAmountByProductAndFactory(orderItem.getFactory(), orderItem.getProduct());
+                Integer newProductAmount = productionAbilityToModify.getProductAmount() - orderItem.getProductAmount();
+                if(newProductAmount < 0){
+                    newProductAmount = 0;
+                }
+                productionAbilityToModify.setProductAmount(newProductAmount);
+                productionAbilityService.updateProductionAbilityAmount(productionAbilityToModify);
+            }*/
             productOrderService.modifyOrder(selectedOrder.getProductOrder());
         }
     }

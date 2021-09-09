@@ -56,34 +56,34 @@ public class ConfirmationBoxController {
         }
     }
 
-    public void okButtonOnAction(ActionEvent event) throws IOException{
-
-        if(NavigationController.duplicate){
-            NavigationController.duplicate = false;
-        }
-        else if(NavigationController.incorrectLogin){
-            NavigationController.incorrectLogin = false;
-        }
-        if(NavigationController.deleteUser) {
-            // Backend
-            // Deleting chosen user from table - przeniesione z AdministratorPanel
-            /* int selectedId = usersTable.getSelectionModel().getSelectedIndex();
-            //operowanie na kolekcji frontendowej
-            users.remove(selectedId); */
-            NavigationController.deleteUser = false;
-            System.out.println("Usunieto usera");
-        }
-        else if(NavigationController.deleteProducts){
-            // Backend
-            // Deleting chosen products from table - przeniesione z FactoryManagerPanel
-            /* int selectedId = usersTable.getSelectionModel().getSelectedIndex();
-            users.remove(selectedId); */
-            NavigationController.deleteProducts = false;
-            System.out.println("Usunieto produkty");
-        }
-        System.out.println("Ok");
-        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
-    }
+//    public void okButtonOnAction(ActionEvent event) throws IOException{
+//
+//        if(NavigationController.duplicate){
+//            NavigationController.duplicate = false;
+//        }
+//        else if(NavigationController.incorrectLogin){
+//            NavigationController.incorrectLogin = false;
+//        }
+//        if(NavigationController.deleteUser) {
+//            // Backend
+//            // Deleting chosen user from table - przeniesione z AdministratorPanel
+//            /* int selectedId = usersTable.getSelectionModel().getSelectedIndex();
+//            //operowanie na kolekcji frontendowej
+//            users.remove(selectedId); */
+//            NavigationController.deleteUser = false;
+//            System.out.println("Usunieto usera");
+//        }
+//        else if(NavigationController.deleteProducts){
+//            // Backend
+//            // Deleting chosen products from table - przeniesione z FactoryManagerPanel
+//            /* int selectedId = usersTable.getSelectionModel().getSelectedIndex();
+//            users.remove(selectedId); */
+//            NavigationController.deleteProducts = false;
+//            System.out.println("Usunieto produkty");
+//        }
+//        System.out.println("Ok");
+//        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+//    }
 
     public void confirmButton(ActionEvent event) throws IOException{
         if (NavigationController.summarySendOffer){
@@ -208,15 +208,15 @@ public class ConfirmationBoxController {
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }*/
 
-    public Optional<ButtonType> createConfirmation(FXMLLoader fxmlLoader, String message, String title, String textButton1, String textButton2) throws IOException {
-        DialogPane dialogPane = fxmlLoader.load();
-        dialogPane.getStylesheets().add("sample/styling/buttomView.css");
-        setUpController(fxmlLoader,message,textButton1,textButton2);
-        Dialog<ButtonType> dialog = new Dialog <>();
-        dialog.setDialogPane(dialogPane);
-        dialog.setTitle(title);
-        return dialog.showAndWait();
-    }
+//    public Optional<ButtonType> createConfirmation(FXMLLoader fxmlLoader, String message, String title, String textButton1, String textButton2) throws IOException {
+//        DialogPane dialogPane = fxmlLoader.load();
+//        dialogPane.getStylesheets().add("sample/styling/buttomView.css");
+//        setUpController(fxmlLoader,message,textButton1,textButton2);
+//        Dialog<ButtonType> dialog = new Dialog <>();
+//        dialog.setDialogPane(dialogPane);
+//        dialog.setTitle(title);
+//        return dialog.showAndWait();
+//    }
 
     public void setUpController(FXMLLoader fxmlLoader,String message, String textButton1, String textButton2){
         ConfirmationBoxController confirmationBoxController = fxmlLoader.getController();

@@ -252,6 +252,7 @@ public class UserFormController {
                     factoryManager.setUserName(usernameField.getText());
                     factoryManager.setUserPassword(enc);
                     factoryManager.setUserRole(UserRole.FACTORY_MANAGER);
+                    factoryManager.setActive(true);
                     factoryManagerService.addUser(factoryManager);
                     break;
                 case CLIENT:
@@ -260,6 +261,7 @@ public class UserFormController {
                     client.setUserName(usernameField.getText());
                     client.setUserPassword(enc);
                     client.setUserRole(UserRole.CLIENT);
+                    client.setActive(true);
                     clientService.addUser(client);
                     break;
                 case TRANSPORT_PROVIDER:
@@ -268,6 +270,7 @@ public class UserFormController {
                     transportProvider.setUserName(usernameField.getText());
                     transportProvider.setUserPassword(enc);
                     transportProvider.setUserRole(UserRole.TRANSPORT_PROVIDER);
+                    transportProvider.setActive(true);
                     transportProviderService.addUser(transportProvider);
                     break;
                 case ORDER_MANAGER:
@@ -275,6 +278,7 @@ public class UserFormController {
                     orderManager.setUserName(usernameField.getText());
                     orderManager.setUserPassword(enc);
                     orderManager.setUserRole(UserRole.ORDER_MANAGER);
+                    orderManager.setActive(true);
                     orderManagerService.addUser(orderManager);
                     break;
                 case ADMINISTRATOR:
@@ -282,6 +286,7 @@ public class UserFormController {
                     administrator.setUserName(usernameField.getText());
                     administrator.setUserPassword(enc);
                     administrator.setUserRole(UserRole.ADMINISTRATOR);
+                    administrator.setActive(true);
                     basicUserService.addUser(administrator);
                     break;
             }
