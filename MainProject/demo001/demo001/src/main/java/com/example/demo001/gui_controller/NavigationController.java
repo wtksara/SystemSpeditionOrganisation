@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.domain.Factory.Factory;
 import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
 import com.example.demo001.domain.Products.Product;
@@ -71,6 +72,7 @@ public class NavigationController {
     ////////////////////////////////Factory manager variables
     public static ProductionAbility productionAbilityToUpdate;
     public static ProductionAbility productionAbilityToDelete;
+    public static Factory factoryToUpdate;
 
     //////////////////////////////Confirmation box variables (Order)
     public static boolean result;

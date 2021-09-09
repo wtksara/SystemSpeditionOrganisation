@@ -1,5 +1,6 @@
 package com.example.demo001.gui_controller;
 
+import com.example.demo001.service.FactoryService;
 import com.example.demo001.service.ProductionAbilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,9 @@ public class ConfirmationBoxController {
 
     @Autowired
     private ProductionAbilityService productionAbilityService;
+
+    @Autowired
+    private FactoryService factoryService;
 
     public void initialize() {
         if (!NavigationController.alertText.isEmpty()) {
@@ -137,9 +141,17 @@ public class ConfirmationBoxController {
             /*int selectedId = usersTable.getSelectionModel().getSelectedIndex();
             users.remove(selectedId);*/
             NavigationController.factoryManagerScreenToFront =3;
+            this.factoryService.deleteProductionAbilityFromFactory(NavigationController.factoryToUpdate, NavigationController.productionAbilityToDelete);
             this.productionAbilityService.deleteProductionAbility(NavigationController.productionAbilityToDelete);
             NavigationController.deleteProducts = false;
             NavigationController.alertText = "";
+
+
+            NavigationController.stage.close();
+
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+
+
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
             Scene scene = new Scene(root);

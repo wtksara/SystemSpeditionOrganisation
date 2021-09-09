@@ -7,6 +7,7 @@ import com.example.demo001.domain.Transport.TransportProvider;
 import java.util.List;
 
 public interface ProductOrderService {
+
     ProductOrder createOrder(ProductOrder order); //wysłanie zamówienia do bazy
     ServiceErrorCode modifyOrder(ProductOrder order); //zmiana informacji w zamówieniu*/
     List<ProductOrder> findCurrentOrders(Client clientName); //pobranie wszystkich zamówień o danym statusie

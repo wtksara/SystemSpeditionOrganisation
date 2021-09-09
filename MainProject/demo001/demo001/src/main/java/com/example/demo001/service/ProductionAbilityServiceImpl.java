@@ -75,6 +75,7 @@ public class ProductionAbilityServiceImpl implements ProductionAbilityService {
 
     @Override
     public void deleteProductionAbility(ProductionAbility productionAbility) {
+        //this.factoryRepository.deleteFactoryByFactoryName(factory.getFactoryName());
         productionAbilityRepository.deleteById(productionAbility.getId());
     }
 

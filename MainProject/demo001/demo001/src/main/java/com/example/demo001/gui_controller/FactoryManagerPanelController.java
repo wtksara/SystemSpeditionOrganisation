@@ -360,7 +360,9 @@ public class FactoryManagerPanelController implements Initializable {
     public void deleteProductsButtonOnAction() throws IOException { //to delete products from factory
         NavigationController.factoryManagerScreenToFront = 3;
         NavigationController.deleteProducts = true;
+        NavigationController.factoryToUpdate = this.factoryManagerService.findByUsername(NavigationController.username).getManagedFactory();
         NavigationController.productionAbilityToDelete = usersTable.getSelectionModel().getSelectedItem();
+
         NavigationController.alertText = "Do you want to delete these products?";
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ConfirmationBoxController.class);
@@ -382,6 +384,7 @@ public class FactoryManagerPanelController implements Initializable {
     public void updateProductsButtonOnAction() throws IOException { //to update only amount of products in factory
         NavigationController.factoryManagerScreenToFront = 3;
         NavigationController.productionAbilityToUpdate = usersTable.getSelectionModel().getSelectedItem();
+        NavigationController.addProduct = false;
         NavigationController.lastScene = NavigationController.stage.getScene();
         NavigationController.lastSceneName=NavigationController.stage.getTitle();
         FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);

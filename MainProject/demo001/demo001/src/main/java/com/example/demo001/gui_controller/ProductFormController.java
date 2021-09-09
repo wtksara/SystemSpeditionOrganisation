@@ -66,6 +66,7 @@ public class ProductFormController{ // extends ConfirmationBoxController
             this.productionAbilityService.updateProductionAbilityAmount(NavigationController.productionAbilityToUpdate);
             System.out.println("Zaktualizowano produkty");
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            NavigationController.stage.close();
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
             Scene scene = new Scene(root);

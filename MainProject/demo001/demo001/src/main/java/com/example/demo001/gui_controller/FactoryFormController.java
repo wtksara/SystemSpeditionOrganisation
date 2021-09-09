@@ -117,6 +117,7 @@ public class FactoryFormController {
             //users.add(newUser);
             System.out.println("Dodano produkty");
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            NavigationController.stage.close();
             FxWeaver fxWeaver = NavigationController.applicationContext.getBean(FxWeaver.class);
             Parent root = fxWeaver.loadView(FactoryManagerPanelController.class);
             Scene scene = new Scene(root);
