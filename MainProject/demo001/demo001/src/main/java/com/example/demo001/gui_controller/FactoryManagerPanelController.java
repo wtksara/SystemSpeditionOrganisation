@@ -3,6 +3,7 @@ package com.example.demo001.gui_controller;
 import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Factory.Factory;
+import com.example.demo001.domain.Factory.FactoryManager;
 import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.Transport.City;
 import com.example.demo001.service.*;
@@ -227,6 +228,11 @@ public class FactoryManagerPanelController implements Initializable {
         vBox.setBackground(new Background(new BackgroundFill(Color.web("#40c4ff"), CornerRadii.EMPTY, Insets.EMPTY)));
         tabText.setText("My factory");
         myFactoryPage.toFront();
+
+        FactoryManager factoryManager = factoryManagerService.findByUsername(NavigationController.username);
+
+        factoryNameField.setText(factoryManager.getManagedFactory().getFactoryName());
+        localizationField.setText(factoryManager.getManagedFactory().getFactoryLocation().getCityName());
     }
     public void changeFactoryDetailsButtonOnAction() { //to allow the user change information about factory
         factoryNameField.setEditable(true);

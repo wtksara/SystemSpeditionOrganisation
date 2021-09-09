@@ -10,6 +10,7 @@ import com.example.demo001.repository.ProductionAbilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,9 +26,20 @@ public class ProductionAbilityServiceImpl implements ProductionAbilityService {
 
     @Override
     public List<Factory> searchAvailableFactories(OrderItem orderItem) {
-        return factoryRepository.findAll().stream().filter(x ->
+        List<Factory> factories = factoryRepository.findAll();
+        List<Factory> possibleFactories = new ArrayList<>();
+        for(Factory fact : factories){
+            List<ProductionAbility> productionAbilities = fact.getProducedProducts();
+            for(ProductionAbility prodAb : productionAbilities){
+                if(prodAb.getMyProduct().getProductName().equals(orderItem.getProduct().getProductName())){
+                    possibleFactories.add(fact);
+                }
+            }
+        }
+        return possibleFactories;
+        /*return factoryRepository.findAll().stream().filter(x ->
                 x.getProducedProducts().stream().anyMatch(y -> y.getMyProduct() == orderItem.getProduct()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
 
                /* productionAbilityRepository.getAllByMyProduct(orderItem.getProduct())
                 .stream().map(ProductionAbility::getMyFactory).collect(Collectors.toList());*/
