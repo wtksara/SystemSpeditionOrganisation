@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -37,296 +38,6 @@
                </children></VBox>
             <StackPane layoutX="-8.0" layoutY="97.0" prefHeight="504.0" prefWidth="755.0">
                <children>
-                  <GridPane fx:id="categoryPage" layoutX="10.0" layoutY="10.0" prefHeight="504.0" prefWidth="742.0" style="-fx-background-color: #ffffff;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="39.00003662109375" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="144.59996337890624" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="0.0" prefWidth="20.800012207031244" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="144.59997558593753" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.79998779296875" minWidth="10.0" prefWidth="21.4000244140625" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.2000244140625" minWidth="10.0" prefWidth="146.19996337890626" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.60003662109375" minWidth="10.0" prefWidth="19.999951171874955" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.80002441406253" minWidth="0.19990234374995453" prefWidth="143.20004882812498" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.4000366210937" minWidth="10.0" prefWidth="55.999951171874955" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.4000366210937" minWidth="10.0" prefWidth="24.399975585937455" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="60.59998779296875" minHeight="10.0" prefHeight="60.59998779296875" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="184.60001220703123" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="293.800048828125" minHeight="10.0" prefHeight="20.800018310546875" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="293.800048828125" minHeight="10.0" prefHeight="179.99998779296874" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="59.20001220703125" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Button fx:id="categoryButton1" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage1" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel1" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="HARDWARE" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton2" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="2" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage2" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel2" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="TOOLS" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton3" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="3" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage3" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel3" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="WOOD" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton4" minHeight="35.0" minWidth="143.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="190.0" prefWidth="143.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="4" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage4" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel4" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="FLOORING" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton5" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage5" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel5" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="TILES" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton6" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="6" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage6" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel6" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="PAINT" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton7" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="7" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage7" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel7" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="WALLPAPERS" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryButton8" layoutX="382.0" layoutY="277.0" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="8" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <GridPane prefHeight="167.0" prefWidth="133.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <ImageView fx:id="categoryImage8" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
-                                    <Label fx:id="categoryLabel8" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="LIGHTING" textAlignment="RIGHT" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="categoryBasketButton" mnemonicParsing="false" onAction="#basketButtonOnAction" prefHeight="42.0" prefWidth="45.0" style="-fx-background-radius: 15; -fx-background-color: #000000;" textFill="WHITE" GridPane.columnIndex="8">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="20" />
-                           </graphic>
-                           <GridPane.margin>
-                              <Insets left="7.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
                   <GridPane fx:id="productsListPage" layoutX="10.0" layoutY="10.0" prefHeight="504.0" prefWidth="742.0" style="-fx-background-color: #ffffff;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="39.00003662109375" />
@@ -381,54 +92,6 @@
                         </Button>
                      </children>
                   </GridPane>
-                  <BorderPane fx:id="currentOrdersPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" stylesheets="@styling/tableView.css">
-                     <top>
-                        <ToolBar fx:id="toolBar" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" BorderPane.alignment="CENTER">
-                           <items>
-                              <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
-                              <Button fx:id="acceptButton" layoutX="169.0" layoutY="18.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#acceptButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #4caf50;" text="Accept" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="declineButton" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#declineButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #f44336;" text="Decline" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="95.0" />
-                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="44.0" />
-                              <Button fx:id="currentOrderDetailsButton" mnemonicParsing="false" onAction="#orderDetailsButtonOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
-                              <Button maxWidth="250.0" minHeight="35.0" minWidth="250.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
-                                 <graphic>
-                                    <TextField fx:id="currentOrderSearchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
-                                 </graphic>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                           </items>
-                        </ToolBar>
-                     </top>
-                     <center>
-                        <TableView fx:id="currentOrdersTable" prefHeight="430.0" prefWidth="748.0" BorderPane.alignment="CENTER">
-                           <columns>
-                              <TableColumn fx:id="currentOrderIdColumn" prefWidth="60.799991607666016" text="ID" />
-                              <TableColumn fx:id="currentOrderCompanyColumn" prefWidth="297.59999084472656" text="Company" />
-                              <TableColumn fx:id="currentOrderAmountColumn" prefWidth="114.4000244140625" text="Prize" />
-                              <TableColumn fx:id="currentOrderStatusColumn" prefWidth="188.7999267578125" text="Status" />
-                           </columns>
-                           <BorderPane.margin>
-                              <Insets left="7.0" />
-                           </BorderPane.margin>
-                        </TableView>
-                     </center>
-                  </BorderPane>
                   <BorderPane fx:id="historyPage" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" stylesheets="@styling/tableView.css">
                      <left>
                         <TableView fx:id="historyTable" prefHeight="430.0" prefWidth="748.0" stylesheets="@styling/tableView.css" BorderPane.alignment="CENTER_RIGHT">
@@ -523,6 +186,368 @@
                               </Button>
                            </children>
                         </StackPane>
+                     </children>
+                  </GridPane>
+                  <BorderPane fx:id="currentOrdersPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="755.0" stylesheets="@styling/tableView.css">
+                     <top>
+                        <ToolBar fx:id="toolBar" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" BorderPane.alignment="CENTER">
+                           <items>
+                              <Separator layoutX="224.0" layoutY="10.0" opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                              <Button fx:id="acceptButton" layoutX="169.0" layoutY="18.0" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#acceptButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #4caf50;" text="Accept" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="declineButton" minHeight="35.0" minWidth="70.0" mnemonicParsing="false" onAction="#declineButtonOnAction" prefHeight="35.0" prefWidth="86.0" style="-fx-background-radius: 90; -fx-background-color: #f44336;" text="Decline" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="95.0" />
+                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="44.0" />
+                              <Button fx:id="currentOrderDetailsButton" mnemonicParsing="false" onAction="#orderDetailsButtonOnAction" prefHeight="36.0" prefWidth="127.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Order details" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Separator opacity="0.0" prefHeight="50.0" prefWidth="10.0" />
+                              <Button maxWidth="250.0" minHeight="35.0" minWidth="250.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" style="-fx-background-radius: 90; -fx-background-color: #000000;" text="Search" textFill="WHITE">
+                                 <graphic>
+                                    <TextField fx:id="currentOrderSearchField" style="-fx-background-radius: 90; -fx-background-color: #ffffff;" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </top>
+                     <center>
+                        <TableView fx:id="currentOrdersTable" prefHeight="430.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="currentOrderIdColumn" prefWidth="60.799991607666016" text="ID" />
+                              <TableColumn fx:id="currentOrderCompanyColumn" prefWidth="297.59999084472656" text="Company" />
+                              <TableColumn fx:id="currentOrderAmountColumn" prefWidth="114.4000244140625" text="Prize" />
+                              <TableColumn fx:id="currentOrderStatusColumn" prefWidth="188.7999267578125" text="Status" />
+                           </columns>
+                           <BorderPane.margin>
+                              <Insets left="7.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+                  <GridPane fx:id="categoryPage" layoutX="10.0" layoutY="10.0" prefHeight="504.0" prefWidth="742.0" style="-fx-background-color: #ffffff;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="39.00003662109375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="5.5999603271484375" prefWidth="144.59996337890624" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="0.0" prefWidth="20.800012207031244" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="530.4000122070313" minWidth="10.0" prefWidth="144.59997558593753" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.79998779296875" minWidth="10.0" prefWidth="21.4000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.2000244140625" minWidth="10.0" prefWidth="146.19996337890626" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.60003662109375" minWidth="10.0" prefWidth="19.999951171874955" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.80002441406253" minWidth="0.19990234374995453" prefWidth="143.20004882812498" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.4000366210937" minWidth="10.0" prefWidth="55.999951171874955" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.4000366210937" minWidth="10.0" prefWidth="24.399975585937455" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="60.59998779296875" minHeight="10.0" prefHeight="60.59998779296875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.40000000000003" minHeight="2.5999877929687614" prefHeight="184.60001220703123" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="293.800048828125" minHeight="10.0" prefHeight="20.800018310546875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="293.800048828125" minHeight="10.0" prefHeight="179.99998779296874" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="206.19998779296873" minHeight="10.0" prefHeight="59.20001220703125" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="categoryButton1" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage1" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/b.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel1" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Hardware" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton2" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="2" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage2" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/g.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel2" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Tools" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton3" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="3" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage3" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/d.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel3" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Wood" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton4" minHeight="35.0" minWidth="143.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="190.0" prefWidth="143.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="4" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage4" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/c.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel4" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Flooring" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton5" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage5" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/e.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel5" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Tiles" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton6" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="6" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage6" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/a.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel6" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Paint" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton7" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="7" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage7" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/h.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel7" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Wallpapers" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryButton8" layoutX="382.0" layoutY="277.0" minHeight="35.0" minWidth="147.0" mnemonicParsing="false" onAction="#categoryButtonOnAction" prefHeight="199.0" prefWidth="147.0" style="-fx-background-radius: 30; -fx-background-color: #e1f5fe;" text="8" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <GridPane prefHeight="167.0" prefWidth="133.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="categoryImage8" fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <image>
+                                          <Image url="@../../Images/i.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="categoryLabel8" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Lighting" textAlignment="RIGHT" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="categoryBasketButton" mnemonicParsing="false" onAction="#basketButtonOnAction" prefHeight="42.0" prefWidth="45.0" style="-fx-background-radius: 15; -fx-background-color: #000000;" textFill="WHITE" GridPane.columnIndex="8">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="20" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets left="7.0" />
+                           </GridPane.margin>
+                        </Button>
                      </children>
                   </GridPane>
                </children>
