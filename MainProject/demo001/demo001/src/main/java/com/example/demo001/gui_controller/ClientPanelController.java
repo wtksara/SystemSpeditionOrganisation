@@ -3,7 +3,6 @@ package com.example.demo001.gui_controller;
 import com.example.demo001.Cipher;
 import com.example.demo001.domain.Actors.BasicUser;
 import com.example.demo001.domain.Client.Client;
-import com.example.demo001.domain.Factory.ProductionAbility;
 import com.example.demo001.domain.OrderManagement.OrderItem;
 import com.example.demo001.domain.OrderManagement.OrderStatus;
 import com.example.demo001.domain.OrderManagement.ProductOrder;
@@ -23,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -280,35 +280,35 @@ public class ClientPanelController implements Initializable {
             //when category is chosen a list of products of this type is downloaded from database
             Button btnClicked = (Button) event.getSource();
             if (btnClicked == categoryButton1) {
-                tabText.setText(ProductType.HARDWARE.toString());
+                tabText.setText("Hardware");
                 products = productService.FindProductsByProductType(ProductType.HARDWARE);
             }
             else if (btnClicked == categoryButton2) {
-                tabText.setText(ProductType.TOOLS.toString());
+                tabText.setText("Tools");
                 products = productService.FindProductsByProductType(ProductType.TOOLS);
             }
             else if (btnClicked == categoryButton3) {
-                tabText.setText(ProductType.WOOD.toString());
+                tabText.setText("Wood");
                 products = productService.FindProductsByProductType(ProductType.WOOD);
             }
             else if (btnClicked == categoryButton4) {
-                tabText.setText(ProductType.FLOORING.toString());
+                tabText.setText("Flooring");
                 products = productService.FindProductsByProductType(ProductType.FLOORING);
             }
             else if (btnClicked == categoryButton5) {
-                tabText.setText(ProductType.TILES.toString());
+                tabText.setText("Tiles");
                 products = productService.FindProductsByProductType(ProductType.TILES);
             }
             else if (btnClicked == categoryButton6) {
-                tabText.setText(ProductType.PAINT.toString());
+                tabText.setText("Paint");
                 products = productService.FindProductsByProductType(ProductType.PAINT);
             }
             else if (btnClicked == categoryButton7) {
-                tabText.setText(ProductType.WALLPAPERS.toString());
+                tabText.setText("Wallpapers");
                 products = productService.FindProductsByProductType(ProductType.WALLPAPERS);
             }
             else if (btnClicked == categoryButton8) {
-                tabText.setText(ProductType.LIGHTING.toString());
+                tabText.setText("Ligting");
                 products = productService.FindProductsByProductType(ProductType.LIGHTING);
             }
         }
