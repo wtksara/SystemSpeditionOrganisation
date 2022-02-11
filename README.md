@@ -42,3 +42,7 @@ After collection of the all items. Order can be placed.
 <img src="/6.png" width="259" height="350"> <img src="/7.png" width="257" height="161">
 
 Current orders / History orders can be viewed. Also all details of each order. 
+
+<img src="/8.png" width="623" height="389">
+
+<img src="/9.png" width="273" height="350">
