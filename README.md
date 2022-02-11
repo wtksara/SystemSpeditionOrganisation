@@ -49,24 +49,26 @@ Current orders / History orders can be viewed. Also all details of each order.
 
 Order Manager can create a offer for a client. 
 
-<img src="/14.png" width width="623" height="389">
+<img src="/14.png" width="623" height="389">
 
 For each produt manager can set the factory and on the end the transport provider which will take that order. 
 
-<img src="/16.png" width width="623" height="389">
+<img src="/16.png" width="623" height="389">
 
 After the total cost is calculated based on product prices and cost of the transport in that area. 
 
-<img src="/17.png" width width="623" height="389">
+<img src="/17.png" width="623" height="389">
 
 After placing the offer the status is changing for pending. 
 
-<img src="/18.png" width width="622" height="288">
+<img src="/18.png" width="622" height="288">
 
 Tranport Provider has to confirm if he will be able to handle the order. 
 
-<img src="/18.png" width width="622" height="288">
+<img src="/23.png" width="623" height="389">
 
 Then the complete offer is send to the Client. After acception transport provider is responsible for delivery order. 
 
-<img src="/18.png" width width="622" height="288">
+<img src="/24.png" width="622" height="288">
+
+Factory Manager can change the details and add new products for sale. Factory Manager has to set amount of stock, which is avaiable in factory.  
