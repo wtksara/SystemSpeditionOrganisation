@@ -32,5 +32,13 @@ Client has more options.
 
 He can create a new order by adding to the basket items from the categories. 
 
+<img src="/2.png" width="623" height="389">
+<img src="/3.png" width="623" height="389">
+<img src="/4.png" width="623" height="389">
+<img src="/5.png" width="420" height="212">
 
 After collection of the all items. Order can be placed. 
+
+<img src="/6.png" width="259" height="350"> <img src="/7.png" width="257" height="161">
+
+Current orders / History orders can be viewed. Also all details of each order. 
