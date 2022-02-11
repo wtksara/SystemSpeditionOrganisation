@@ -18,7 +18,7 @@ UseCasesDiagram
 
 Firstly, user has to login in. According to the role different options will be available.
 
-<img src="/1.png" width="477" height="393">
+<img src="HistoricalDiagrams/1.png" width="477" height="393">
 
 Administrator can manage all users in system (delete, update and add). 
 
