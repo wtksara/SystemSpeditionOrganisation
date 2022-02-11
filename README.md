@@ -71,4 +71,14 @@ Then the complete offer is send to the Client. After acception transport provide
 
 <img src="/24.png" width="622" height="288">
 
-Factory Manager can change the details and add new products for sale. Factory Manager has to set amount of stock, which is avaiable in factory.  
+Factory Manager can change the details and add new products for sale. 
+
+<img src="/10.png" width="623" height="389">
+
+<img src="/11.png" width="623" height="389">
+
+<img src="/12.png" width="266" height="282">
+
+Factory Manager has to set amount of stock, which is avaiable in factory.  
+
+<img src="/13.png" width="623" height="389">
