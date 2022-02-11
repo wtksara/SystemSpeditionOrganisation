@@ -46,3 +46,12 @@ Current orders / History orders can be viewed. Also all details of each order.
 <img src="/8.png" width="623" height="389">
 
 <img src="/9.png" width="273" height="350">
+
+Order Manager can create a offer for a client. 
+
+
+For each produt manager can set the factory and on the end the transport provider which will take that order. 
+
+After the total cost is calculated based on product prices and cost of the transport in that area. 
+
+After placing the offer the status is changing for pending. 
