@@ -25,3 +25,12 @@ Administrator can manage all users in system (delete, update and add).
 <img src="/22.png" width="624" height="390,5">
 
 <img src="/21.png" width="248" height="269"> <img src="/20.png" width="245" height="266">
+
+Client has more options. 
+
+<img src="/22.png" width="624" height="390,5"> 
+
+He can create a new order by adding to the basket items from the categories. 
+
+
+After collection of the all items. Order can be placed. 
