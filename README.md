@@ -22,5 +22,6 @@ Firstly, user has to login in. According to the role different options will be a
 
 Administrator can manage all users in system (delete, update and add). 
 
-<img src="/1.png" width="477" height="393">
+<img src="/22.png" width="624" height="390,5">
 
+<img src="/21.png" width="248" height="269"> <img src="/20.png" width="245" height="266">
